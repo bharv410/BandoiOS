@@ -9,6 +9,7 @@
 #import "GridViewController.h"
 #import "GridViewCell.h"
 #import <Parse/Parse.h>
+#import "BandoPost.h"
 
 @implementation GridViewController
 
@@ -37,7 +38,9 @@
             NSLog(@"Successfully retrieved %d scores.", objects.count);
             // Do something with the found objects
             for (PFObject *object in objects) {
-                NSLog(@"%@", object[@"postText"]);
+                BandoPost *bp = [[BandoPost alloc]init];
+                bp.postText = object[@"postText"];
+                NSLog(@"%@", bp.postText);
             }
         } else {
             // Log details of the failure
