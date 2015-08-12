@@ -27,6 +27,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.myTableView reloadData];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +63,8 @@
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         dispatch_async(dispatch_get_main_queue(), ^{
             // Update the UI
-            [cell.imageView setImage:[UIImage imageWithData:imageData]];
+            UITableViewCell *mycell = [tableView cellForRowAtIndexPath:indexPath];
+            [mycell.imageView setImage:[UIImage imageWithData:imageData]];
         });
     });
 
