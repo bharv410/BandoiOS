@@ -8,6 +8,7 @@
 
 #import "GridViewController.h"
 #import "GridViewCell.h"
+#import <Parse/Parse.h>
 
 @implementation GridViewController
 
@@ -28,6 +29,21 @@
     
     [self.gridView reloadData];
     [self addHeader];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d scores.", objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object[@"postText"]);
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 
