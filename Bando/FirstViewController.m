@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "AQGridViewController.h"
 
 @interface FirstViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    AQGridViewController *grid = [AQGridViewController alloc];
 }
 
 - (void)didReceiveMemoryWarning {
