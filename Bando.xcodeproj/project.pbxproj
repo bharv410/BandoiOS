@@ -34,6 +34,7 @@
 		6B58AD2E1B7BACFB00295F6D /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58AD2D1B7BACFB00295F6D /* GridViewController.m */; };
 		6B58AD301B7BAE9500295F6D /* bandologo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B58AD2F1B7BAE9500295F6D /* bandologo.png */; };
 		6B58AD321B7BB33800295F6D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B58AD311B7BB33800295F6D /* QuartzCore.framework */; };
+		6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		6B58AD2D1B7BACFB00295F6D /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
 		6B58AD2F1B7BAE9500295F6D /* bandologo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandologo.png; sourceTree = "<group>"; };
 		6B58AD311B7BB33800295F6D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6B58AD391B7BBDF900295F6D /* SimpleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableViewController.h; sourceTree = "<group>"; };
+		6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,7 @@
 		6B13F7BA1B791A5E004511E5 /* Bando */ = {
 			isa = PBXGroup;
 			children = (
+				6B58AD381B7BBDE100295F6D /* LiveListView */,
 				6B58AD281B7BAC0E00295F6D /* FeaturedGridView */,
 				6B58ACA91B7BA80D00295F6D /* AQGridView */,
 				6B13F7BF1B791A5E004511E5 /* AppDelegate.h */,
@@ -266,6 +270,15 @@
 				6B58AD2D1B7BACFB00295F6D /* GridViewController.m */,
 			);
 			name = FeaturedGridView;
+			sourceTree = "<group>";
+		};
+		6B58AD381B7BBDE100295F6D /* LiveListView */ = {
+			isa = PBXGroup;
+			children = (
+				6B58AD391B7BBDF900295F6D /* SimpleTableViewController.h */,
+				6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */,
+			);
+			name = LiveListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +411,7 @@
 				6B58AD2E1B7BACFB00295F6D /* GridViewController.m in Sources */,
 				6B13F7C71B791A5E004511E5 /* SecondViewController.m in Sources */,
 				6B58AD191B7BAB9000295F6D /* AQGridView.m in Sources */,
+				6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */,
 				6B13F7C11B791A5E004511E5 /* AppDelegate.m in Sources */,
 				6B58AD1B1B7BAB9000295F6D /* AQGridViewCell.m in Sources */,
 				6B58AD1E1B7BAB9000295F6D /* AQGridViewUpdateInfo.m in Sources */,
