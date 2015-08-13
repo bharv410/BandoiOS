@@ -18,7 +18,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     NSArray *nameArray;
     NSArray *descriptionArray;
     NSArray *cardSizeArray;
-}
+    }
 
 @end
 
@@ -33,19 +33,65 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    consumerSecret:TWITTER_CONSUMER_SECRET];
     
     [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
-        
-        [self.twitter getUserTimelineWithScreenName:@"meekmill"
-                                  successBlock:^(NSArray *statuses) {
-                                    NSLog(@"-- statuses: %@", statuses);
 
-                                      [self.twitPosts addObjectsFromArray:statuses];
-                                      
-                                      [self.myTableView reloadData];
-                                      // ...
-                                  } errorBlock:^(NSError *error) {
-                                      // ...
-                                      NSLog(@"%@",error.description);
-                                  }];
+        [self.twitter getUserTimelineWithScreenName:@"Hot97"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"Kendricklamar"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"drake"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"metroboomin"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"applemusic"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"1future"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        [self.twitter getUserTimelineWithScreenName:@"meekmill"
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+        
         
     } errorBlock:^(NSError *error) {
         NSLog(@"%@",error.description);
@@ -118,7 +164,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 #warning you're going to want to change this
     
     if([self.twitPosts count]>0)
-        return 7;
+        return [self.twitPosts count];
     else
         return 0;
 }
