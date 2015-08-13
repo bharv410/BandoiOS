@@ -46,6 +46,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>InstagramAppClientId</key>
+	<string>49fcbbb3abe9448798d8849806da6cd4</string>
+	<key>InstagramAppRedirectURL</key>
+	<string>http://phantom.com</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -8,6 +8,7 @@
 
 #import "SimpleTableViewController.h"
 #import "ListViewCell.h"
+#import <InstagramKit/InstagramKit.h>
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -27,6 +28,15 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    
+    InstagramEngine *engine = [InstagramEngine sharedEngine];
+    [engine getPopularMediaWithSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        NSLog(@"sucess");
+    } failure:^(NSError *error, NSInteger statusCode) {
+
+    }];
+    
+    
     self.twitPosts = [[NSMutableArray alloc]init];
     
     self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
