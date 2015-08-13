@@ -17,8 +17,8 @@
     self = [super initWithFrame: frame reuseIdentifier: aReuseIdentifier];
     if ( self)
     {
-        
-        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 123)];
+    
+        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 153)];
         [mainView setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(9, 4, 142, 117)];

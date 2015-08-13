@@ -12,7 +12,8 @@
 @interface GridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>
 
 @property (nonatomic, retain) IBOutlet AQGridView * gridView;
+@property (strong, nonatomic) IBOutlet UINavigationBar *gridNaavBar;
 
-@property (nonatomic, retain) NSArray * services;
+@property (nonatomic, retain) NSMutableArray *bandoPosts;
 
 @end
