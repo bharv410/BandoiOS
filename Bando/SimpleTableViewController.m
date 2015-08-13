@@ -39,7 +39,9 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.myTableView reloadData];
     });
-    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
     
 }
 
@@ -101,19 +103,35 @@
         cell = [[ListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listViewCell"];
     }
     
-    //cell.profileImage.image = [UIImage imageNamed:[photoArray objectAtIndex:indexPath.row]];
     cell.titleLabel.text = [titleArray objectAtIndex:indexPath.row];
     cell.nameLabel.text = [nameArray objectAtIndex:indexPath.row];
     cell.descriptionLabel.text = [descriptionArray objectAtIndex:indexPath.row];
     
     //%%% I made the cards pseudo dynamic, so I'm asking the cards to change their frames depending on the height of the cell
+    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    [cell setInsideBGFrame:CGRectMake(20, 5, screenWidth-20, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-20)];
-     [cell setFrame:CGRectMake(10, 5, screenWidth-10, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-10)];
+    cell.cardView.frame = CGRectMake(0, 5, screenWidth-10, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-10);
     
+    cell.cellBottomPart.frame = CGRectMake(cell.cellBottomPart.frame.origin.x, cell.cellBottomPart.frame.origin.y, screenWidth, cell.cellBottomPart.frame.size.height);
+    
+    NSInteger row=indexPath.row;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *futurePic = @"https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xap1/t51.2885-15/10948938_1695988977287373_1424991187_n.jpg";
+        //NSURL *imageURL = [NSURL URLWithString:[[Listname objectAtIndex:indexPath.item]coverURL]];
+        NSURL *imageURL = [NSURL URLWithString:futurePic];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //set image if below condition satisfies
+            if([tableView indexPathForCell:cell] . row == row){
+                cell.profileImage.image = [UIImage imageWithData:imageData];
+            }
+        });
+    });
     return cell;
 }
 

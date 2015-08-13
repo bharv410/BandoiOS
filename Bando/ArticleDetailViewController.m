@@ -20,20 +20,8 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    [self addBackButtonWithTitle:@"back"];
     
-    // Do any additional setup after loading the view.
-    
-//    NSURL *websiteUrl = [NSURL URLWithString:self.websiteString];
-//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:websiteUrl];
-//    [self.webView loadRequest:urlRequest];
-//    self.navTitle.title = self.websiteStri
-    
-    UIColor *greenColor = [self colorWithHexString:@"168807"];
-    
-    UIImage *image = [self imageWithColor:greenColor];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //UIImage *image = [self imageWithColor:greenColor];
     
     
     //[self getBackBtn];
@@ -51,11 +39,14 @@
     [_webView loadRequest:request];
     NSLog(@"WebView: %@", _webView);
     
-    self.navBar.topItem.title = self.websiteString;
+    self.navigationController.navigationBar.topItem.title = @"Bando";
     
-    UIView *bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0,screenHeight-60, screenWidth, 60)];
-    [bottomBar setBackgroundColor:greenColor];
-    [self.view addSubview:bottomBar];
+//    UIView *bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0,screenHeight-60, screenWidth, 60)];
+//    UIColor *greenColor = [self colorWithHexString:@"168807"];
+//    [bottomBar setBackgroundColor:greenColor];
+//    [self.view addSubview:bottomBar];
+//    
+    //[self addBackButtonWithTitle:@"Back"];
     
 }
 
@@ -116,20 +107,6 @@
                            alpha:1.0f];
 }
 
--(void)getBackBtn
-{
-    UIButton *Btn =[UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [Btn setFrame:CGRectMake(0.0f,0.0f,50.0f,30.0f)];
-    [Btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"back.png"]]  forState:UIControlStateNormal];
-    //[Btn setTitle:@"OK" forState:UIControlStateNormal];
-    //Btn.titleLabel.font = [UIFont fontWithName:@"Georgia" size:14];
-    [Btn addTarget:self action:@selector(backBtnPress:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:Btn];
-    [self.navigationItem setLeftBarButtonItem:addButton];
-}
-
-
 - (void)backButtonPressed
 {
     // write your code to prepare popview
@@ -139,6 +116,42 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"Loading URL :%@",request.URL.absoluteString);
+    
+    //To avoid link clicking.
+    if(navigationType ==UIWebViewNavigationTypeLinkClicked)
+        return  NO;
+    
+    //To avoid form submission.
+    if(navigationType ==UIWebViewNavigationTypeFormSubmitted)
+        return  NO;
+    
+    //To avoid loading all the google ads.
+    if([request.URL.absoluteString rangeOfString:@"googleads"].location != NSNotFound)
+        return NO;
+    
+    //return FALSE; //to stop loading
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Failed to load with error :%@",[error debugDescription]);
+    
 }
 
 /*

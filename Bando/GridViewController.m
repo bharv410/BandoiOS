@@ -25,14 +25,14 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    self.gridView = [[AQGridView alloc] initWithFrame:CGRectMake(0,self.gridNaavBar.frame.size.height,screenWidth,screenHeight-50)];
+    self.gridView = [[AQGridView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar.frame.size.height,screenWidth,screenHeight-50)];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
     
     [self.view addSubview:gridView];
-    self.gridNaavBar.topItem.title = @"Bando";
+    self.navigationController.navigationBar.topItem.title = @"Bando";
 
     [self getOtherPosts];
     [self getFeaturedPost];
@@ -132,9 +132,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = siteUrl;
-    [self presentViewController:articleDetail animated:YES completion:^{
-        NSLog(@"presented detail");
-    }];
+    [self.navigationController pushViewController:articleDetail animated:YES];
     //[self performSegueWithIdentifier:@"showRecipeDetail" sender:nil];
     
 }

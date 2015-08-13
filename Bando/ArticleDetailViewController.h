@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArticleDetailViewController : UIViewController
+@interface ArticleDetailViewController : UIViewController<UIWebViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *websiteString;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navTitle;

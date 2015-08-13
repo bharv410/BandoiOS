@@ -61,28 +61,6 @@
     // Initialization code
 }
 
-- (void)setFrame:(CGRect)frame {
-    
-    if (self.superview) {
-        float cellWidth = 500.0;
-        frame.origin.x = (self.superview.frame.size.width - cellWidth) / 2;
-        frame.size.width = cellWidth;
-    }
-    
-    [super setFrame:frame];
-}
-
-- (void)setInsideBGFrame:(CGRect)frame {
-    
-    if (self.superview) {
-        float cellWidth = 500.0;
-        frame.origin.x = (self.superview.frame.size.width - cellWidth) / 2;
-        frame.size.width = cellWidth;
-    }
-    
-    [self.cellBackground setFrame:frame];
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

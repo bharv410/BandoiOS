@@ -14,14 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *commentButton;
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
-
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UIView *cellBackground;
+@property (strong, nonatomic) IBOutlet UIView *cellBottomPart;
 
-- (void)setFrame:(CGRect)frame;
-- (void)setInsideBGFrame:(CGRect)frame;
 
 @end
