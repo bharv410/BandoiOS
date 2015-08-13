@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
 @property (strong, nonatomic) STTwitterAPI *twitter;
+@property (strong, nonatomic) NSMutableArray *twitPosts;
 
 @end

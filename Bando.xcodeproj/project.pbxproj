@@ -37,6 +37,7 @@
 		6B58AD321B7BB33800295F6D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B58AD311B7BB33800295F6D /* QuartzCore.framework */; };
 		6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */; };
 		6B652BDB1B7C742F00E73D6E /* ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B652BDA1B7C742F00E73D6E /* ListViewCell.m */; };
+		6B652C431B7D181200707279 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B652C421B7D181200707279 /* Twitter.framework */; };
 		6B858E461B7BC0D500A1FB8C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E441B7BC0D500A1FB8C /* Bolts.framework */; };
 		6B858E471B7BC0D500A1FB8C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E451B7BC0D500A1FB8C /* Parse.framework */; };
 		6B858E491B7BC10500A1FB8C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E481B7BC10500A1FB8C /* AudioToolbox.framework */; };
@@ -51,6 +52,7 @@
 		6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */; };
 		6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5C1B7BC1A100A1FB8C /* Social.framework */; };
 		6B858E611B7BC4E300A1FB8C /* BandoPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B858E601B7BC4E300A1FB8C /* BandoPost.m */; };
+		C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bando.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2959C94D0A5C367FFDEB84F3 /* Pods-Bando.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bando.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bando/Pods-Bando.release.xcconfig"; sourceTree = "<group>"; };
 		6B13F7B81B791A5E004511E5 /* Bando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bando.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B13F7BC1B791A5E004511E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B13F7BD1B791A5E004511E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableViewController.m; sourceTree = "<group>"; };
 		6B652BD91B7C742F00E73D6E /* ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewCell.h; sourceTree = "<group>"; };
 		6B652BDA1B7C742F00E73D6E /* ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewCell.m; sourceTree = "<group>"; };
+		6B652C421B7D181200707279 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		6B858E441B7BC0D500A1FB8C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6B858E451B7BC0D500A1FB8C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6B858E481B7BC10500A1FB8C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -149,6 +154,7 @@
 		6B858E5C1B7BC1A100A1FB8C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6B858E5F1B7BC4E300A1FB8C /* BandoPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandoPost.h; sourceTree = "<group>"; };
 		6B858E601B7BC4E300A1FB8C /* BandoPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandoPost.m; sourceTree = "<group>"; };
+		B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bando.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bando/Pods-Bando.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B652C431B7D181200707279 /* Twitter.framework in Frameworks */,
 				6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */,
 				6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */,
 				6B858E591B7BC14100A1FB8C /* libsqlite3.dylib in Frameworks */,
@@ -170,6 +177,7 @@
 				6B58AD321B7BB33800295F6D /* QuartzCore.framework in Frameworks */,
 				6B858E471B7BC0D500A1FB8C /* Parse.framework in Frameworks */,
 				6B858E461B7BC0D500A1FB8C /* Bolts.framework in Frameworks */,
+				C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +191,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25314A73A37772F9154D1B51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B652C421B7D181200707279 /* Twitter.framework */,
+				01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34A7C936D5C42CEAE8CE2170 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */,
+				2959C94D0A5C367FFDEB84F3 /* Pods-Bando.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6B13F7AF1B791A5E004511E5 = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +229,8 @@
 				6B13F7BA1B791A5E004511E5 /* Bando */,
 				6B13F7D71B791A5E004511E5 /* BandoTests */,
 				6B13F7B91B791A5E004511E5 /* Products */,
+				34A7C936D5C42CEAE8CE2170 /* Pods */,
+				25314A73A37772F9154D1B51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -363,9 +391,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B13F7DE1B791A5E004511E5 /* Build configuration list for PBXNativeTarget "Bando" */;
 			buildPhases = (
+				6CE48DDEF3320BDA03E278CB /* Check Pods Manifest.lock */,
 				6B13F7B41B791A5E004511E5 /* Sources */,
 				6B13F7B51B791A5E004511E5 /* Frameworks */,
 				6B13F7B61B791A5E004511E5 /* Resources */,
+				4280089D81806A20A0FEDF7C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -473,6 +503,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4280089D81806A20A0FEDF7C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bando/Pods-Bando-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CE48DDEF3320BDA03E278CB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6B13F7B41B791A5E004511E5 /* Sources */ = {
@@ -629,6 +692,7 @@
 		};
 		6B13F7DF1B791A5E004511E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -641,7 +705,10 @@
 				);
 				INFOPLIST_FILE = Bando/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = AQGridView;
@@ -650,6 +717,7 @@
 		};
 		6B13F7E01B791A5E004511E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2959C94D0A5C367FFDEB84F3 /* Pods-Bando.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -658,7 +726,10 @@
 				);
 				INFOPLIST_FILE = Bando/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 			};

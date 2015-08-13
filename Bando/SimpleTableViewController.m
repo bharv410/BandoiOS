@@ -27,6 +27,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    self.twitPosts = [[NSMutableArray alloc]init];
     
     self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
                                                    consumerSecret:TWITTER_CONSUMER_SECRET];
@@ -35,8 +36,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         
         [self.twitter getUserTimelineWithScreenName:@"meekmill"
                                   successBlock:^(NSArray *statuses) {
-                                    
-                                      NSLog(@"%@","FFF");
+                                    NSLog(@"-- statuses: %@", statuses);
+
+                                      [self.twitPosts addObjectsFromArray:statuses];
+                                      
+                                      [self.myTableView reloadData];
                                       // ...
                                   } errorBlock:^(NSError *error) {
                                       // ...
@@ -46,12 +50,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     } errorBlock:^(NSError *error) {
         NSLog(@"%@",error.description);
         // ...
-    }];
-    
-    [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
-        NSLog( @"got twit" );
-    } errorBlock:^(NSError *error) {
-        NSLog( error.description);
     }];
     
     
@@ -88,7 +86,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     nameArray = [[NSArray alloc]initWithObjects:@"Things are gonna get",@"Easieerrrrr",@"ooooooh chiiiiild", @"Things are gonna get",@"Easieerrrrr",@"ooooooh chiiiiild",@"last name",nil];
     descriptionArray = [[NSArray alloc]initWithObjects:@"Dance off bro",@"Things are gonna get brighter",@"oooh oooh baeebeeee",@"Dance off bro",@"Things are gonna get brighter",@"oooh oooh baeebeeee",@"last description", nil];
-    cardSizeArray = [[NSArray alloc]initWithObjects:@200,@200,@300, @300, @200 , @200 ,@200 ,nil];
+    cardSizeArray = [[NSArray alloc]initWithObjects:@200,@200,@300, @300, @200 , @200 ,@200,@200 ,@200 ,nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +116,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning you're going to want to change this
-    return 7;
+    
+    if([self.twitPosts count]>0)
+        return 7;
+    else
+        return 0;
 }
 
 //creates cell with a row number (0,1,2, etc), sets the name and description as strings from event object
@@ -133,8 +135,13 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         cell = [[ListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listViewCell"];
     }
     
-    cell.titleLabel.text = [titleArray objectAtIndex:indexPath.row];
-    cell.nameLabel.text = [nameArray objectAtIndex:indexPath.row];
+    NSString *text = [[self.twitPosts objectAtIndex:indexPath.row] valueForKey:@"text"];
+    NSString *screenName = [[self.twitPosts objectAtIndex:indexPath.row] valueForKeyPath:@"user.screen_name"];
+    NSString *profilePic = [[self.twitPosts objectAtIndex:indexPath.row] valueForKeyPath:@"user.profile_image_url_https"];
+    NSString *dateString = [[self.twitPosts objectAtIndex:indexPath.row] valueForKey:@"created_at"];
+    
+    cell.titleLabel.text = text;
+    cell.nameLabel.text = [NSString stringWithFormat:@"@%@",screenName];
     cell.descriptionLabel.text = [descriptionArray objectAtIndex:indexPath.row];
     
     //%%% I made the cards pseudo dynamic, so I'm asking the cards to change their frames depending on the height of the cell
@@ -149,9 +156,9 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     NSInteger row=indexPath.row;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *futurePic = @"https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xap1/t51.2885-15/10948938_1695988977287373_1424991187_n.jpg";
+//        NSString *futurePic = @"https://igcdn-photos-f-a.akamaihd.net/hphotos-ak-xap1/t51.2885-15/10948938_1695988977287373_1424991187_n.jpg";
         //NSURL *imageURL = [NSURL URLWithString:[[Listname objectAtIndex:indexPath.item]coverURL]];
-        NSURL *imageURL = [NSURL URLWithString:futurePic];
+        NSURL *imageURL = [NSURL URLWithString:profilePic];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage *image = [UIImage imageWithData:imageData];
         
