@@ -17,7 +17,9 @@
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSString *postTimeAgo;
 @property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *profileImageUrl;
 @property (nonatomic, strong) NSString *uniqueId;
+@property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSNumber *viewCount;
 
 @end

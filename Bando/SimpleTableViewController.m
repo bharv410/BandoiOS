@@ -9,6 +9,7 @@
 #import "SimpleTableViewController.h"
 #import "ListViewCell.h"
 #import <InstagramKit/InstagramKit.h>
+#import "BandoPost.h"
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -29,15 +30,27 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     [super viewDidLoad];
     // Initialize table dat
     
+    self.bandoPosts = [[NSMutableArray alloc]init];
+    
     InstagramEngine *engine = [InstagramEngine sharedEngine];
-    [engine getPopularMediaWithSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
-        NSLog(@"sucess");
-    } failure:^(NSError *error, NSInteger statusCode) {
-
+    
+    [engine getMediaForUser:@"14455831" count:3 maxId:@"1" withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        for(InstagramMedia *cur in media){
+            BandoPost *bp = [[BandoPost alloc]init];
+            bp.postLink = cur.link;
+            bp.username = cur.user.username;
+            bp.postType = @"instagram";
+            bp.postText = cur.caption.text;
+            bp.createdAt = cur.createdDate;
+            bp.profileImageUrl = cur.user.profilePictureURL;
+            bp.imageUrl = cur.standardResolutionImageURL;
+            [self.bandoPosts addObject:bp];
+        }
+        [self.myTableView reloadData];
+    } failure:^(NSError *error, NSInteger serverStatusCode) {
+        NSLog(@"%@",error.description);
     }];
     
-    
-    self.twitPosts = [[NSMutableArray alloc]init];
     
     self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
                                                    consumerSecret:TWITTER_CONSUMER_SECRET];
@@ -47,8 +60,25 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"Hot97"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
-                                           
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                               { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
@@ -56,7 +86,25 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"Kendricklamar"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
@@ -64,15 +112,50 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"drake"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
-                                           [self.myTableView reloadData];
-                                       } errorBlock:^(NSError *error) {
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
+                                           [self.myTableView reloadData];                                       } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
                                        }];
         [self.twitter getUserTimelineWithScreenName:@"metroboomin"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
@@ -80,7 +163,25 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"applemusic"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
@@ -88,7 +189,25 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"1future"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
@@ -96,9 +215,26 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self.twitter getUserTimelineWithScreenName:@"meekmill"
                                               count:1
                                        successBlock:^(NSArray *statuses) {
-                                           [self.twitPosts addObjectsFromArray:statuses];
-                                           [self.myTableView reloadData];
-                                       } errorBlock:^(NSError *error) {
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               //bp.postLink = cur.link;
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               NSString *dateString = [cur valueForKey:@"created_at"];
+                                               __block NSDate *detectedDate;
+                                               //Detect.
+                                               NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingAllTypes error:nil];
+                                               [detector enumerateMatchesInString:dateString
+                                                                          options:kNilOptions
+                                                                            range:NSMakeRange(0, [dateString length])
+                                                                       usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
+                                                { bp.createdAt = result.date; }];
+                                               bp.imageUrl = @"none";
+                                               [self.bandoPosts addObject:bp];
+                                           }
+                                           [self.myTableView reloadData];                                       } errorBlock:^(NSError *error) {
                                            NSLog(@"%@",error.description);
                                        }];
         
@@ -173,8 +309,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 {
 #warning you're going to want to change this
     
-    if([self.twitPosts count]>0)
-        return [self.twitPosts count];
+    if([self.bandoPosts count]>0)
+        return [self.bandoPosts count];
     else
         return 0;
 }
@@ -191,14 +327,20 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         cell = [[ListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listViewCell"];
     }
     
-    NSString *text = [[self.twitPosts objectAtIndex:indexPath.row] valueForKey:@"text"];
-    NSString *screenName = [[self.twitPosts objectAtIndex:indexPath.row] valueForKeyPath:@"user.screen_name"];
-    NSString *profilePic = [[self.twitPosts objectAtIndex:indexPath.row] valueForKeyPath:@"user.profile_image_url_https"];
-    NSString *dateString = [[self.twitPosts objectAtIndex:indexPath.row] valueForKey:@"created_at"];
+    BandoPost *bp = [self.bandoPosts objectAtIndex:indexPath.row];
+    
+    NSString *text = bp.postText;
+    NSString *screenName = bp.username;
+    NSString *profilePic = bp.profileImageUrl;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *stringDate = [dateFormatter stringFromDate:bp.createdAt];
+    NSString *dateString = stringDate;
     
     cell.titleLabel.text = text;
-    cell.nameLabel.text = [NSString stringWithFormat:@"@%@",screenName];
-    cell.descriptionLabel.text = [descriptionArray objectAtIndex:indexPath.row];
+    cell.nameLabel.text = screenName;
+    cell.descriptionLabel.text = text;
     
     //%%% I made the cards pseudo dynamic, so I'm asking the cards to change their frames depending on the height of the cell
     
@@ -206,7 +348,12 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-10);
+    
+    if([bp.imageUrl containsString:@"none"]){
+        cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 200);
+    }else{
+        cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 300);
+    }
     
     cell.cellBottomPart.frame = CGRectMake(cell.cellBottomPart.frame.origin.x, cell.cellBottomPart.frame.origin.y, screenWidth, cell.cellBottomPart.frame.size.height);
     

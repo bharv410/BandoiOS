@@ -14,9 +14,10 @@
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
 @property (strong, nonatomic) STTwitterAPI *twitter;
-@property (strong, nonatomic) NSMutableArray *twitPosts;
 
 @property (nonatomic, strong) InstagramPaginationInfo *currentPaginationInfo;
 @property (nonatomic, weak) InstagramEngine *instagramEngine;
+
+@property (strong, nonatomic) NSMutableArray *bandoPosts;
 
 @end
