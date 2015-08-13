@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <STTwitter/STTwitter.h>
 
 @interface SimpleTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
+
+@property (strong, nonatomic) STTwitterAPI *twitter;
 
 @end

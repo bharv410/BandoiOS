@@ -9,6 +9,9 @@
 #import "SimpleTableViewController.h"
 #import "ListViewCell.h"
 
+NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
+NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
+
 @interface SimpleTableViewController (){
     NSArray *photoArray;
     NSArray *titleArray;
@@ -23,7 +26,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Initialize table data
+    // Initialize table dat
+    
+    self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
+                                                   consumerSecret:TWITTER_CONSUMER_SECRET];
+    
+    [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+        
+        [self.twitter getUserTimelineWithScreenName:@"meekmill"
+                                  successBlock:^(NSArray *statuses) {
+                                    
+                                      NSLog(@"%@","FFF");
+                                      // ...
+                                  } errorBlock:^(NSError *error) {
+                                      // ...
+                                      NSLog(@"%@",error.description);
+                                  }];
+        
+    } errorBlock:^(NSError *error) {
+        NSLog(@"%@",error.description);
+        // ...
+    }];
+    
+    [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+        NSLog( @"got twit" );
+    } errorBlock:^(NSError *error) {
+        NSLog( error.description);
+    }];
+    
     
     [self loadExampleData];
     self.myTableView.separatorColor = [UIColor clearColor];
@@ -113,7 +143,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    cell.cardView.frame = CGRectMake(0, 5, screenWidth-10, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-10);
+    cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue]-10);
     
     cell.cellBottomPart.frame = CGRectMake(cell.cellBottomPart.frame.origin.x, cell.cellBottomPart.frame.origin.y, screenWidth, cell.cellBottomPart.frame.size.height);
     

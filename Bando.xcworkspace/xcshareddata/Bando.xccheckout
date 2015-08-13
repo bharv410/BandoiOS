@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5EEDAF91-FA3F-44EA-97BE-384D1F6DA34E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Bando</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>404DF2AD34036C3C1B8A32F9E424E5686AC1FF51</key>
+		<string>https://github.com/bharv410/BandoiOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Bando.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>404DF2AD34036C3C1B8A32F9E424E5686AC1FF51</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/bharv410/BandoiOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>404DF2AD34036C3C1B8A32F9E424E5686AC1FF51</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>404DF2AD34036C3C1B8A32F9E424E5686AC1FF51</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bando</string>
+		</dict>
+	</array>
+</dict>
+</plist>
