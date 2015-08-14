@@ -29,6 +29,8 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
     // Override point for customization after application launch.
     return YES;
 }
