@@ -12,6 +12,7 @@
 #import "BandoPost.h"
 #import "ArticleDetailViewController.h"
 #import <Haneke/Haneke.h>
+#import "Reachability.h"
 
 @implementation GridViewController{
     NSString *featuredPostLink;
@@ -23,6 +24,24 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
+    
+    NetworkStatus networkStatus = [netWorkReachablity currentReachabilityStatus];
+    
+    if (networkStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"No Internet Connection"
+                              message:@"This app requires internet connection to work correctly"
+                              delegate:self  // set nil if you don't want the yes button callback
+                              cancelButtonTitle:@"Yes"
+                              otherButtonTitles:@"No", nil];
+        [alert show];
+        
+    } else {
+        NSLog(@"There IS internet connection");
+    }
+    
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -129,7 +148,7 @@
             [self.gridView reloadData];
         } else {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            //NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
 }
@@ -207,7 +226,6 @@
         
         ArticleDetailViewController *articleDetail = [[ArticleDetailViewController alloc]init];
         articleDetail.websiteString = siteUrl;
-        NSLog(@"yay");
     }
 }
 

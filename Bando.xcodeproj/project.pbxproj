@@ -66,6 +66,7 @@
 		6BDBE0681B7E7894002F04DF /* UnselectedFeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */; };
 		6BDBE0691B7E7894002F04DF /* Unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0651B7E7894002F04DF /* Unselected@2x.png */; };
 		6BDBE06A1B7E7894002F04DF /* Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0661B7E7894002F04DF /* Unselected.png */; };
+		6BEDFD571B7EAC450018682F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEDFD561B7EAC450018682F /* Reachability.m */; };
 		C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,8 @@
 		6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnselectedFeed@2x.png"; sourceTree = "<group>"; };
 		6BDBE0651B7E7894002F04DF /* Unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Unselected@2x.png"; sourceTree = "<group>"; };
 		6BDBE0661B7E7894002F04DF /* Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unselected.png; sourceTree = "<group>"; };
+		6BEDFD551B7EAC450018682F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6BEDFD561B7EAC450018682F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bando.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bando/Pods-Bando.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,12 +195,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B858E551B7BC13100A1FB8C /* SystemConfiguration.framework in Frameworks */,
 				6B652C431B7D181200707279 /* Twitter.framework in Frameworks */,
 				6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */,
 				6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */,
 				6B858E591B7BC14100A1FB8C /* libsqlite3.dylib in Frameworks */,
 				6B858E571B7BC13A00A1FB8C /* libz.dylib in Frameworks */,
-				6B858E551B7BC13100A1FB8C /* SystemConfiguration.framework in Frameworks */,
 				6B858E531B7BC12A00A1FB8C /* StoreKit.framework in Frameworks */,
 				6B858E511B7BC12400A1FB8C /* Security.framework in Frameworks */,
 				6B858E4F1B7BC11700A1FB8C /* CoreLocation.framework in Frameworks */,
@@ -282,6 +285,8 @@
 				6B58AD281B7BAC0E00295F6D /* FeaturedGridView */,
 				6B58ACA91B7BA80D00295F6D /* AQGridView */,
 				6B13F7BF1B791A5E004511E5 /* AppDelegate.h */,
+				6BEDFD551B7EAC450018682F /* Reachability.h */,
+				6BEDFD561B7EAC450018682F /* Reachability.m */,
 				6B13F7C01B791A5E004511E5 /* AppDelegate.m */,
 				6B13F7C21B791A5E004511E5 /* FirstViewController.h */,
 				6B13F7C31B791A5E004511E5 /* FirstViewController.m */,
@@ -490,6 +495,7 @@
 				TargetAttributes = {
 					6B13F7B71B791A5E004511E5 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 55NN688S43;
 					};
 					6B13F7D31B791A5E004511E5 = {
 						CreatedOnToolsVersion = 6.4;
@@ -625,6 +631,7 @@
 				6B652BDB1B7C742F00E73D6E /* ListViewCell.m in Sources */,
 				6B58AD1E1B7BAB9000295F6D /* AQGridViewUpdateInfo.m in Sources */,
 				6B13F7C41B791A5E004511E5 /* FirstViewController.m in Sources */,
+				6BEDFD571B7EAC450018682F /* Reachability.m in Sources */,
 				6B58AD211B7BAB9000295F6D /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				6B58AD1A1B7BAB9000295F6D /* AQGridViewAnimatorItem.m in Sources */,
 				6B13F7BE1B791A5E004511E5 /* main.m in Sources */,
@@ -693,7 +700,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benjamin Harvey (55NN688S43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benjamin Harvey (55NN688S43)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -737,7 +745,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Benjamin Harvey (55NN688S43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Benjamin Harvey (55NN688S43)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -763,6 +772,8 @@
 			baseConfigurationReference = B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -778,6 +789,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = AQGridView;
 			};
@@ -788,6 +800,8 @@
 			baseConfigurationReference = 2959C94D0A5C367FFDEB84F3 /* Pods-Bando.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -799,6 +813,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 			};
 			name = Release;

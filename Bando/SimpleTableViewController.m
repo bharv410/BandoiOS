@@ -148,7 +148,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                            }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
-                                           NSLog(@"%@",error.description);
+                                           //NSLog(@"%@",error.description);
                                        }];
     }
     
@@ -195,7 +195,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
-                NSLog(@"added");
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -220,7 +219,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
-                NSLog(@"added");
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -246,7 +244,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
-                NSLog(@"added");
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -271,7 +268,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
                  [self.bandoPosts addObject:bp];
-                NSLog(@"added");
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -296,7 +292,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
-                NSLog(@"added");
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);

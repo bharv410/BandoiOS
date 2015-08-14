@@ -37,7 +37,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
-    NSLog(@"WebView: %@", _webView);
     
     self.navigationController.navigationBar.topItem.title = @"Bando";
     
@@ -120,7 +119,6 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"Loading URL :%@",request.URL.absoluteString);
     
     //To avoid link clicking.
     if(navigationType ==UIWebViewNavigationTypeLinkClicked)
@@ -150,7 +148,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"Failed to load with error :%@",[error debugDescription]);
+    //NSLog(@"Failed to load with error :%@",[error debugDescription]);
     
 }
 

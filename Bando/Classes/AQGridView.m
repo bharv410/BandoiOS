@@ -1700,13 +1700,13 @@ NSArray * __sortDescriptors;
                         if ( [newVisibleIndices containsIndex: cell.displayIndex] == NO &&
                             [animatingDestinationIndices containsIndex: cell.displayIndex] == NO )
                         {
-                            NSLog( @"Cell for index %lu is still in visible list, removing...", (unsigned long)cell.displayIndex );
+                            //NSLog( @"Cell for index %lu is still in visible list, removing...", (unsigned long)cell.displayIndex );
                             [cell removeFromSuperview];
                             [toRemove addIndex: i];
                         }
                         else if ( [seen containsIndex: cell.displayIndex] )
                         {
-                            NSLog( @"Multiple cells with index %lu found-- removing duplicate...", (unsigned long)cell.displayIndex );
+                            //NSLog( @"Multiple cells with index %lu found-- removing duplicate...", (unsigned long)cell.displayIndex );
                             [cell removeFromSuperview];
                             [toRemove addIndex: i];
                         }
@@ -1720,7 +1720,7 @@ NSArray * __sortDescriptors;
                 
                 if ( [_visibleCells count] < [newVisibleIndices count] )
                 {
-                    NSLog( @"Visible cell list is missing some items!" );
+                    //NSLog( @"Visible cell list is missing some items!" );
                     
                     NSMutableIndexSet * visibleSet = [[NSMutableIndexSet alloc] init];
                     for ( AQGridViewCell * cell in _visibleCells )
@@ -1731,7 +1731,7 @@ NSArray * __sortDescriptors;
                     NSMutableIndexSet * missingSet = [newVisibleIndices mutableCopy];
                     [missingSet removeIndexes: visibleSet];
                     
-                    NSLog( @"Got %lu missing indices", (unsigned long)[missingSet count] );
+                    //NSLog( @"Got %lu missing indices", (unsigned long)[missingSet count] );
                     
                     NSUInteger idx = [missingSet firstIndex];
                     while ( idx != NSNotFound )

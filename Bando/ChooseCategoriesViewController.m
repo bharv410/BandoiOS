@@ -133,7 +133,6 @@
     }
     [userDefaults setBool:musicClicked forKey:@"showMusic"];
     BOOL flag = [userDefaults boolForKey:@"showMusic"];
-    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedTrending:(CustomRoundRectButton *)sender {
@@ -148,7 +147,6 @@
     }
     [userDefaults setBool:trendingClicked forKey:@"showTrending"];
     BOOL flag = [userDefaults boolForKey:@"showTrending"];
-    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedCulture:(CustomRoundRectButton *)sender {
@@ -164,7 +162,6 @@
     
     [userDefaults setBool:cultureClicked forKey:@"showCulture"];
     BOOL flag = [userDefaults boolForKey:@"showCulture"];
-    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedSports:(CustomRoundRectButton *)sender {
@@ -179,7 +176,6 @@
     }
     [userDefaults setBool:sportsClicked forKey:@"showSports"];
     BOOL flag = [userDefaults boolForKey:@"showSports"];
-    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedComedy:(CustomRoundRectButton *)sender {
