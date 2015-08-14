@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "BandoPost.h"
 #import "ArticleDetailViewController.h"
+#import <Haneke/Haneke.h>
 
 @implementation GridViewController{
     NSString *featuredPostLink;
@@ -78,19 +79,7 @@
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, screenWidth-20, screenWidth-20)];
             
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSData *imgData = [NSData dataWithContentsOfURL:imageURL];
-                if (imgData) {
-                    UIImage *image = [UIImage imageWithData:imgData];
-                    if (image) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                                imageView.image = image;
-                            [self.gridView reloadData];
-                        });
-                    }
-                }
-            });
-            
+            [imageView hnk_setImageFromURL:imageURL];
             [tableHeaderView addSubview:headerLabel];
             [tableHeaderView addSubview:imageView];
             
@@ -195,20 +184,7 @@
     NSURL *imageURL = [[NSURL alloc]initWithString:url];
     [cell.captionLabel setText:bp.postText];
     bp = nil;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imgData = [NSData dataWithContentsOfURL:imageURL];
-        if (imgData) {
-            UIImage *image = [UIImage imageWithData:imgData];
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    GridViewCell *updateCell = (id)[gridView cellForItemAtIndex:index];
-                    if (updateCell)
-                        updateCell.imageView.image = image;
-                });
-            }
-        }
-    });
+    [cell.imageView hnk_setImageFromURL:imageURL];
     return cell;
     
 }

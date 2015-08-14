@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString *profileImageUrl;
 @property (nonatomic, strong) NSString *uniqueId;
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSURL *igProPic;
+@property (nonatomic, strong) NSURL *igImageUrl;
 @property (nonatomic, strong) NSNumber *viewCount;
 
 @end

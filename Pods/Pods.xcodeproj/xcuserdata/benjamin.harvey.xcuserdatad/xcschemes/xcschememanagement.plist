@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Bando-Haneke.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bando-InstagramKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C2603897211D800D14AD8DF</key>
+		<key>4A232C9D101671F64DA77AC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>230F483E4A0BDE9BE8ED2D88</key>
+		<key>4A838C337379E25F9829B9D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A7BE072BB6F452F1BB69206</key>
+		<key>93DEAD20969CB5E273D036A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A225E6CB92378322BC989FFB</key>
+		<key>C2681183844F5EF8D33A91A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F89EDCACC67CA0052C28FA42</key>
 		<dict>
 			<key>primary</key>
 			<true/>

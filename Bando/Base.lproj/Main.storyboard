@@ -71,31 +71,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pII-ep-lhs">
-                                                            <rect key="frame" x="100" y="69" width="180" height="21"/>
+                                                            <rect key="frame" x="20" y="26" width="180" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                             <color key="textColor" red="0.23089048670000001" green="0.23089048670000001" blue="0.23089048670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gh9-p2-lPq">
-                                                            <rect key="frame" x="100" y="87" width="168" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                                            <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
-                                                            <color key="textColor" red="0.23089048670000001" green="0.23089048670000001" blue="0.23089048670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RYx-3p-osf">
-                                                            <rect key="frame" x="20" y="17" width="272" height="27"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <attributedString key="attributedText">
-                                                                <fragment content="Label">
-                                                                    <attributes>
-                                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" id="fMK-yO-zfM">
@@ -112,6 +91,17 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                                             <color key="backgroundColor" red="0.94530558629999994" green="0.94530558629999994" blue="0.94530558629999994" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="G3w-iC-pTl">
+                                                            <rect key="frame" x="127" y="17" width="140" height="140"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gh9-p2-lPq">
+                                                            <rect key="frame" x="99" y="55" width="168" height="81"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                            <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                                                            <color key="textColor" red="0.23089048670000001" green="0.23089048670000001" blue="0.23089048670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -122,9 +112,9 @@
                                             <outlet property="cardView" destination="Ufd-TG-ej1" id="iE0-ba-zPI"/>
                                             <outlet property="cellBottomPart" destination="flB-Cc-5sl" id="J4v-uL-eg2"/>
                                             <outlet property="descriptionLabel" destination="Gh9-p2-lPq" id="NNs-m9-es9"/>
-                                            <outlet property="nameLabel" destination="RYx-3p-osf" id="fkB-3U-yJd"/>
+                                            <outlet property="nameLabel" destination="pII-ep-lhs" id="rcE-qP-py4"/>
                                             <outlet property="profileImage" destination="86y-l3-6va" id="kpX-xw-tu4"/>
-                                            <outlet property="titleLabel" destination="pII-ep-lhs" id="9dE-Nb-XV2"/>
+                                            <outlet property="realImageView" destination="G3w-iC-pTl" id="Gz2-Qi-5L5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

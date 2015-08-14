@@ -6,6 +6,7 @@ target 'Bando' do
 pod 'STTwitter'
 pod 'AFNetworking', '~> 2.5'
 pod 'InstagramKit', '~> 3.0'
+pod 'Haneke', '~> 1.0'
 
 end
 
