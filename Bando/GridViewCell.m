@@ -29,12 +29,16 @@
         self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, 92, 127, 21)];
         [captionLabel setFont:[UIFont systemFontOfSize:14]];
         
-        [mainView addSubview:imageView];
-        [mainView addSubview:frameImageView];
-        [mainView addSubview:captionLabel];
+//        [mainView addSubview:imageView];
+//        [mainView addSubview:frameImageView];
+//        [mainView addSubview:captionLabel];
         
-        [self.contentView addSubview:mainView];
+        self.imageView.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
         
+        [self.contentView addSubview:imageView];
+        [self.contentView addSubview:captionLabel];
     }
     
     return self;

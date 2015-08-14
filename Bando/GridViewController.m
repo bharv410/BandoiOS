@@ -48,16 +48,21 @@
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = object[@"postLink"];
                 bp.postType = @"article";
-                bp.postText = object[@"postText"];
+                bp.postText = object[@"text"];
                 bp.createdAt = object.createdAt;
                 bp.imageUrl = object[@"imageUrl"];
                 bp.uniqueId = object.objectId;
                 bp.viewCount = object[@"viewCount"];
                 //[bandoPosts addObject:bp];
-            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+            
+            CGRect screenRect = [[UIScreen mainScreen] bounds];
+            CGFloat screenWidth = screenRect.size.width;
+            CGFloat screenHeight = screenRect.size.height;
+            
+            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth)];
             
             
-            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,280,320,25)];
+            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,(screenWidth- 20),screenWidth,20)];
             headerLabel.text = bp.postText;
             headerLabel.textColor = [UIColor whiteColor];
             headerLabel.font = [UIFont boldSystemFontOfSize:28];
@@ -67,7 +72,7 @@
             NSString *url = bp.imageUrl;
             NSURL *imageURL = [[NSURL alloc]initWithString:url];
             
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 320, 295)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, screenWidth-20, screenWidth-20)];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSData *imgData = [NSData dataWithContentsOfURL:imageURL];
@@ -82,8 +87,8 @@
                 }
             });
             
-            [tableHeaderView addSubview:imageView];
             [tableHeaderView addSubview:headerLabel];
+            [tableHeaderView addSubview:imageView];
             
             [self.gridView setGridHeaderView:tableHeaderView];
             UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -155,6 +160,9 @@
         cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 153)
                                    reuseIdentifier: PlainCellIdentifier];
     }
+    
+    cell.contentView.layer.cornerRadius = 10;
+    cell.contentView.layer.masksToBounds = YES;
     
     cell.imageView.image = nil; // or cell.poster.image = [UIImage imageNamed:@"placeholder.png"];
     
