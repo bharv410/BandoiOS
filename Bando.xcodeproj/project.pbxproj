@@ -58,6 +58,14 @@
 		6BC95FD81B7DA0C60056B6D8 /* bandoheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC95FD71B7DA0C60056B6D8 /* bandoheader.png */; };
 		6BD388251B7D6C080095AF07 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388241B7D6C080095AF07 /* splash.png */; };
 		6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388261B7D6C150095AF07 /* splash@2x.png */; };
+		6BDBE05C1B7E77F9002F04DF /* Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE05B1B7E77F9002F04DF /* Selected.png */; };
+		6BDBE05E1B7E7802002F04DF /* Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE05D1B7E7802002F04DF /* Selected@2x.png */; };
+		6BDBE0611B7E785B002F04DF /* SelectedFeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE05F1B7E785B002F04DF /* SelectedFeed@2x.png */; };
+		6BDBE0621B7E785B002F04DF /* SelectedFeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0601B7E785B002F04DF /* SelectedFeed.png */; };
+		6BDBE0671B7E7894002F04DF /* UnselectedFeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0631B7E7894002F04DF /* UnselectedFeed.png */; };
+		6BDBE0681B7E7894002F04DF /* UnselectedFeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */; };
+		6BDBE0691B7E7894002F04DF /* Unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0651B7E7894002F04DF /* Unselected@2x.png */; };
+		6BDBE06A1B7E7894002F04DF /* Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDBE0661B7E7894002F04DF /* Unselected.png */; };
 		C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +176,14 @@
 		6BC95FD71B7DA0C60056B6D8 /* bandoheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandoheader.png; sourceTree = "<group>"; };
 		6BD388241B7D6C080095AF07 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		6BD388261B7D6C150095AF07 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
+		6BDBE05B1B7E77F9002F04DF /* Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Selected.png; sourceTree = "<group>"; };
+		6BDBE05D1B7E7802002F04DF /* Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Selected@2x.png"; sourceTree = "<group>"; };
+		6BDBE05F1B7E785B002F04DF /* SelectedFeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectedFeed@2x.png"; sourceTree = "<group>"; };
+		6BDBE0601B7E785B002F04DF /* SelectedFeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectedFeed.png; sourceTree = "<group>"; };
+		6BDBE0631B7E7894002F04DF /* UnselectedFeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UnselectedFeed.png; sourceTree = "<group>"; };
+		6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnselectedFeed@2x.png"; sourceTree = "<group>"; };
+		6BDBE0651B7E7894002F04DF /* Unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Unselected@2x.png"; sourceTree = "<group>"; };
+		6BDBE0661B7E7894002F04DF /* Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unselected.png; sourceTree = "<group>"; };
 		B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bando.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bando/Pods-Bando.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +298,14 @@
 		6B13F7BB1B791A5E004511E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6BDBE0631B7E7894002F04DF /* UnselectedFeed.png */,
+				6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */,
+				6BDBE0651B7E7894002F04DF /* Unselected@2x.png */,
+				6BDBE0661B7E7894002F04DF /* Unselected.png */,
+				6BDBE05F1B7E785B002F04DF /* SelectedFeed@2x.png */,
+				6BDBE0601B7E785B002F04DF /* SelectedFeed.png */,
+				6BDBE05D1B7E7802002F04DF /* Selected@2x.png */,
+				6BDBE05B1B7E77F9002F04DF /* Selected.png */,
 				6BC95FD71B7DA0C60056B6D8 /* bandoheader.png */,
 				6BD388261B7D6C150095AF07 /* splash@2x.png */,
 				6BD388241B7D6C080095AF07 /* splash.png */,
@@ -513,18 +537,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BDBE06A1B7E7894002F04DF /* Unselected.png in Resources */,
 				6B58AD231B7BAB9000295F6D /* AQGridSelection.png in Resources */,
+				6BDBE0671B7E7894002F04DF /* UnselectedFeed.png in Resources */,
+				6BDBE0621B7E785B002F04DF /* SelectedFeed.png in Resources */,
 				6B13F7CA1B791A5E004511E5 /* Main.storyboard in Resources */,
 				6B58AD271B7BAB9000295F6D /* AQGridSelectionRed.png in Resources */,
 				6B13F7CF1B791A5E004511E5 /* LaunchScreen.xib in Resources */,
+				6BDBE0691B7E7894002F04DF /* Unselected@2x.png in Resources */,
 				6BD388251B7D6C080095AF07 /* splash.png in Resources */,
 				6B58AD301B7BAE9500295F6D /* bandologo.png in Resources */,
+				6BDBE0681B7E7894002F04DF /* UnselectedFeed@2x.png in Resources */,
 				6BA71E041B7DB19C00FB531D /* ChooseCategoriesViewController.xib in Resources */,
 				6B58AD241B7BAB9000295F6D /* AQGridSelectionGray.png in Resources */,
 				6B13F7CC1B791A5E004511E5 /* Images.xcassets in Resources */,
+				6BDBE05E1B7E7802002F04DF /* Selected@2x.png in Resources */,
 				6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */,
 				6B58AD251B7BAB9000295F6D /* AQGridSelectionGrayBlue.png in Resources */,
 				6B58AD261B7BAB9000295F6D /* AQGridSelectionGreen.png in Resources */,
+				6BDBE0611B7E785B002F04DF /* SelectedFeed@2x.png in Resources */,
+				6BDBE05C1B7E77F9002F04DF /* Selected.png in Resources */,
 				6BC95FD81B7DA0C60056B6D8 /* bandoheader.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

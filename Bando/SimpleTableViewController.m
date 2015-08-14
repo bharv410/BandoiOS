@@ -22,6 +22,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     NSArray *nameArray;
     NSArray *descriptionArray;
     NSArray *cardSizeArray;
+    NSUserDefaults *userDefaults;
     }
 
 @end
@@ -31,7 +32,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    userDefaults = [NSUserDefaults standardUserDefaults];
     
 //    if ( ![userDefaults valueForKey:@"version"] )
 //    {
@@ -44,9 +45,33 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 //    }
     
     
-    self.bandoPosts = [[NSMutableArray alloc]init];
-    self.navigationController.navigationBar.topItem.title = @"Bando";
     
+    self.navigationController.navigationBar.topItem.title = @"Bando";
+
+
+    self.myTableView.separatorColor = [UIColor clearColor];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1]; //%%% This is so if you overscroll, the color is still gray
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.myTableView reloadData];
+    });
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    self.bandoPosts = [[NSMutableArray alloc]init];
     InstagramEngine *engine = [InstagramEngine sharedEngine];
     
     [engine getMediaForUser:@"14455831" count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
@@ -68,45 +93,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     }];
     
     [self getTwitPosts];
-    [self loadExampleData];
-    self.myTableView.separatorColor = [UIColor clearColor];
-    
-    self.view.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1]; //%%% This is so if you overscroll, the color is still gray
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.myTableView reloadData];
-    });
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
-    
 }
 -(void)editCategories{
     ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
     [self.navigationController pushViewController:ccvc animated:YES];
-}
--(void)loadExampleData
-{
-    /*
-     this is just example data and you shouldn't be using your table like this because it's static.
-     For example, if you want to have a news feed, you should be using an NSMutableArray and pulling
-     the information from the internet somehow.  If you'd like some help figuring out the logistics,
-     I'd be happy to help, contact me at cwrichardkim@gmail.com or twitter: @cwRichardKim
-     */
-    photoArray = [[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil];
-    titleArray = [[NSArray alloc]initWithObjects:@"First Card",@"OOOOH CHIIIILDD",@"Look! This One's Bigger", @"First Card",@"OOOOH CHIIIILDD",@"Look! This One's Bigger",@"last one", nil];
-    
-    nameArray = [[NSArray alloc]initWithObjects:@"Things are gonna get",@"Easieerrrrr",@"ooooooh chiiiiild", @"Things are gonna get",@"Easieerrrrr",@"ooooooh chiiiiild",@"last name",nil];
-    descriptionArray = [[NSArray alloc]initWithObjects:@"Dance off bro",@"Things are gonna get brighter",@"oooh oooh baeebeeee",@"Dance off bro",@"Things are gonna get brighter",@"oooh oooh baeebeeee",@"last description", nil];
-    cardSizeArray = [[NSArray alloc]initWithObjects:@200,@200,@200, @200, @200 , @200 ,@200,@200 ,@200 ,nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,9 +117,9 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     BandoPost *thisPost = [self.bandoPosts objectAtIndex:indexPath.row];
     if([thisPost.postType isEqualToString:@"instagram"]){
-        return [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue];
+        return [((NSNumber*)@250)intValue];
     }else{
-    return [((NSNumber*)[cardSizeArray objectAtIndex:indexPath.row])intValue];
+    return [((NSNumber*)@200)intValue];
     }
 }
 
@@ -156,13 +146,34 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
 }
 
--(void)getTwitPosts{
+-(void)getMusicTwitPosts{
     NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"Hot97",@"Kendricklamar",@"drake",@"metroboomin",@"applemusic",@"1future", nil];
     
-    self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
-                                                   consumerSecret:TWITTER_CONSUMER_SECRET];
+    for(NSString *username in twitUsers){
+        [self.twitter getUserTimelineWithScreenName:username
+                                              count:1
+                                       successBlock:^(NSArray *statuses) {
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.postLink= [cur valueForKey:@"url"];
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               [self.bandoPosts addObject:bp];
+                                           }
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+    }
     
-    [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+    
+}
+
+-(void)getSportsTwitPosts{
+    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"KingJames",@"kobebryant",@"kdtrey5",@"Chris_Broussard",@"NikeBasketball",@"uabasketball",@"RealSkipBayless", @"stephenasmith", nil];
+
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
                                                   count:1
@@ -174,16 +185,145 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.postLink= [cur valueForKey:@"url"];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
-                                                    [self.bandoPosts addObject:bp];
+                                                   [self.bandoPosts addObject:bp];
                                                }
                                                [self.myTableView reloadData];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
                                            }];
         }
+}
+
+-(void)getCultureTwitPosts{
+    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"nicekicks",@"kyliejenner", nil];
+    
+        for(NSString *username in twitUsers){
+            [self.twitter getUserTimelineWithScreenName:username
+                                                  count:1
+                                           successBlock:^(NSArray *statuses) {
+                                               for(NSDictionary *cur in statuses){
+                                                   BandoPost *bp = [[BandoPost alloc]init];
+                                                   bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                                   bp.postType = @"twitter";
+                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.postText = [cur valueForKey:@"text"];
+                                                   bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                                   [self.bandoPosts addObject:bp];
+                                               }
+                                               [self.myTableView reloadData];
+                                           } errorBlock:^(NSError *error) {
+                                               NSLog(@"%@",error.description);
+                                           }];
+        }
+}
+
+-(void)getComedyTwitPosts{
+    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"desusnice",@"dahoodvines",@"lilduval", nil];
+    
+    
+    
+        for(NSString *username in twitUsers){
+            [self.twitter getUserTimelineWithScreenName:username
+                                                  count:1
+                                           successBlock:^(NSArray *statuses) {
+                                               for(NSDictionary *cur in statuses){
+                                                   BandoPost *bp = [[BandoPost alloc]init];
+                                                   bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                                   bp.postType = @"twitter";
+                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.postText = [cur valueForKey:@"text"];
+                                                   bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                                   [self.bandoPosts addObject:bp];
+                                               }
+                                               [self.myTableView reloadData];
+                                           } errorBlock:^(NSError *error) {
+                                               NSLog(@"%@",error.description);
+                                           }];
+        }
+}
+
+-(void)getArtTwitPosts{
+    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"Streetartnews",@"History_Pics", nil];
+
+    
+        for(NSString *username in twitUsers){
+            [self.twitter getUserTimelineWithScreenName:username
+                                                  count:1
+                                           successBlock:^(NSArray *statuses) {
+                                               for(NSDictionary *cur in statuses){
+                                                   BandoPost *bp = [[BandoPost alloc]init];
+                                                   bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                                   bp.postType = @"twitter";
+                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.postText = [cur valueForKey:@"text"];
+                                                   bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                                   [self.bandoPosts addObject:bp];
+                                               }
+                                               [self.myTableView reloadData];
+                                           } errorBlock:^(NSError *error) {
+                                               NSLog(@"%@",error.description);
+                                           }];
+        }
+}
+
+-(void)getTwitPosts{
+    self.twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:TWITTER_CONSUMER_KEY
+                                                   consumerSecret:TWITTER_CONSUMER_SECRET];
+    
+    [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+        [self grabAcceptableTwits];
     } errorBlock:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
+}
+
+-(void)grabAcceptableTwits{
+    if ( ![userDefaults boolForKey:@"showSports"] )
+    {
+        [self getSportsTwitPosts]; //show sports at the beginning
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showSports"];
+        if(flag){
+            [self getSportsTwitPosts];
+        }
+    }
+    
+    
+    if ( ![userDefaults boolForKey:@"showArt"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showArt"];
+        if(flag){
+            [self getArtTwitPosts];
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showCulture"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showCulture"];
+        if(flag){
+            [self getCultureTwitPosts];
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showComedy"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showComedy"];
+        if(flag){
+            [self getComedyTwitPosts];
+        }
+    }
+    if ( ![userDefaults boolForKey:@"showMusic"] )
+    {
+        [self getMusicTwitPosts]; // show music at beginning
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showMusic"];
+        if(flag){
+            [self getMusicTwitPosts];
+        }
+    }
 }
 
 //creates cell with a row number (0,1,2, etc), sets the name and description as strings from event object
@@ -213,22 +353,26 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     cell.nameLabel.text = [NSString stringWithFormat:@"@%@",screenName];
     
     if([bp.postType isEqualToString:@"instagram"]){
-        [cell.descriptionLabel removeFromSuperview];
         [cell.realImageView setHidden:NO];
+        [cell.descriptionLabel setHidden:YES];
         
         [cell.profileImage hnk_setImageFromURL:bp.igProPic];
         [cell.realImageView hnk_setImageFromURL:bp.igImageUrl];
-        [cell.descriptionLabel setHidden:YES];
+        if([text length]>3)
+            cell.igCaptionLabel.text = text;
+//        cell.realImageView.frame = CGRectMake(cell.realImageView.frame.origin.x, cell.realImageView.frame.origin.y+4, cell.realImageView.frame.size.width, cell.realImageView.frame.size.height);
+        
+        cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 250);
         
     }else{
-        cell.descriptionLabel.text = text;
         [cell.realImageView setHidden:YES];
         [cell.descriptionLabel setHidden:NO];
+        cell.descriptionLabel.text = text;
         
         NSURL *imageURL = [NSURL URLWithString:profilePic];
         [cell.profileImage hnk_setImageFromURL:imageURL];
+        cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 200);
     }
-    cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 200);
     return cell;
 }
 

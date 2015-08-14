@@ -86,15 +86,6 @@
                                                             <rect key="frame" x="20" y="55" width="67" height="67"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" id="flB-Cc-5sl">
-                                                            <rect key="frame" x="0.0" y="144" width="300" height="36"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" red="0.94530558629999994" green="0.94530558629999994" blue="0.94530558629999994" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="G3w-iC-pTl">
-                                                            <rect key="frame" x="127" y="17" width="140" height="140"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gh9-p2-lPq">
                                                             <rect key="frame" x="99" y="55" width="168" height="81"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
@@ -102,6 +93,10 @@
                                                             <color key="textColor" red="0.23089048670000001" green="0.23089048670000001" blue="0.23089048670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="G3w-iC-pTl">
+                                                            <rect key="frame" x="127" y="55" width="140" height="140"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -110,7 +105,6 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="cardView" destination="Ufd-TG-ej1" id="iE0-ba-zPI"/>
-                                            <outlet property="cellBottomPart" destination="flB-Cc-5sl" id="J4v-uL-eg2"/>
                                             <outlet property="descriptionLabel" destination="Gh9-p2-lPq" id="NNs-m9-es9"/>
                                             <outlet property="nameLabel" destination="pII-ep-lhs" id="rcE-qP-py4"/>
                                             <outlet property="profileImage" destination="86y-l3-6va" id="kpX-xw-tu4"/>
@@ -155,11 +149,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Featured-->
         <scene sceneID="taT-bF-ZZ0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bez-UF-7E4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Featured" image="Unselected.png" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="nY2-BQ-xeS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -183,7 +177,7 @@
         <scene sceneID="uix-Pc-H2c">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1QD-GF-KIA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Live" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Live" image="UnselectedFeed.png" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ghA-nL-daT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -205,7 +199,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="Unselected.png" width="30" height="30"/>
+        <image name="UnselectedFeed.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

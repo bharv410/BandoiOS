@@ -19,6 +19,7 @@
 @property (nonatomic, weak) InstagramEngine *instagramEngine;
 
 @property (strong, nonatomic) NSMutableArray *bandoPosts;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 -(void)editCategories;
 

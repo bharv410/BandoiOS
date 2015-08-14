@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIView *cellBackground;
 @property (strong, nonatomic) IBOutlet UIView *cellBottomPart;
 
+@property (strong, nonatomic) IBOutlet UILabel *igCaptionLabel;
 
 @end
