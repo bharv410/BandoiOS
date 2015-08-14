@@ -30,7 +30,7 @@
         [self.captionLabel setFont:[UIFont systemFontOfSize:14]];
         self.captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.captionLabel.numberOfLines = 0;
-        
+        self.captionLabel.textAlignment = NSTextAlignmentCenter;
         
         [mainView addSubview:frameImageView];
         [mainView addSubview:imageView];
