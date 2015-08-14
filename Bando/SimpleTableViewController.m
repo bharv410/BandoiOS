@@ -59,11 +59,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self shuffleArray];
-        [self.myTableView reloadData];
-    });
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
@@ -409,8 +404,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     if ( [userDefaults objectForKey:@"showSports"]==nil )
     {
         NSLog(@"no bool for key showSports");
-        [self getSportsTwitPosts];
-        [self getSportsIGPosts];
+//        [self getSportsTwitPosts];
+//        [self getSportsIGPosts];
         [userDefaults setBool:YES forKey:@"showSports"]; //show sports at the beginning
     }else{
         NSLog(@"yes bool for key showSports");
@@ -458,8 +453,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     }
     if ( [userDefaults objectForKey:@"showMusic"] ==nil)
     {
-        [self getMusicTwitPosts];
-        [self getMusicIGPosts];
+//        [self getMusicTwitPosts];
+//        [self getMusicIGPosts];
         [userDefaults setBool:YES forKey:@"showMusic"];
     }else{
         BOOL flag = [userDefaults boolForKey:@"showMusic"];
@@ -468,6 +463,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             [self getMusicIGPosts];
         }
     }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [self shuffleArray];
+//        [self.myTableView reloadData];
+//    });
 }
 
 //creates cell with a row number (0,1,2, etc), sets the name and description as strings from event object

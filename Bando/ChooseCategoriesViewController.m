@@ -38,7 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ( ![userDefaults boolForKey:@"showMusic"] )
+    if ( ![userDefaults objectForKey:@"showMusic"] )
     {
     }else{
         BOOL flag = [userDefaults boolForKey:@"showMusic"];
@@ -49,7 +49,7 @@
         }
     }
     
-    if ( ![userDefaults boolForKey:@"showSports"] )
+    if ( ![userDefaults objectForKey:@"showSports"] )
     {
     }else{
         BOOL flag = [userDefaults boolForKey:@"showSports"];
@@ -60,7 +60,7 @@
         }
     }
     
-    if ( ![userDefaults boolForKey:@"showTrending"] )
+    if ( ![userDefaults objectForKey:@"showTrending"] )
     {}else{
         BOOL flag = [userDefaults boolForKey:@"showTrending"];
         if(flag){
@@ -70,7 +70,7 @@
         }
     }
     
-    if ( ![userDefaults boolForKey:@"showArt"] )
+    if ( ![userDefaults objectForKey:@"showArt"] )
     {
     }else{
         BOOL flag = [userDefaults boolForKey:@"showArt"];
@@ -81,7 +81,7 @@
         }
     }
     
-    if ( ![userDefaults boolForKey:@"showCulture"] )
+    if ( ![userDefaults objectForKey:@"showCulture"] )
     {
     }else{
         BOOL flag = [userDefaults boolForKey:@"showCulture"];
@@ -92,7 +92,7 @@
         }
     }
     
-    if ( ![userDefaults boolForKey:@"showComedy"] )
+    if ( ![userDefaults objectForKey:@"showComedy"] )
     {
     }else{
         BOOL flag = [userDefaults boolForKey:@"showComedy"];
@@ -121,9 +121,6 @@
 */
 
 - (IBAction)clickedMusic:(CustomRoundRectButton *)sender {
-    BOOL flag = [userDefaults boolForKey:@"showMusic"];
-    NSLog(flag ? @"Yes" : @"No");
-    
 //    [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
     if(!musicClicked){
         [sender setBackgroundColor:[self colorWithHexString:@"168807"]];
@@ -135,6 +132,8 @@
         musicClicked = NO;
     }
     [userDefaults setBool:musicClicked forKey:@"showMusic"];
+    BOOL flag = [userDefaults boolForKey:@"showMusic"];
+    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedTrending:(CustomRoundRectButton *)sender {
@@ -148,6 +147,8 @@
         trendingClicked = NO;
     }
     [userDefaults setBool:trendingClicked forKey:@"showTrending"];
+    BOOL flag = [userDefaults boolForKey:@"showTrending"];
+    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedCulture:(CustomRoundRectButton *)sender {
@@ -162,6 +163,8 @@
     }
     
     [userDefaults setBool:cultureClicked forKey:@"showCulture"];
+    BOOL flag = [userDefaults boolForKey:@"showCulture"];
+    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedSports:(CustomRoundRectButton *)sender {
@@ -175,6 +178,8 @@
         sportsClicked = NO;
     }
     [userDefaults setBool:sportsClicked forKey:@"showSports"];
+    BOOL flag = [userDefaults boolForKey:@"showSports"];
+    NSLog(flag ? @"Yes" : @"No");
 }
 
 - (IBAction)clickedComedy:(CustomRoundRectButton *)sender {
