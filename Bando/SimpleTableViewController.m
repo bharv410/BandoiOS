@@ -11,6 +11,7 @@
 #import <InstagramKit/InstagramKit.h>
 #import "BandoPost.h"
 #import <Haneke/Haneke.h>
+#import "ChooseCategoriesViewController.h"
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -30,6 +31,18 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ( ![userDefaults valueForKey:@"version"] )
+    {
+        // CALL your Function;
+        ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
+        [self.navigationController pushViewController:ccvc animated:YES];
+        
+        // Adding version number to NSUserDefaults for first version:
+        [userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
+    }
+    
     
     self.bandoPosts = [[NSMutableArray alloc]init];
     self.navigationController.navigationBar.topItem.title = @"Bando";

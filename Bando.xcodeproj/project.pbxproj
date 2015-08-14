@@ -52,6 +52,9 @@
 		6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */; };
 		6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5C1B7BC1A100A1FB8C /* Social.framework */; };
 		6B858E611B7BC4E300A1FB8C /* BandoPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B858E601B7BC4E300A1FB8C /* BandoPost.m */; };
+		6BA71DFD1B7DAFD300FB531D /* CustomRoundRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA71DFC1B7DAFD300FB531D /* CustomRoundRectButton.m */; };
+		6BA71E031B7DB19C00FB531D /* ChooseCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA71E011B7DB19C00FB531D /* ChooseCategoriesViewController.m */; };
+		6BA71E041B7DB19C00FB531D /* ChooseCategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA71E021B7DB19C00FB531D /* ChooseCategoriesViewController.xib */; };
 		6BC95FD81B7DA0C60056B6D8 /* bandoheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC95FD71B7DA0C60056B6D8 /* bandoheader.png */; };
 		6BD388251B7D6C080095AF07 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388241B7D6C080095AF07 /* splash.png */; };
 		6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388261B7D6C150095AF07 /* splash@2x.png */; };
@@ -157,6 +160,11 @@
 		6B858E5C1B7BC1A100A1FB8C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6B858E5F1B7BC4E300A1FB8C /* BandoPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandoPost.h; sourceTree = "<group>"; };
 		6B858E601B7BC4E300A1FB8C /* BandoPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandoPost.m; sourceTree = "<group>"; };
+		6BA71DFB1B7DAFD300FB531D /* CustomRoundRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRoundRectButton.h; sourceTree = "<group>"; };
+		6BA71DFC1B7DAFD300FB531D /* CustomRoundRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRoundRectButton.m; sourceTree = "<group>"; };
+		6BA71E001B7DB19C00FB531D /* ChooseCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCategoriesViewController.h; sourceTree = "<group>"; };
+		6BA71E011B7DB19C00FB531D /* ChooseCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCategoriesViewController.m; sourceTree = "<group>"; };
+		6BA71E021B7DB19C00FB531D /* ChooseCategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseCategoriesViewController.xib; sourceTree = "<group>"; };
 		6BC95FD71B7DA0C60056B6D8 /* bandoheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandoheader.png; sourceTree = "<group>"; };
 		6BD388241B7D6C080095AF07 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		6BD388261B7D6C150095AF07 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
@@ -252,6 +260,7 @@
 		6B13F7BA1B791A5E004511E5 /* Bando */ = {
 			isa = PBXGroup;
 			children = (
+				6BA71DFA1B7DAFB400FB531D /* CustomUI */,
 				6B858E5E1B7BC4CF00A1FB8C /* DataModel */,
 				6B58AD381B7BBDE100295F6D /* LiveListView */,
 				6B58AD281B7BAC0E00295F6D /* FeaturedGridView */,
@@ -393,6 +402,18 @@
 			name = DataModel;
 			sourceTree = "<group>";
 		};
+		6BA71DFA1B7DAFB400FB531D /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				6BA71DFB1B7DAFD300FB531D /* CustomRoundRectButton.h */,
+				6BA71DFC1B7DAFD300FB531D /* CustomRoundRectButton.m */,
+				6BA71E001B7DB19C00FB531D /* ChooseCategoriesViewController.h */,
+				6BA71E011B7DB19C00FB531D /* ChooseCategoriesViewController.m */,
+				6BA71E021B7DB19C00FB531D /* ChooseCategoriesViewController.xib */,
+			);
+			name = CustomUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -498,6 +519,7 @@
 				6B13F7CF1B791A5E004511E5 /* LaunchScreen.xib in Resources */,
 				6BD388251B7D6C080095AF07 /* splash.png in Resources */,
 				6B58AD301B7BAE9500295F6D /* bandologo.png in Resources */,
+				6BA71E041B7DB19C00FB531D /* ChooseCategoriesViewController.xib in Resources */,
 				6B58AD241B7BAB9000295F6D /* AQGridSelectionGray.png in Resources */,
 				6B13F7CC1B791A5E004511E5 /* Images.xcassets in Resources */,
 				6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */,
@@ -558,9 +580,11 @@
 				6B58AD1C1B7BAB9000295F6D /* AQGridViewController.m in Sources */,
 				6B58AD221B7BAB9000295F6D /* UIColor+AQGridView.m in Sources */,
 				6B58AD2B1B7BAC3C00295F6D /* GridViewCell.m in Sources */,
+				6BA71E031B7DB19C00FB531D /* ChooseCategoriesViewController.m in Sources */,
 				6B858E611B7BC4E300A1FB8C /* BandoPost.m in Sources */,
 				6B58AD2E1B7BACFB00295F6D /* GridViewController.m in Sources */,
 				6B13F7C71B791A5E004511E5 /* SecondViewController.m in Sources */,
+				6BA71DFD1B7DAFD300FB531D /* CustomRoundRectButton.m in Sources */,
 				6B58AD191B7BAB9000295F6D /* AQGridView.m in Sources */,
 				6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */,
 				6B3053D11B7C6B5D0070D881 /* ArticleDetailViewController.m in Sources */,
