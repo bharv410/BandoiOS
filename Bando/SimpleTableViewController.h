@@ -20,4 +20,6 @@
 
 @property (strong, nonatomic) NSMutableArray *bandoPosts;
 
+-(void)editCategories;
+
 @end

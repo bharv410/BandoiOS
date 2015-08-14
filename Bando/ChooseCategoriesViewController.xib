@@ -22,7 +22,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loG-fL-81H" customClass="CustomRoundRectButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Music">
                         <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,7 +34,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="20" y="20" width="100" height="40"/>
+                        <rect key="frame" x="26" y="127" width="140" height="60"/>
                     </variation>
                     <connections>
                         <action selector="clickedMusic:" destination="-1" eventType="touchUpInside" id="qh9-Db-nhl"/>
@@ -42,7 +42,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFH-Tv-udy" customClass="CustomRoundRectButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Art">
                         <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,7 +54,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="150" y="380" width="100" height="40"/>
+                        <rect key="frame" x="8" y="326" width="140" height="60"/>
                     </variation>
                     <connections>
                         <action selector="clickedArt:" destination="-1" eventType="touchUpInside" id="RwQ-cP-v1L"/>
@@ -62,7 +62,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-Xw-ypW" customClass="CustomRoundRectButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Culture">
                         <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,7 +74,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="225" y="115" width="100" height="40"/>
+                        <rect key="frame" x="233" y="195" width="140" height="60"/>
                     </variation>
                     <connections>
                         <action selector="clickedCulture:" destination="-1" eventType="touchUpInside" id="zwQ-3r-k6w"/>
@@ -82,7 +82,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btr-az-JmB" customClass="CustomRoundRectButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Comedy">
                         <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,35 +94,15 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="203" y="244" width="100" height="40"/>
+                        <rect key="frame" x="200" y="308" width="140" height="60"/>
                     </variation>
                     <connections>
                         <action selector="clickedComedy:" destination="-1" eventType="touchUpInside" id="KN9-Tv-ero"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXM-X8-WRC" customClass="CustomRoundRectButton">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <state key="normal" title="Trending">
-                        <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="59" y="132" width="100" height="40"/>
-                    </variation>
-                    <connections>
-                        <action selector="clickedTrending:" destination="-1" eventType="touchUpInside" id="1Rv-09-OL3"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1n6-69-RhM" customClass="CustomRoundRectButton">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Sports">
                         <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,10 +114,30 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="33" y="252" width="100" height="40"/>
+                        <rect key="frame" x="130" y="423" width="140" height="60"/>
                     </variation>
                     <connections>
                         <action selector="clickedSports:" destination="-1" eventType="touchUpInside" id="Cbb-ze-558"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXM-X8-WRC" customClass="CustomRoundRectButton">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <state key="normal" title="Trending">
+                        <color key="titleColor" red="0.086274509799999996" green="0.53333333329999999" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="34" y="239" width="140" height="60"/>
+                    </variation>
+                    <connections>
+                        <action selector="clickedTrending:" destination="-1" eventType="touchUpInside" id="1Rv-09-OL3"/>
                     </connections>
                 </button>
             </subviews>
@@ -148,8 +148,8 @@
                     <exclude reference="MFH-Tv-udy"/>
                     <exclude reference="OCt-Xw-ypW"/>
                     <exclude reference="Btr-az-JmB"/>
-                    <exclude reference="HXM-X8-WRC"/>
                     <exclude reference="1n6-69-RhM"/>
+                    <exclude reference="HXM-X8-WRC"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -158,8 +158,8 @@
                     <include reference="MFH-Tv-udy"/>
                     <include reference="OCt-Xw-ypW"/>
                     <include reference="Btr-az-JmB"/>
-                    <include reference="HXM-X8-WRC"/>
                     <include reference="1n6-69-RhM"/>
+                    <include reference="HXM-X8-WRC"/>
                 </mask>
             </variation>
         </view>

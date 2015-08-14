@@ -19,12 +19,16 @@
     BOOL artClicked;
     BOOL cultureClicked;
     BOOL comedyClicked;
-    
+    NSUserDefaults *userDefaults;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneMethod)];
+    
+    
     sportsClicked = NO;
     musicClicked = NO;
     trendingClicked = NO;
@@ -32,6 +36,79 @@
     cultureClicked = NO;
     comedyClicked = NO;
     // Do any additional setup after loading the view from its nib.
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ( ![userDefaults boolForKey:@"showMusic"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showMusic"];
+        if(flag){
+            [self.musicButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.musicButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            musicClicked = YES;
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showSports"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showSports"];
+        if(flag){
+            [self.sportsButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.sportsButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            sportsClicked = YES;
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showTrending"] )
+    {
+        //set trending on first
+        [self.trendingButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+        [self.trendingButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+        trendingClicked = YES;
+        [userDefaults setBool:trendingClicked forKey:@"showTrending"];
+        
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showTrending"];
+        if(flag){
+            [self.trendingButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.trendingButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            trendingClicked = YES;
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showArt"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showArt"];
+        if(flag){
+            [self.artButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.artButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            artClicked = YES;
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showCulture"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showCulture"];
+        if(flag){
+            [self.cultureButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.cultureButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            cultureClicked = YES;
+        }
+    }
+    
+    if ( ![userDefaults boolForKey:@"showComedy"] )
+    {
+    }else{
+        BOOL flag = [userDefaults boolForKey:@"showComedy"];
+        if(flag){
+            [self.comedyButton setBackgroundColor:[self colorWithHexString:@"168807"]];
+            [self.comedyButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
+            comedyClicked = YES;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +128,9 @@
 */
 
 - (IBAction)clickedMusic:(CustomRoundRectButton *)sender {
+    BOOL flag = [userDefaults boolForKey:@"showMusic"];
+    NSLog(flag ? @"Yes" : @"No");
+    
 //    [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
     if(!musicClicked){
         [sender setBackgroundColor:[self colorWithHexString:@"168807"]];
@@ -61,6 +141,7 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         musicClicked = NO;
     }
+    [userDefaults setBool:musicClicked forKey:@"showMusic"];
 }
 
 - (IBAction)clickedTrending:(CustomRoundRectButton *)sender {
@@ -73,6 +154,7 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         trendingClicked = NO;
     }
+    [userDefaults setBool:trendingClicked forKey:@"showTrending"];
 }
 
 - (IBAction)clickedCulture:(CustomRoundRectButton *)sender {
@@ -85,6 +167,8 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         cultureClicked = NO;
     }
+    
+    [userDefaults setBool:cultureClicked forKey:@"showCulture"];
 }
 
 - (IBAction)clickedSports:(CustomRoundRectButton *)sender {
@@ -97,6 +181,7 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         sportsClicked = NO;
     }
+    [userDefaults setBool:sportsClicked forKey:@"showSports"];
 }
 
 - (IBAction)clickedComedy:(CustomRoundRectButton *)sender {
@@ -109,6 +194,7 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         comedyClicked = NO;
     }
+    [userDefaults setBool:comedyClicked forKey:@"showComedy"];
 }
 
 - (IBAction)clickedArt:(CustomRoundRectButton *)sender {
@@ -121,8 +207,13 @@
         [sender setTitleColor:[self colorWithHexString:@"168807"] forState:UIControlStateNormal];
         artClicked = NO;
     }
+    
+    [userDefaults setBool:artClicked forKey:@"showArt"];
 }
 
+-(void)doneMethod{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(UIColor*)colorWithHexString:(NSString*)hex
 {
     NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];

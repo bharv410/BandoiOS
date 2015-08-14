@@ -33,15 +33,15 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     // Initialize table dat
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ( ![userDefaults valueForKey:@"version"] )
-    {
-        // CALL your Function;
-        ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
-        [self.navigationController pushViewController:ccvc animated:YES];
-        
-        // Adding version number to NSUserDefaults for first version:
-        [userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
-    }
+//    if ( ![userDefaults valueForKey:@"version"] )
+//    {
+//        // CALL your Function;
+//        ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
+//        [self.navigationController pushViewController:ccvc animated:YES];
+//        
+//        // Adding version number to NSUserDefaults for first version:
+//        [userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
+//    }
     
     
     self.bandoPosts = [[NSMutableArray alloc]init];
@@ -86,8 +86,13 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     CGFloat screenWidth = screenRect.size.width;
     self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
+    
 }
-
+-(void)editCategories{
+    ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
+    [self.navigationController pushViewController:ccvc animated:YES];
+}
 -(void)loadExampleData
 {
     /*
