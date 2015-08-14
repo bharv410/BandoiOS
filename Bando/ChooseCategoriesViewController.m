@@ -61,14 +61,7 @@
     }
     
     if ( ![userDefaults boolForKey:@"showTrending"] )
-    {
-        //set trending on first
-        [self.trendingButton setBackgroundColor:[self colorWithHexString:@"168807"]];
-        [self.trendingButton setTitleColor:[self colorWithHexString:@"FFFFFF"] forState:UIControlStateNormal];
-        trendingClicked = YES;
-        [userDefaults setBool:trendingClicked forKey:@"showTrending"];
-        
-    }else{
+    {}else{
         BOOL flag = [userDefaults boolForKey:@"showTrending"];
         if(flag){
             [self.trendingButton setBackgroundColor:[self colorWithHexString:@"168807"]];

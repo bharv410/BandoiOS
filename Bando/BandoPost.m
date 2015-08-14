@@ -10,4 +10,14 @@
 
 @implementation BandoPost
 
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    if (self.postText != ((BandoPost *)other).postText)
+        return NO;
+    return YES;
+}
+
 @end

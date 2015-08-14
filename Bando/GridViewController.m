@@ -36,9 +36,12 @@
     
     [self.view addSubview:gridView];
     self.navigationController.navigationBar.topItem.title = @"Bando";
+}
 
+- (void)viewDidAppear:(BOOL)animated{
     [self getOtherPosts];
     [self getFeaturedPost];
+    
 }
 
 -(void) getFeaturedPost{
