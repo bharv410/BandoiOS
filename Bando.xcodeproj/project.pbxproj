@@ -52,6 +52,8 @@
 		6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */; };
 		6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5C1B7BC1A100A1FB8C /* Social.framework */; };
 		6B858E611B7BC4E300A1FB8C /* BandoPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B858E601B7BC4E300A1FB8C /* BandoPost.m */; };
+		6BD388251B7D6C080095AF07 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388241B7D6C080095AF07 /* splash.png */; };
+		6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD388261B7D6C150095AF07 /* splash@2x.png */; };
 		C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D2E21228CF490C58D2BDE6 /* libPods-Bando.a */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +156,8 @@
 		6B858E5C1B7BC1A100A1FB8C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6B858E5F1B7BC4E300A1FB8C /* BandoPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandoPost.h; sourceTree = "<group>"; };
 		6B858E601B7BC4E300A1FB8C /* BandoPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandoPost.m; sourceTree = "<group>"; };
+		6BD388241B7D6C080095AF07 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		6BD388261B7D6C150095AF07 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		B43BDDF30EB3C3166D4AB548 /* Pods-Bando.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bando.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bando/Pods-Bando.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -267,6 +271,8 @@
 		6B13F7BB1B791A5E004511E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6BD388261B7D6C150095AF07 /* splash@2x.png */,
+				6BD388241B7D6C080095AF07 /* splash.png */,
 				6B13F7BC1B791A5E004511E5 /* Info.plist */,
 				6B13F7BD1B791A5E004511E5 /* main.m */,
 			);
@@ -487,9 +493,11 @@
 				6B13F7CA1B791A5E004511E5 /* Main.storyboard in Resources */,
 				6B58AD271B7BAB9000295F6D /* AQGridSelectionRed.png in Resources */,
 				6B13F7CF1B791A5E004511E5 /* LaunchScreen.xib in Resources */,
+				6BD388251B7D6C080095AF07 /* splash.png in Resources */,
 				6B58AD301B7BAE9500295F6D /* bandologo.png in Resources */,
 				6B58AD241B7BAB9000295F6D /* AQGridSelectionGray.png in Resources */,
 				6B13F7CC1B791A5E004511E5 /* Images.xcassets in Resources */,
+				6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */,
 				6B58AD251B7BAB9000295F6D /* AQGridSelectionGrayBlue.png in Resources */,
 				6B58AD261B7BAB9000295F6D /* AQGridSelectionGreen.png in Resources */,
 			);
