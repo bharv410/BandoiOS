@@ -66,13 +66,6 @@
             UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth)];
             
             
-            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,(screenWidth- 20),screenWidth,20)];
-            headerLabel.text = bp.postText;
-            headerLabel.textColor = [UIColor whiteColor];
-            headerLabel.font = [UIFont boldSystemFontOfSize:28];
-            headerLabel.backgroundColor = [UIColor greenColor];
-            
-            
             NSString *url = bp.imageUrl;
             NSURL *imageURL = [[NSURL alloc]initWithString:url];
             
@@ -80,8 +73,22 @@
             
             
             [imageView hnk_setImageFromURL:imageURL];
-            [tableHeaderView addSubview:headerLabel];
+            
+//            UIView *greenBG = [[UIView alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,(screenWidth- 40),imageView.frame.size.width,40)];
+//            greenBG.backgroundColor = [self colorWithHexString:@"166807"];
+            
+            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,(imageView.frame.size.height- 80),imageView.frame.size.width,80)];
+            headerLabel.text = bp.postText;
+            headerLabel.textColor = [UIColor whiteColor];
+            headerLabel.font = [UIFont boldSystemFontOfSize:24];
+            headerLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            headerLabel.numberOfLines = 0;
+            headerLabel.backgroundColor = [[self colorWithHexString:@"166807"]colorWithAlphaComponent:0.7f];
+            headerLabel.textAlignment = NSTextAlignmentCenter;
+            
             [tableHeaderView addSubview:imageView];
+            //[tableHeaderView addSubview:greenBG];
+            [tableHeaderView addSubview:headerLabel];
             
             [self.gridView setGridHeaderView:tableHeaderView];
             UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -204,12 +211,48 @@
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(180.0, 220.0) );
+    return ( CGSizeMake(180.0, 220) );
 }
 
 -(void) addHeader{
     
 
+}
+
+-(UIColor*)colorWithHexString:(NSString*)hex
+{
+    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor grayColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    
+    if ([cString length] != 6) return  [UIColor grayColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
 }
 
 @end

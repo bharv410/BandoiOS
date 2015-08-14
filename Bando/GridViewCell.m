@@ -18,11 +18,11 @@
     if ( self)
     {
     
-//        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 220)];
-//        [mainView setBackgroundColor:[UIColor clearColor]];
+        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 220)];
+        [mainView setBackgroundColor:[UIColor clearColor]];
         
-//        UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(9, 4, 142, 117)];
-//        [frameImageView setImage:[UIImage imageNamed:@"tab-mask.png"]];
+        UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(39, 34, 132, 170)];
+        [frameImageView setBackgroundColor:[UIColor whiteColor]];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
         
@@ -31,17 +31,18 @@
         self.captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.captionLabel.numberOfLines = 0;
         
-//        [mainView addSubview:imageView];
-//        [mainView addSubview:frameImageView];
-//        [mainView addSubview:captionLabel];
         
-        self.imageView.backgroundColor = [UIColor clearColor];
-        self.contentView.backgroundColor = [UIColor clearColor];
-        self.backgroundColor = [UIColor clearColor];
+        [mainView addSubview:frameImageView];
+        [mainView addSubview:imageView];
+        [mainView addSubview:captionLabel];
+        [self.contentView setBackgroundColor:[UIColor clearColor]];
+        mainView.layer.borderColor = [UIColor whiteColor].CGColor;
+        mainView.layer.borderWidth = 2.0f;
+        self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.contentView.layer.borderWidth = 2.0f;
         
-        
-        [self.contentView addSubview:imageView];
-        [self.contentView addSubview:captionLabel];
+        [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.captionLabel];
     }
     
     return self;

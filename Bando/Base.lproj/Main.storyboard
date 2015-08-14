@@ -11,7 +11,7 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="084-xM-QRI"/>
                     <connections>
@@ -60,7 +60,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="center" selectionStyle="none" indentationWidth="10" reuseIdentifier="listViewCell" rowHeight="200" id="VZ2-YY-04Q" customClass="ListViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VZ2-YY-04Q" id="fH0-f8-Zew">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
