@@ -12,7 +12,9 @@
 #import "BandoPost.h"
 #import "ArticleDetailViewController.h"
 
-@implementation GridViewController
+@implementation GridViewController{
+    NSString *featuredPostLink;
+}
 
 @synthesize gridView, bandoPosts;
 
@@ -47,6 +49,7 @@
             PFObject *object = [objects firstObject];
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = object[@"postLink"];
+            featuredPostLink = bp.postLink;
                 bp.postType = @"article";
                 bp.postText = object[@"text"];
                 bp.createdAt = object.createdAt;
@@ -74,6 +77,7 @@
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, screenWidth-20, screenWidth-20)];
             
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSData *imgData = [NSData dataWithContentsOfURL:imageURL];
                 if (imgData) {
@@ -94,6 +98,11 @@
             UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
             [self.gridView setGridFooterView:tableFooterView];
             [self.gridView reloadData];
+            
+            UITapGestureRecognizer *singleFingerTap =
+            [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                    action:@selector(handleSingleTap:)];
+            [self.gridView.gridHeaderView addGestureRecognizer:singleFingerTap];
         }
     }];
     
@@ -124,6 +133,20 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    
+    if(featuredPostLink!=nil){
+        NSString *siteUrl = featuredPostLink;
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
+        articleDetail.websiteString = siteUrl;
+        [self.navigationController pushViewController:articleDetail animated:YES];
+    }
+    //Do stuff here...
 }
 
 -(void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
