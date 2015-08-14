@@ -169,7 +169,7 @@
     
     if ( cell == nil )
     {
-        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 153)
+        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 220)
                                    reuseIdentifier: PlainCellIdentifier];
     }
     
@@ -204,7 +204,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(160.0, 123) );
+    return ( CGSizeMake(180.0, 220.0) );
 }
 
 -(void) addHeader{
