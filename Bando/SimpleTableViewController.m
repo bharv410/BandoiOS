@@ -143,7 +143,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
-                                                  count:1
+                                                  count:2
                                            successBlock:^(NSArray *statuses) {
                                                for(NSDictionary *cur in statuses){
                                                    BandoPost *bp = [[BandoPost alloc]init];
@@ -288,7 +288,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
-                                                  count:1
+                                                  count:2
                                            successBlock:^(NSArray *statuses) {
                                                for(NSDictionary *cur in statuses){
                                                    BandoPost *bp = [[BandoPost alloc]init];
@@ -314,7 +314,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
-                                                  count:1
+                                                  count:2
                                            successBlock:^(NSArray *statuses) {
                                                for(NSDictionary *cur in statuses){
                                                    BandoPost *bp = [[BandoPost alloc]init];
@@ -347,7 +347,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
-                                                  count:1
+                                                  count:2
                                            successBlock:^(NSArray *statuses) {
                                                for(NSDictionary *cur in statuses){
                                                    BandoPost *bp = [[BandoPost alloc]init];
