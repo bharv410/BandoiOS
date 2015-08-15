@@ -87,7 +87,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gh9-p2-lPq">
-                                                            <rect key="frame" x="99" y="55" width="168" height="81"/>
+                                                            <rect key="frame" x="99" y="55" width="193" height="117"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                             <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
                                                             <color key="textColor" red="0.23089048670000001" green="0.23089048670000001" blue="0.23089048670000001" alpha="1" colorSpace="calibratedRGB"/>

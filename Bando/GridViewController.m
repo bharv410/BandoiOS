@@ -34,12 +34,10 @@
                               initWithTitle:@"No Internet Connection"
                               message:@"This app requires internet connection to work correctly"
                               delegate:self  // set nil if you don't want the yes button callback
-                              cancelButtonTitle:@"Yes"
-                              otherButtonTitles:@"No", nil];
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil, nil];
         [alert show];
         
-    } else {
-        NSLog(@"There IS internet connection");
     }
     
     
