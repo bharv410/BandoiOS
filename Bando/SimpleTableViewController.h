@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <STTwitter/STTwitter.h>
 #import <InstagramKit/InstagramKit.h>
+#import "YALSunnyRefreshControl.h"
 
 @interface SimpleTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
@@ -19,7 +20,7 @@
 @property (nonatomic, weak) InstagramEngine *instagramEngine;
 
 @property (strong, nonatomic) NSMutableArray *bandoPosts;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic,strong) YALSunnyRefreshControl *sunnyRefreshControl;
 
 -(void)editCategories;
 

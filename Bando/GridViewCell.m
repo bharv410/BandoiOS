@@ -25,6 +25,7 @@
         [frameImageView setBackgroundColor:[UIColor whiteColor]];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 180, 160, 40)];
         [self.captionLabel setFont:[UIFont systemFontOfSize:14]];

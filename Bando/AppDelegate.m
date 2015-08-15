@@ -31,8 +31,86 @@
     
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     
+    
+    
+    
+    
+    [self setBooleanUserDefaults];
+    
+    
+    
     // Override point for customization after application launch.
     return YES;
+}
+
+-(void) setBooleanUserDefaults{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ( [userDefaults objectForKey:@"showSports"]==nil )
+    {
+        NSLog(@"bool for key showSports is NIL");
+        //        [self getSportsTwitPosts];
+        //        [self getSportsIGPosts];
+        [userDefaults setBool:YES forKey:@"showSports"];
+        //show sports at the beginning
+        
+        
+        BOOL flag = [userDefaults boolForKey:@"showSports"];
+        if(flag){
+            NSLog(@"bool for key showSports = yes");
+        }else{
+            NSLog(@"bool for key showSports = no");
+        }
+    }
+    
+    
+    if ( ![userDefaults objectForKey:@"showArt"] )
+    {
+        NSLog(@"bool for key showArt is NIL");
+        [userDefaults setBool:NO forKey:@"showArt"];
+        
+        BOOL flag = [userDefaults boolForKey:@"showArt"];
+        if(flag){
+            NSLog(@"bool for key showArt = yes");
+        }else{
+            NSLog(@"bool for key showArt = no");
+        }
+    }
+    
+    if ( ![userDefaults objectForKey:@"showCulture"] )
+    {
+        [userDefaults setBool:NO forKey:@"showCulture"];
+        BOOL flag = [userDefaults boolForKey:@"showCulture"];
+        if(flag){
+            NSLog(@"bool for key showCulture = yes");
+        }else{
+            NSLog(@"bool for key showCulture = no");
+        }
+    }
+    
+    if ( ![userDefaults objectForKey:@"showComedy"] )
+    {
+        [userDefaults setBool:NO forKey:@"showComedy"];
+        BOOL flag = [userDefaults boolForKey:@"showComedy"];
+        if(flag){
+            NSLog(@"bool for key showComedy = yes");
+        }else{
+            NSLog(@"bool for key showComedy = no");
+        }
+    }
+    if ( [userDefaults objectForKey:@"showMusic"] ==nil)
+    {
+        //        [self getMusicTwitPosts];
+        //        [self getMusicIGPosts];
+        [userDefaults setBool:YES forKey:@"showMusic"];
+
+        BOOL flag = [userDefaults boolForKey:@"showMusic"];
+        if(flag){
+            NSLog(@"bool for key showMusic = yes");
+        }else{
+            NSLog(@"bool for key showMusic = no");
+        }
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

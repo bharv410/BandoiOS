@@ -12,18 +12,19 @@
 #import "BandoPost.h"
 #import <Haneke/Haneke.h>
 #import "ChooseCategoriesViewController.h"
+#import "YALSunnyRefreshControl.h"
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
 
 @interface SimpleTableViewController (){
     NSArray *photoArray;
-    NSMutableArray *titleArray;
     NSArray *nameArray;
     NSArray *descriptionArray;
     NSArray *cardSizeArray;
     NSUserDefaults *userDefaults;
     InstagramEngine *engine;
+    BOOL twitSet;
     }
 
 @end
@@ -34,17 +35,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     [super viewDidLoad];
     // Initialize table dat
     userDefaults = [NSUserDefaults standardUserDefaults];
-    
-//    if ( ![userDefaults valueForKey:@"version"] )
-//    {
-//        // CALL your Function;
-//        ChooseCategoriesViewController *ccvc = [[ChooseCategoriesViewController alloc]init];
-//        [self.navigationController pushViewController:ccvc animated:YES];
-//        
-//        // Adding version number to NSUserDefaults for first version:
-//        [userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
-//    }
-    
+    twitSet = NO;
+    [self setupRefreshControl];
     
     
     self.navigationController.navigationBar.topItem.title = @"Bando";
@@ -57,8 +49,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
@@ -71,9 +61,9 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [self.bandoPosts removeAllObjects];
     self.bandoPosts = [[NSMutableArray alloc]init];
-    titleArray = [[NSMutableArray alloc]init];
-    
+
     [self grabAcceptableTwits];
 }
 
@@ -91,12 +81,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //%%% this is asking for the number in the cardSizeArray.  If you're seriously
-    // thinking about making your cards dynamic, they should depend on something more reliable
-    // for example, facebook's post sizes depend on whether it's a status update or photo, etc
-    // so there should be a switch statement in here that returns different heights depending on
-    // what kind of post it is.  Also, don't forget to change the height of the
-    // cardView if you use dynamic cards
     
     BandoPost *thisPost = [self.bandoPosts objectAtIndex:indexPath.row];
     if([thisPost.postType isEqualToString:@"instagram"]){
@@ -108,13 +92,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning you're going to want to change this
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning you're going to want to change this
     
     if([self.bandoPosts count]>0)
         return [self.bandoPosts count];
@@ -124,6 +106,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
     BandoPost *bp = [self.bandoPosts objectAtIndex:indexPath.row];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postLink]];
     
@@ -267,7 +250,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 bp.igProPic = cur.user.profilePictureURL;
                 bp.igImageUrl = cur.standardResolutionImageURL;
                 if(![self.bandoPosts containsObject:bp])
-                 [self.bandoPosts addObject:bp];
+                    [self.bandoPosts addObject:bp];
             }
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -277,7 +260,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)getCultureIGPosts{
-    NSArray *igUsers = [[NSArray alloc]initWithObjects:@"6380930",@"174247675",@"12281817",@"185087057",@"28011380",nil];
+    NSArray *igUsers = [[NSArray alloc]initWithObjects:@"6380930",@"174247675",@"12281817",@"28011380",nil];
     
     for(NSString *username in igUsers){
         [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
@@ -317,7 +300,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    [self.bandoPosts addObject:bp];
                                                }
                                                [self.myTableView reloadData];
-                                               [self shuffleArray];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
                                            }];
@@ -343,7 +325,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    [self.bandoPosts addObject:bp];
                                                }
                                                [self.myTableView reloadData];
-                                               [self shuffleArray];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
                                            }];
@@ -377,7 +358,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    [self.bandoPosts addObject:bp];
                                                }
                                                [self.myTableView reloadData];
-                                               [self shuffleArray];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
                                            }];
@@ -389,6 +369,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    consumerSecret:TWITTER_CONSUMER_SECRET];
     
     [self.twitter verifyCredentialsWithUserSuccessBlock:^(NSString *username, NSString *userID) {
+        twitSet = YES;
         [self grabAcceptableTwits];
     } errorBlock:^(NSError *error) {
         NSLog(@"%@",error.description);
@@ -396,72 +377,47 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)grabAcceptableTwits{
-    if ( [userDefaults objectForKey:@"showSports"]==nil )
-    {
-        NSLog(@"no bool for key showSports");
-//        [self getSportsTwitPosts];
-//        [self getSportsIGPosts];
-        [userDefaults setBool:YES forKey:@"showSports"]; //show sports at the beginning
-    }else{
-        NSLog(@"yes bool for key showSports");
-        BOOL flag = [userDefaults boolForKey:@"showSports"];
-        if(flag){
-            [self getSportsTwitPosts];
+        BOOL flag1 = [userDefaults boolForKey:@"showSports"];
+        if(flag1){
+            NSLog(@"gettings sports");
+            if(twitSet)
+                [self getSportsTwitPosts];
             [self getSportsIGPosts];
         }
-    }
     
     
-    if ( ![userDefaults boolForKey:@"showArt"] )
-    {
-        NSLog(@"yes bool for key showArt");
-        [userDefaults setBool:NO forKey:@"showArt"];
-    }else{
-        NSLog(@"yes bool for key showArt");
-        BOOL flag = [userDefaults boolForKey:@"showArt"];
-        if(flag){
-            [self getArtTwitPosts];
+        BOOL flag2 = [userDefaults boolForKey:@"showArt"];
+        if(flag2){
+             NSLog(@"gettings art");
+            if(twitSet)
+                [self getArtTwitPosts];
             [self getArtIGPosts];
         }
-    }
     
-    if ( ![userDefaults boolForKey:@"showCulture"] )
-    {
-        [userDefaults setBool:NO forKey:@"showCulture"];
-    }else{
-        BOOL flag = [userDefaults boolForKey:@"showCulture"];
-        if(flag){
-            [self getCultureTwitPosts];
+        BOOL flag3 = [userDefaults boolForKey:@"showCulture"];
+        if(flag3){
+             NSLog(@"gettings culture");
+            if(twitSet)
+                [self getCultureTwitPosts];
             [self getCultureIGPosts];
         }
-    }
     
-    if ( ![userDefaults boolForKey:@"showComedy"] )
-    {
-        [userDefaults setBool:NO forKey:@"showComedy"];
-    }else{
-        BOOL flag = [userDefaults boolForKey:@"showComedy"];
-        if(flag){
-            [self getComedyTwitPosts];
+        BOOL flag4 = [userDefaults boolForKey:@"showComedy"];
+        if(flag4){
+             NSLog(@"gettings comedy");
+            if(twitSet)
+                [self getComedyTwitPosts];
             [self getComedyIGPosts];
         }
-    }
-    if ( [userDefaults objectForKey:@"showMusic"] ==nil)
-    {
-//        [self getMusicTwitPosts];
-//        [self getMusicIGPosts];
-        [userDefaults setBool:YES forKey:@"showMusic"];
-    }else{
-        BOOL flag = [userDefaults boolForKey:@"showMusic"];
-        if(flag){
-            [self getMusicTwitPosts];
+    
+    
+        BOOL flag5 = [userDefaults boolForKey:@"showMusic"];
+        if(flag5){
+             NSLog(@"gettings music");
+            if(twitSet)
+                [self getMusicTwitPosts];
             [self getMusicIGPosts];
         }
-    }
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//        [self shuffleArray];
-//        [self.myTableView reloadData];
-//    });
 }
 
 //creates cell with a row number (0,1,2, etc), sets the name and description as strings from event object
@@ -498,7 +454,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [cell.realImageView hnk_setImageFromURL:bp.igImageUrl];
         if([text length]>3)
             cell.igCaptionLabel.text = text;
-//        cell.realImageView.frame = CGRectMake(cell.realImageView.frame.origin.x, cell.realImageView.frame.origin.y+4, cell.realImageView.frame.size.width, cell.realImageView.frame.size.height);
         
         cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 250);
         
@@ -512,6 +467,28 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 200);
     }
     return cell;
+}
+
+-(void)setupRefreshControl{
+    
+    self.sunnyRefreshControl = [YALSunnyRefreshControl attachToScrollView:self.myTableView
+                                                                   target:self
+                                                            refreshAction:@selector(sunnyControlDidStartAnimation)];
+    [self endAnimationHandle];
+    
+}
+
+-(void)sunnyControlDidStartAnimation{
+    [self grabAcceptableTwits];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self endAnimationHandle];
+    });
+}
+
+-(IBAction)endAnimationHandle{
+    
+    [self.sunnyRefreshControl endRefreshing];
 }
 
 @end

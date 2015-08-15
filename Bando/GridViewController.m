@@ -53,11 +53,11 @@
     
     [self.view addSubview:gridView];
     self.navigationController.navigationBar.topItem.title = @"Bando";
+    [self getOtherPosts];
+    [self getFeaturedPost];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [self getOtherPosts];
-    [self getFeaturedPost];
     
 }
 
@@ -167,8 +167,8 @@
 
 -(void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-
     
+    [self.gridView deselectItemAtIndex:index animated:YES];
     BandoPost *clickedPost = [bandoPosts objectAtIndex:index];
     NSString *siteUrl = clickedPost.postLink;
     
