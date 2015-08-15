@@ -18,8 +18,6 @@
     NSString *featuredPostLink;
 }
 
-@synthesize gridView, bandoPosts;
-
 
 - (void) viewDidLoad
 {
@@ -51,7 +49,7 @@
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
     
-    [self.view addSubview:gridView];
+    [self.view addSubview:self.gridView];
     self.navigationController.navigationBar.topItem.title = @"Bando";
     [self getOtherPosts];
     [self getFeaturedPost];
@@ -81,7 +79,6 @@
             
             CGRect screenRect = [[UIScreen mainScreen] bounds];
             CGFloat screenWidth = screenRect.size.width;
-            CGFloat screenHeight = screenRect.size.height;
             
             UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth)];
             
@@ -125,7 +122,7 @@
     //[self addHeader];
 }
 -(void)getOtherPosts{
-    bandoPosts = [[NSMutableArray alloc]init];
+    self.bandoPosts = [[NSMutableArray alloc]init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
@@ -141,7 +138,7 @@
                 bp.imageUrl = object[@"imageUrl"];
                 bp.uniqueId = object.objectId;
                 bp.viewCount = object[@"viewCount"];
-                [bandoPosts addObject:bp];
+                [self.bandoPosts addObject:bp];
             }
             [self.gridView reloadData];
         } else {
@@ -152,7 +149,7 @@
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     
     if(featuredPostLink!=nil){
         NSString *siteUrl = featuredPostLink;
@@ -169,7 +166,7 @@
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     [self.gridView deselectItemAtIndex:index animated:YES];
-    BandoPost *clickedPost = [bandoPosts objectAtIndex:index];
+    BandoPost *clickedPost = [self.bandoPosts objectAtIndex:index];
     NSString *siteUrl = clickedPost.postLink;
     
     
@@ -205,7 +202,7 @@
     
     cell.imageView.image = nil; // or cell.poster.image = [UIImage imageNamed:@"placeholder.png"];
     
-    BandoPost *bp = [bandoPosts objectAtIndex:index];
+    BandoPost *bp = [self.bandoPosts objectAtIndex:index];
     
     NSString *url = bp.imageUrl;
     NSURL *imageURL = [[NSURL alloc]initWithString:url];
@@ -219,7 +216,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
         //NSIndexPath *indexPath = [self.gridView indexOfSelectedItem];
-        BandoPost *clickedPost = [bandoPosts objectAtIndex:[self.gridView indexOfSelectedItem]];
+        BandoPost *clickedPost = [self.bandoPosts objectAtIndex:[self.gridView indexOfSelectedItem]];
         NSString *siteUrl = clickedPost.postLink;
         
         ArticleDetailViewController *articleDetail = [[ArticleDetailViewController alloc]init];

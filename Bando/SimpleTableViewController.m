@@ -55,11 +55,9 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
     
     [self getTwitPosts];
-    NSLog(@"viewDidLoad");
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"viewDidAppear");
     self.instagramEngine = [InstagramEngine sharedEngine];
     [self.bandoPosts removeAllObjects];
     self.bandoPosts = [[NSMutableArray alloc]init];
@@ -131,7 +129,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                            }
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
-                                           //NSLog(@"%@",error.description);
                                        }];
     }
     
