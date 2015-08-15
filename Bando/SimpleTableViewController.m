@@ -23,7 +23,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     NSArray *descriptionArray;
     NSArray *cardSizeArray;
     NSUserDefaults *userDefaults;
-    InstagramEngine *engine;
     BOOL twitSet;
     }
 
@@ -55,12 +54,13 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
     
-    engine = [InstagramEngine sharedEngine];
     [self getTwitPosts];
-    
+    NSLog(@"viewDidLoad");
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"viewDidAppear");
+    self.instagramEngine = [InstagramEngine sharedEngine];
     [self.bandoPosts removeAllObjects];
     self.bandoPosts = [[NSMutableArray alloc]init];
 
@@ -166,7 +166,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     NSArray *igUsers = [[NSArray alloc]initWithObjects:@"16264572",@"19410587",@"13864937",nil];
     
     for(NSString *username in igUsers){
-        [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
@@ -179,18 +179,18 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
         }];
     }
-    [self.myTableView reloadData];
 }
 
 -(void)getArtIGPosts{
     NSArray *igUsers = [[NSArray alloc]initWithObjects:@"143795932",@"176915912",@"13613836",@"787132",nil];
     
     for(NSString *username in igUsers){
-        [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
@@ -203,11 +203,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
         }];
     }
-    [self.myTableView reloadData];
 }
 
 -(void)getMusicIGPosts{
@@ -215,7 +215,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                         ,@"266319242",@"10685362",@"18900337",nil];
     
     for(NSString *username in igUsers){
-        [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
@@ -228,18 +228,18 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
         }];
     }
-    [self.myTableView reloadData];
 }
 
 -(void)getComedyIGPosts{
     NSArray *igUsers = [[NSArray alloc]initWithObjects:@"1535836050",@"10245461",@"6590609",@"15209885",nil];
     
     for(NSString *username in igUsers){
-        [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
@@ -252,18 +252,18 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
         }];
     }
-    [self.myTableView reloadData];
 }
 
 -(void)getCultureIGPosts{
     NSArray *igUsers = [[NSArray alloc]initWithObjects:@"6380930",@"174247675",@"12281817",@"28011380",nil];
     
     for(NSString *username in igUsers){
-        [engine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
@@ -276,11 +276,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
         }];
     }
-    [self.myTableView reloadData];
 }
 
 -(void)getCultureTwitPosts{
@@ -307,6 +307,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)getComedyTwitPosts{
+    NSLog(@"gettings comedy");
     NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"desusnice",@"dahoodvines",@"lilduval", nil];
     
     
@@ -377,45 +378,28 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)grabAcceptableTwits{
-        BOOL flag1 = [userDefaults boolForKey:@"showSports"];
-        if(flag1){
-            NSLog(@"gettings sports");
-            if(twitSet)
+        if([userDefaults boolForKey:@"showSports"] && twitSet){
                 [self getSportsTwitPosts];
-            [self getSportsIGPosts];
+                [self getSportsIGPosts];
         }
     
-    
-        BOOL flag2 = [userDefaults boolForKey:@"showArt"];
-        if(flag2){
-             NSLog(@"gettings art");
-            if(twitSet)
+        if([userDefaults boolForKey:@"showArt"] && twitSet){
                 [self getArtTwitPosts];
-            [self getArtIGPosts];
+                [self getArtIGPosts];
         }
     
-        BOOL flag3 = [userDefaults boolForKey:@"showCulture"];
-        if(flag3){
-             NSLog(@"gettings culture");
-            if(twitSet)
+        if([userDefaults boolForKey:@"showCulture"] && twitSet){
                 [self getCultureTwitPosts];
-            [self getCultureIGPosts];
+                [self getCultureIGPosts];
         }
     
-        BOOL flag4 = [userDefaults boolForKey:@"showComedy"];
-        if(flag4){
-             NSLog(@"gettings comedy");
-            if(twitSet)
-                [self getComedyTwitPosts];
+        if([userDefaults boolForKey:@"showComedy"] && twitSet){
+            [self getComedyTwitPosts];
             [self getComedyIGPosts];
         }
     
-    
-        BOOL flag5 = [userDefaults boolForKey:@"showMusic"];
-        if(flag5){
-             NSLog(@"gettings music");
-            if(twitSet)
-                [self getMusicTwitPosts];
+        if([userDefaults boolForKey:@"showMusic"] && twitSet){
+            [self getMusicTwitPosts];
             [self getMusicIGPosts];
         }
 }
@@ -479,6 +463,9 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)sunnyControlDidStartAnimation{
+    
+    [self.bandoPosts removeAllObjects];
+    self.bandoPosts = [[NSMutableArray alloc]init];
     [self grabAcceptableTwits];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
