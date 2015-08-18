@@ -13,6 +13,7 @@
 #import <Haneke/Haneke.h>
 #import "ChooseCategoriesViewController.h"
 #import "YALSunnyRefreshControl.h"
+#import "ArticleDetailViewController.h"
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -104,10 +105,18 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
     BandoPost *bp = [self.bandoPosts objectAtIndex:indexPath.row];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postLink]];
-    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:bp.postDeepLink]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postDeepLink]];
+    }else{
+        //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postLink]];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
+        articleDetail.websiteString = bp.postLink;
+        [self.navigationController pushViewController:articleDetail animated:YES];
+        
+    }
+    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)getMusicTwitPosts{
@@ -121,7 +130,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                BandoPost *bp = [[BandoPost alloc]init];
                                                bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                bp.postType = @"twitter";
-                                               bp.postLink= [cur valueForKey:@"url"];
+                                               bp.uniqueId = [cur valueForKey:@"id"];
+                                               bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                               bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                              bp.username,bp.uniqueId];
                                                bp.postText = [cur valueForKey:@"text"];
                                                bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                if(![self.bandoPosts containsObject:bp])
@@ -146,7 +158,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    BandoPost *bp = [[BandoPost alloc]init];
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
-                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                                   bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                                  bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    if(![self.bandoPosts containsObject:bp])
@@ -167,6 +182,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
                 bp.username = cur.user.username;
                 bp.postType = @"instagram";
                 bp.postText = cur.caption.text;
@@ -191,6 +208,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
                 bp.username = cur.user.username;
                 bp.postType = @"instagram";
                 bp.postText = cur.caption.text;
@@ -216,6 +235,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
                 bp.username = cur.user.username;
                 bp.postType = @"instagram";
                 bp.postText = cur.caption.text;
@@ -240,6 +261,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
                 bp.username = cur.user.username;
                 bp.postType = @"instagram";
                 bp.postText = cur.caption.text;
@@ -264,6 +287,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             for(InstagramMedia *cur in media){
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
                 bp.username = cur.user.username;
                 bp.postType = @"instagram";
                 bp.postText = cur.caption.text;
@@ -291,7 +316,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    BandoPost *bp = [[BandoPost alloc]init];
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
-                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                                   bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                                  bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    [self.bandoPosts addObject:bp];
@@ -304,7 +332,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)getComedyTwitPosts{
-    NSLog(@"gettings comedy");
     NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"desusnice",@"dahoodvines",@"lilduval", nil];
     
     
@@ -317,7 +344,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    BandoPost *bp = [[BandoPost alloc]init];
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
-                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                                   bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                                  bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    [self.bandoPosts addObject:bp];
@@ -350,7 +380,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    BandoPost *bp = [[BandoPost alloc]init];
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
-                                                   bp.postLink= [cur valueForKey:@"url"];
+                                                   bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                                   bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                                  bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    [self.bandoPosts addObject:bp];
@@ -376,28 +409,33 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 -(void)grabAcceptableTwits{
         if([userDefaults boolForKey:@"showSports"] && twitSet){
-                [self getSportsTwitPosts];
-                [self getSportsIGPosts];
+            [self getSportsTwitPosts];
+            [self getSportsIGPosts];
         }
     
         if([userDefaults boolForKey:@"showArt"] && twitSet){
-                [self getArtTwitPosts];
-                [self getArtIGPosts];
+            
+            [self getArtIGPosts];
+            [self getArtTwitPosts];
+            
         }
     
         if([userDefaults boolForKey:@"showCulture"] && twitSet){
-                [self getCultureTwitPosts];
                 [self getCultureIGPosts];
+            [self getCultureTwitPosts];
+            
         }
     
         if([userDefaults boolForKey:@"showComedy"] && twitSet){
-            [self getComedyTwitPosts];
             [self getComedyIGPosts];
+            [self getComedyTwitPosts];
+            
         }
     
         if([userDefaults boolForKey:@"showMusic"] && twitSet){
-            [self getMusicTwitPosts];
+            
             [self getMusicIGPosts];
+            [self getMusicTwitPosts];
         }
 }
 

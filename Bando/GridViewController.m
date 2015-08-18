@@ -13,15 +13,37 @@
 #import "ArticleDetailViewController.h"
 #import <Haneke/Haneke.h>
 #import "Reachability.h"
+#import "CrashHelper.h"
+
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 @implementation GridViewController{
     NSString *featuredPostLink;
 }
 
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([CrashHelper hasCrashReportPending]) {
+        
+        [[CrashHelper sharedCrashHelper]confirmAndSendCrashReportEmailWithViewController:self];
+        
+    }
+    
+
     
     Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
     
@@ -51,6 +73,7 @@
     
     [self.view addSubview:self.gridView];
     self.navigationController.navigationBar.topItem.title = @"Bando";
+    
     [self getOtherPosts];
     [self getFeaturedPost];
 }
@@ -80,7 +103,7 @@
             CGRect screenRect = [[UIScreen mainScreen] bounds];
             CGFloat screenWidth = screenRect.size.width;
             
-            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth)];
+            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth-20)];
             
             
             NSString *url = bp.imageUrl;
@@ -88,6 +111,8 @@
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, screenWidth-20, screenWidth-20)];
             
+            [imageView setContentMode:UIViewContentModeScaleAspectFill];
+            [imageView setClipsToBounds:YES];
             
             [imageView hnk_setImageFromURL:imageURL];
             
@@ -106,6 +131,11 @@
             [tableHeaderView addSubview:imageView];
             //[tableHeaderView addSubview:greenBG];
             [tableHeaderView addSubview:headerLabel];
+            
+            if(IS_IPHONE_6P){
+                [imageView removeFromSuperview];
+                tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth/2, (screenWidth-20)/2)];
+            }
             
             [self.gridView setGridHeaderView:tableHeaderView];
             UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -126,7 +156,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
-    [query setLimit:10];
+    [query setLimit:24];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
@@ -181,7 +211,7 @@
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    return 10;
+    return [self.bandoPosts count];
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
@@ -193,7 +223,7 @@
     
     if ( cell == nil )
     {
-        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 220)
+        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 240)
                                    reuseIdentifier: PlainCellIdentifier];
     }
     
@@ -227,7 +257,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(180.0, 220) );
+    return ( CGSizeMake(180.0, 240) );
 }
 
 -(void) addHeader{

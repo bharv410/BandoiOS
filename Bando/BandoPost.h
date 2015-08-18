@@ -11,6 +11,7 @@
 @interface BandoPost : NSObject
 
 @property (nonatomic, strong) NSString *postLink;
+@property (nonatomic, strong) NSString *postDeepLink;
 @property (nonatomic, strong) NSString *siteSource;
 @property (nonatomic, strong) NSString *postText;
 @property (nonatomic, strong) NSString *postType;

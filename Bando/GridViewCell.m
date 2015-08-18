@@ -18,16 +18,17 @@
     if ( self)
     {
     
-        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 220)];
+        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 240)];
         [mainView setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(39, 34, 132, 170)];
         [frameImageView setBackgroundColor:[UIColor whiteColor]];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.imageView setClipsToBounds:YES];
         
-        self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 180, 160, 40)];
+        self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 160, 60)];
         [self.captionLabel setFont:[UIFont systemFontOfSize:14]];
         self.captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.captionLabel.numberOfLines = 0;
@@ -42,6 +43,7 @@
         self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.contentView.layer.borderWidth = 2.0f;
         
+        [self.contentView addSubview:frameImageView];
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.captionLabel];
     }

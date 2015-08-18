@@ -8,61 +8,51 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-Bando-Haneke.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-Bando-InstagramKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Pods-Bando-STTwitter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-Bando.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4A232C9D101671F64DA77AC2</key>
+		<key>1C353CF544141B5A5570837D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A838C337379E25F9829B9D6</key>
+		<key>207E01EA9CF73EBC8732A501</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93DEAD20969CB5E273D036A7</key>
+		<key>3A2570562429A12CEB222C80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2681183844F5EF8D33A91A6</key>
+		<key>6C48E0A4EB30985F604BA7EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F89EDCACC67CA0052C28FA42</key>
+		<key>95D4485753241AD8179DD479</key>
 		<dict>
 			<key>primary</key>
 			<true/>

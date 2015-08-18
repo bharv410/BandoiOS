@@ -52,6 +52,8 @@
 		6B858E5B1B7BC19D00A1FB8C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */; };
 		6B858E5D1B7BC1A100A1FB8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B858E5C1B7BC1A100A1FB8C /* Social.framework */; };
 		6B858E611B7BC4E300A1FB8C /* BandoPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B858E601B7BC4E300A1FB8C /* BandoPost.m */; };
+		6B8924191B814107009BA9CF /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8924181B814107009BA9CF /* CrashReporter.framework */; };
+		6B89241C1B81412F009BA9CF /* CrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B89241B1B81412F009BA9CF /* CrashHelper.m */; };
 		6BA71DFD1B7DAFD300FB531D /* CustomRoundRectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA71DFC1B7DAFD300FB531D /* CustomRoundRectButton.m */; };
 		6BA71E031B7DB19C00FB531D /* ChooseCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA71E011B7DB19C00FB531D /* ChooseCategoriesViewController.m */; };
 		6BA71E041B7DB19C00FB531D /* ChooseCategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BA71E021B7DB19C00FB531D /* ChooseCategoriesViewController.xib */; };
@@ -171,6 +173,9 @@
 		6B858E5C1B7BC1A100A1FB8C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6B858E5F1B7BC4E300A1FB8C /* BandoPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandoPost.h; sourceTree = "<group>"; };
 		6B858E601B7BC4E300A1FB8C /* BandoPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandoPost.m; sourceTree = "<group>"; };
+		6B8924181B814107009BA9CF /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
+		6B89241A1B81412F009BA9CF /* CrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashHelper.h; sourceTree = "<group>"; };
+		6B89241B1B81412F009BA9CF /* CrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashHelper.m; sourceTree = "<group>"; };
 		6BA71DFB1B7DAFD300FB531D /* CustomRoundRectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRoundRectButton.h; sourceTree = "<group>"; };
 		6BA71DFC1B7DAFD300FB531D /* CustomRoundRectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRoundRectButton.m; sourceTree = "<group>"; };
 		6BA71E001B7DB19C00FB531D /* ChooseCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCategoriesViewController.h; sourceTree = "<group>"; };
@@ -215,6 +220,7 @@
 				6B58AD321B7BB33800295F6D /* QuartzCore.framework in Frameworks */,
 				6B858E471B7BC0D500A1FB8C /* Parse.framework in Frameworks */,
 				6B858E461B7BC0D500A1FB8C /* Bolts.framework in Frameworks */,
+				6B8924191B814107009BA9CF /* CrashReporter.framework in Frameworks */,
 				C1DC9EFF24D8573E8012C347 /* libPods-Bando.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +256,7 @@
 		6B13F7AF1B791A5E004511E5 = {
 			isa = PBXGroup;
 			children = (
+				6B8924181B814107009BA9CF /* CrashReporter.framework */,
 				6B858E5C1B7BC1A100A1FB8C /* Social.framework */,
 				6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */,
 				6B858E581B7BC14100A1FB8C /* libsqlite3.dylib */,
@@ -452,6 +459,8 @@
 		6BD5F09A1B7FC65800712FC5 /* YALSunnyRefreshControll */ = {
 			isa = PBXGroup;
 			children = (
+				6B89241A1B81412F009BA9CF /* CrashHelper.h */,
+				6B89241B1B81412F009BA9CF /* CrashHelper.m */,
 				6BD5F0B91B7FC6BB00712FC5 /* YALSunnyRefreshControl.h */,
 				6BD5F0BA1B7FC6BB00712FC5 /* YALSunnyRefreshControl.m */,
 				6BD5F0BB1B7FC6BB00712FC5 /* YALSunnyRefreshControl.xib */,
@@ -644,6 +653,7 @@
 				6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */,
 				6B3053D11B7C6B5D0070D881 /* ArticleDetailViewController.m in Sources */,
 				6B13F7C11B791A5E004511E5 /* AppDelegate.m in Sources */,
+				6B89241C1B81412F009BA9CF /* CrashHelper.m in Sources */,
 				6B58AD1B1B7BAB9000295F6D /* AQGridViewCell.m in Sources */,
 				6B652BDB1B7C742F00E73D6E /* ListViewCell.m in Sources */,
 				6B58AD1E1B7BAB9000295F6D /* AQGridViewUpdateInfo.m in Sources */,
@@ -801,6 +811,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Bando/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -808,6 +819,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = AQGridView;
 			};
@@ -825,6 +837,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Bando/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -832,6 +845,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = AQGridView;
 			};
 			name = Release;

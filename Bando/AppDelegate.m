@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "CrashHelper.h"
+
 
 @interface AppDelegate ()
 
@@ -28,6 +30,8 @@
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [[CrashHelper sharedCrashHelper]checkForCrashes];
     
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     
