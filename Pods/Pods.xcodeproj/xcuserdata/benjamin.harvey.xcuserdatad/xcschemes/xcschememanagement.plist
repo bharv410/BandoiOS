@@ -9,6 +9,31 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Bando-Google.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Bando-GoogleAnalytics.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Bando-GoogleNetworkingUtilities.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Bando-GoogleSymbolUtilities.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Bando-GoogleUtilities.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bando-Haneke.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C353CF544141B5A5570837D</key>
+		<key>02C0C8DBA4C84DBC83F43C49</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>207E01EA9CF73EBC8732A501</key>
+		<key>1813E42DE52E39C7F8EC8AA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A2570562429A12CEB222C80</key>
+		<key>322B91B14D04309518731C86</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C48E0A4EB30985F604BA7EB</key>
+		<key>48E041E5E0CCB0AAC16A46E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95D4485753241AD8179DD479</key>
+		<key>7391541523E93AAFBED850BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>907AB4EDE79502407D5C6B1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A81D6B54ABF2B08C1BF0B49C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8E11D1B27A6EE1DCD7F7F9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C6782F5DBAB11488A69BAEA8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F49DCB9D6419A66C16EBE4E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

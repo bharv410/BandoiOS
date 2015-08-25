@@ -7,6 +7,7 @@
 //
 
 #import "ArticleDetailViewController.h"
+#import <Google/Analytics.h>
 
 @interface ArticleDetailViewController ()
 
@@ -16,6 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Article Page"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;

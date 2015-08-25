@@ -14,6 +14,7 @@
 #import "ChooseCategoriesViewController.h"
 #import "YALSunnyRefreshControl.h"
 #import "ArticleDetailViewController.h"
+#import <Google/Analytics.h>
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -34,6 +35,12 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Live Page"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
     userDefaults = [NSUserDefaults standardUserDefaults];
     twitSet = NO;
     [self setupRefreshControl];

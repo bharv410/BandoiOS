@@ -15,6 +15,7 @@
 		6B13F7CC1B791A5E004511E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B13F7CB1B791A5E004511E5 /* Images.xcassets */; };
 		6B13F7CF1B791A5E004511E5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B13F7CD1B791A5E004511E5 /* LaunchScreen.xib */; };
 		6B13F7DB1B791A5E004511E5 /* BandoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13F7DA1B791A5E004511E5 /* BandoTests.m */; };
+		6B1B173F1B8C302B0077DC34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B1B173E1B8C302B0077DC34 /* GoogleService-Info.plist */; };
 		6B3053D11B7C6B5D0070D881 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3053D01B7C6B5D0070D881 /* ArticleDetailViewController.m */; };
 		6B58AD191B7BAB9000295F6D /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58ACFF1B7BAB9000295F6D /* AQGridView.m */; };
 		6B58AD1A1B7BAB9000295F6D /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58AD011B7BAB9000295F6D /* AQGridViewAnimatorItem.m */; };
@@ -116,6 +117,7 @@
 		6B13F7D41B791A5E004511E5 /* BandoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BandoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B13F7D91B791A5E004511E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B13F7DA1B791A5E004511E5 /* BandoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandoTests.m; sourceTree = "<group>"; };
+		6B1B173E1B8C302B0077DC34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B3053CF1B7C6B5D0070D881 /* ArticleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDetailViewController.h; sourceTree = "<group>"; };
 		6B3053D01B7C6B5D0070D881 /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
 		6B58ACE81B7BA89D00295F6D /* AQGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQGridView.xcodeproj; path = "../../../../Downloads/AQGridView-master/AQGridView.xcodeproj"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		6B13F7AF1B791A5E004511E5 = {
 			isa = PBXGroup;
 			children = (
+				6B1B173E1B8C302B0077DC34 /* GoogleService-Info.plist */,
 				6B8924181B814107009BA9CF /* CrashReporter.framework */,
 				6B858E5C1B7BC1A100A1FB8C /* Social.framework */,
 				6B858E5A1B7BC19D00A1FB8C /* Accounts.framework */,
@@ -587,6 +590,7 @@
 				6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */,
 				6B58AD251B7BAB9000295F6D /* AQGridSelectionGrayBlue.png in Resources */,
 				6B58AD261B7BAB9000295F6D /* AQGridSelectionGreen.png in Resources */,
+				6B1B173F1B8C302B0077DC34 /* GoogleService-Info.plist in Resources */,
 				6BDBE0611B7E785B002F04DF /* SelectedFeed@2x.png in Resources */,
 				6BDBE05C1B7E77F9002F04DF /* Selected.png in Resources */,
 				6BC95FD81B7DA0C60056B6D8 /* bandoheader.png in Resources */,

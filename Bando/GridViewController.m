@@ -14,7 +14,7 @@
 #import <Haneke/Haneke.h>
 #import "Reachability.h"
 #import "CrashHelper.h"
-
+#import <Google/Analytics.h>
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -37,11 +37,10 @@
 {
     [super viewDidLoad];
     
-    if ([CrashHelper hasCrashReportPending]) {
-        
-        [[CrashHelper sharedCrashHelper]confirmAndSendCrashReportEmailWithViewController:self];
-        
-    }
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Featured Page"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
     
 
     
