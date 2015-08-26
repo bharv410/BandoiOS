@@ -59,7 +59,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
-    self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height);
+    self.myTableView.frame = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, screenWidth, self.myTableView.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame));
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 90)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.myTableView.tableFooterView = footer;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editCategories)];
     
@@ -485,6 +488,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         
         cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 250);
         
+        [cell.socialMediaImage hnk_setImageFromFile:@"igicon.png"];
+        
     }else{
         [cell.realImageView setHidden:YES];
         [cell.descriptionLabel setHidden:NO];
@@ -516,7 +521,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         [self endAnimationHandle];
     });
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 60)];
+    return footer;
+}
 -(IBAction)endAnimationHandle{
     
     [self.sunnyRefreshControl endRefreshing];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UIView *cellBackground;
 @property (strong, nonatomic) IBOutlet UIView *cellBottomPart;
+@property (strong, nonatomic) IBOutlet UIImageView *socialMediaImage;
 
 @property (strong, nonatomic) IBOutlet UILabel *igCaptionLabel;
 

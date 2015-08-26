@@ -23,6 +23,7 @@
 		6B1D9FC21B8E3EAF00C22961 /* UIGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D9FB71B8E3EAF00C22961 /* UIGridViewCell.m */; };
 		6B1D9FC31B8E3EAF00C22961 /* UIGridViewRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D9FBA1B8E3EAF00C22961 /* UIGridViewRow.m */; };
 		6B1D9FC41B8E3EAF00C22961 /* uigridviewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1D9FBC1B8E3EAF00C22961 /* uigridviewAppDelegate.m */; };
+		6B1D9FC61B8E4F6A00C22961 /* igicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B1D9FC51B8E4F6A00C22961 /* igicon.png */; };
 		6B3053D11B7C6B5D0070D881 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3053D01B7C6B5D0070D881 /* ArticleDetailViewController.m */; };
 		6B58AD321B7BB33800295F6D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B58AD311B7BB33800295F6D /* QuartzCore.framework */; };
 		6B58AD3B1B7BBDF900295F6D /* SimpleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58AD3A1B7BBDF900295F6D /* SimpleTableViewController.m */; };
@@ -107,6 +108,7 @@
 		6B1D9FBA1B8E3EAF00C22961 /* UIGridViewRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGridViewRow.m; sourceTree = "<group>"; };
 		6B1D9FBB1B8E3EAF00C22961 /* uigridviewAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uigridviewAppDelegate.h; sourceTree = "<group>"; };
 		6B1D9FBC1B8E3EAF00C22961 /* uigridviewAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uigridviewAppDelegate.m; sourceTree = "<group>"; };
+		6B1D9FC51B8E4F6A00C22961 /* igicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = igicon.png; sourceTree = "<group>"; };
 		6B3053CF1B7C6B5D0070D881 /* ArticleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDetailViewController.h; sourceTree = "<group>"; };
 		6B3053D01B7C6B5D0070D881 /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
 		6B58AD311B7BB33800295F6D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -274,6 +276,7 @@
 		6B13F7BB1B791A5E004511E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B1D9FC51B8E4F6A00C22961 /* igicon.png */,
 				6BDBE0631B7E7894002F04DF /* UnselectedFeed.png */,
 				6BDBE0641B7E7894002F04DF /* UnselectedFeed@2x.png */,
 				6BDBE0651B7E7894002F04DF /* Unselected@2x.png */,
@@ -483,6 +486,7 @@
 				6BD388251B7D6C080095AF07 /* splash.png in Resources */,
 				6BDBE0681B7E7894002F04DF /* UnselectedFeed@2x.png in Resources */,
 				6BA71E041B7DB19C00FB531D /* ChooseCategoriesViewController.xib in Resources */,
+				6B1D9FC61B8E4F6A00C22961 /* igicon.png in Resources */,
 				6B13F7CC1B791A5E004511E5 /* Images.xcassets in Resources */,
 				6BDBE05E1B7E7802002F04DF /* Selected@2x.png in Resources */,
 				6BD388271B7D6C150095AF07 /* splash@2x.png in Resources */,

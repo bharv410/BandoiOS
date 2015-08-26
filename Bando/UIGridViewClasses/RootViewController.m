@@ -11,6 +11,10 @@
 #import "Cell.h"
 #import <Parse/Parse.h>
 #import <Haneke/Haneke.h>
+#import "ArticleDetailViewController.h"
+#import "Reachability.h"
+#import <Google/Analytics.h>
+
 
 @implementation RootViewController
 
@@ -32,6 +36,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getOtherPosts];
+    
+    self.screenName = @"Featured Page";
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Featured Page"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
+    Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
+    
+    NetworkStatus networkStatus = [netWorkReachablity currentReachabilityStatus];
+    
+    if (networkStatus == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"No Internet Connection"
+                              message:@"This app requires internet connection to work correctly"
+                              delegate:self  // set nil if you don't want the yes button callback
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+    self.navigationController.navigationBar.topItem.title = @"Bando";
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, screenWidth, self.table.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame));
+    
 }
 
 
@@ -116,7 +147,7 @@
 
 - (NSInteger) numberOfCellsOfGridView:(UIGridView *) grid
 {
-	return 33;
+	return [_bandoPosts count];
 }
 
 - (UIGridViewCell *) gridView:(UIGridView *)grid cellForRowAt:(int)rowIndex AndColumnAt:(int)columnIndex
@@ -127,8 +158,8 @@
 		cell = [[Cell alloc] init];
 	}
     
-    BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex];
     
+    BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+columnIndex];
     if(currentPost!=nil){
 	cell.label.text = currentPost.postText;
     [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
@@ -140,6 +171,13 @@
 - (void) gridView:(UIGridView *)grid didSelectRowAt:(int)rowIndex AndColumnAt:(int)colIndex
 {
 	NSLog(@"%d, %d clicked", rowIndex, colIndex);
+    //[self.gridView deselectItemAtIndex:index animated:YES];
+    BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+colIndex];
+    NSString *siteUrl = currentPost.postLink;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
+    articleDetail.websiteString = siteUrl;
+    [self.navigationController pushViewController:articleDetail animated:YES];
 }
 
 

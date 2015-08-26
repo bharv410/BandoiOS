@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UIGridView.h"
 #import "UIGridViewDelegate.h"
+#import <Google/Analytics.h>
 
-@interface RootViewController : UIViewController<UIGridViewDelegate> {
+@interface RootViewController : GAITrackedViewController<UIGridViewDelegate> {
     NSArray *_bandoPosts;
 }
 @property (nonatomic, retain) IBOutlet UIGridView *table;
