@@ -36,7 +36,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     [super viewDidLoad];
     // Initialize table dat
     self.screenName = @"Live Page";
-    self.bandoPosts = [[NSMutableArray alloc]init];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Live Page"];
@@ -72,9 +71,24 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.bandoPosts removeAllObjects];
+    self.bandoPosts = [[NSMutableArray alloc]init];
+    [self.myTableView reloadData];
     self.instagramEngine = [InstagramEngine sharedEngine];
+    
 
     [self grabAcceptableTwits];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        if([self.bandoPosts count]<2){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Posts"
+                                                            message:@"Please edit your settings to include more topics."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
 }
 
 -(void)editCategories{
@@ -485,9 +499,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             cell.igCaptionLabel.text = text;
         
         cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 250);
-        
-        [cell.socialMediaImage hnk_setImageFromFile:@"igicon.png"];
-        
+                
     }else{
         [cell.realImageView setHidden:YES];
         [cell.descriptionLabel setHidden:NO];

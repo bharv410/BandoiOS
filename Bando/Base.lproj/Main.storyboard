@@ -80,7 +80,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="Ufd-TG-ej1">
-                                                    <rect key="frame" x="12" y="11" width="300" height="180"/>
+                                                    <rect key="frame" x="12" y="11" width="316" height="180"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pII-ep-lhs">
@@ -110,10 +110,6 @@
                                                             <rect key="frame" x="127" y="55" width="140" height="140"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ElO-6d-lgb">
-                                                            <rect key="frame" x="253" y="0.0" width="47" height="47"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -126,7 +122,6 @@
                                             <outlet property="nameLabel" destination="pII-ep-lhs" id="rcE-qP-py4"/>
                                             <outlet property="profileImage" destination="86y-l3-6va" id="kpX-xw-tu4"/>
                                             <outlet property="realImageView" destination="G3w-iC-pTl" id="Gz2-Qi-5L5"/>
-                                            <outlet property="socialMediaImage" destination="ElO-6d-lgb" id="Pwg-2Z-la6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
