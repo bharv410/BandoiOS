@@ -650,14 +650,12 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 - (void) layoutSubviews
 {
-    NSLog(@"layout subviews");
 	if ( (_flags.needsReload == 1) && (_animationCount == 0) && (_reloadingSuspendedCount == 0) )
 		[self reloadData];
 
 	if ( (_reloadingSuspendedCount == 0) && (!CGRectIsEmpty([self gridViewVisibleBounds])) )
 	{
         [self updateVisibleGridCellsNow];
-         NSLog(@"layout updateVisibleGridCellsNow");
 	}
 
 	if ( _flags.allCellsNeedLayout == 1 )

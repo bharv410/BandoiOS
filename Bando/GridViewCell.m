@@ -7,48 +7,60 @@
 //
 
 #import "GridViewCell.h"
+#import <Haneke/Haneke.h>
 
 @implementation GridViewCell
 
-@synthesize captionLabel, imageView;
+@synthesize captionLabel,imageView;
 
 - (id) initWithFrame: (CGRect) frame reuseIdentifier: (NSString *) aReuseIdentifier
 {
     self = [super initWithFrame: frame reuseIdentifier: aReuseIdentifier];
     if ( self)
     {
-    
-        UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 240)];
+        
+        UIView* mainView = [[UIView alloc] initWithFrame:self.bounds];
         [mainView setBackgroundColor:[UIColor clearColor]];
+    
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [imageView setClipsToBounds:YES];
         
-        UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(39, 34, 132, 170)];
-        [frameImageView setBackgroundColor:[UIColor whiteColor]];
+        captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 160, 60)];
+        [captionLabel setFont:[UIFont systemFontOfSize:14]];
+        captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        captionLabel.numberOfLines = 0;
+        captionLabel.textAlignment = NSTextAlignmentCenter;
         
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [self.imageView setClipsToBounds:YES];
-        
-        self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 160, 60)];
-        [self.captionLabel setFont:[UIFont systemFontOfSize:14]];
-        self.captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.captionLabel.numberOfLines = 0;
-        self.captionLabel.textAlignment = NSTextAlignmentCenter;
-        
-        [mainView addSubview:frameImageView];
         [mainView addSubview:imageView];
         [mainView addSubview:captionLabel];
-        [self.contentView setBackgroundColor:[UIColor clearColor]];
-        mainView.layer.borderColor = [UIColor whiteColor].CGColor;
-        mainView.layer.borderWidth = 2.0f;
-        _contentView.layer.borderColor = [UIColor whiteColor].CGColor;
-        _contentView.layer.borderWidth = 2.0f;
-        
-        [self.contentView addSubview:frameImageView];
-        [self.contentView addSubview:self.imageView];
-        [self.contentView addSubview:self.captionLabel];
+        [self.contentView addSubview:mainView];
     }
     
     return self;
 }
+
+- (UIView *) contentView
+{
+    if ( _contentView == nil )
+    {
+        _contentView = [[UIView alloc] initWithFrame: self.bounds];
+        _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _contentView.autoresizesSubviews = YES;
+        self.autoresizesSubviews = YES;
+        _contentView.backgroundColor = [UIColor whiteColor];
+        [_contentView.layer setValue: [NSNumber numberWithBool: YES] forKey: @"KoboHackInterestingLayer"];
+        [self addSubview: _contentView];
+    }
+    return ( _contentView );
+}
+
+
+- (void)prepareForReuse
+{
+    [self.imageView hnk_cancelSetImage];
+    self.imageView.image = nil;
+}
+
 
 @end

@@ -13,6 +13,7 @@
 #import <Haneke/Haneke.h>
 #import "Reachability.h"
 #import "CrashHelper.h"
+#import "GridViewCell.h"
 #import <Google/Analytics.h>
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -31,18 +32,20 @@
 @implementation GridViewController{
     NSString *featuredPostLink;
 }
+
 @synthesize bandoPosts;
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    self.bandoPosts = [[NSMutableArray alloc]init];
+    
+    
     self.screenName = @"Featured Page";
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Featured Page"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
-    
-
     
     Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
     
@@ -64,7 +67,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    self.gridView = [[AQGridView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar.frame.size.height,screenWidth,screenHeight-50)];
+    self.gridView = [[AQGridView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar.frame.size.height,screenWidth,screenHeight)];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
@@ -149,7 +152,7 @@
     //[self addHeader];
 }
 -(void)getOtherPosts{
-    bandoPosts = [[NSMutableArray alloc]init];
+    
     
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
@@ -157,6 +160,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
+                
+@autoreleasepool {
                 BandoPost *bp = [[BandoPost alloc]init];
                 bp.postLink = object[@"postLink"];
                 bp.postType = @"article";
@@ -166,6 +171,7 @@
                 bp.uniqueId = object.objectId;
                 bp.viewCount = object[@"viewCount"];
                 [bandoPosts addObject:bp];
+                }
             }
             [self.gridView reloadData];
         } else {
@@ -217,26 +223,18 @@
 {
     static NSString * PlainCellIdentifier = @"PlainCellIdentifier";
     
-    AQGridViewCell * cell = (AQGridViewCell *)[aGridView dequeueReusableCellWithIdentifier:PlainCellIdentifier];
+    GridViewCell * cell = (GridViewCell *)[aGridView dequeueReusableCellWithIdentifier:PlainCellIdentifier];
     
     if ( cell == nil )
     {
-        cell = [[AQGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 240)
+        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 240)
                                    reuseIdentifier: PlainCellIdentifier];
     }
     
-    UIColor *greenColor = [self colorWithHexString:@"168807"];
-    
-    cell.selectionGlowColor = greenColor;
-    
-    BandoPost *bp = [bandoPosts objectAtIndex:index];
-    
-    NSString *url = bp.imageUrl;
-    NSURL *imageURL = [[NSURL alloc]initWithString:url];
-    [cell.captionLabel setText:bp.postText];
-    bp = nil;
-    [cell.imageView hnk_setImageFromURL:imageURL];
-    
+    cell.selectionStyle = AQGridViewCellSelectionStyleNone;
+    cell.currentPost = [bandoPosts objectAtIndex:index];
+    cell.captionLabel.text = cell.currentPost.postText;
+    [cell.imageView hnk_setImageFromURL:[[NSURL alloc]initWithString:cell.currentPost.imageUrl]];
     return cell;
 }
 
@@ -260,6 +258,11 @@
 -(void) addHeader{
     
 
+}
+
+- (void)dealloc {
+    self.gridView.gridHeaderView = nil;
+    bandoPosts = nil;
 }
 
 -(UIColor*)colorWithHexString:(NSString*)hex

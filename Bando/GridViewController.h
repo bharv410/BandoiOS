@@ -12,8 +12,8 @@
 
 @interface GridViewController : GAITrackedViewController <AQGridViewDelegate, AQGridViewDataSource>
 
-@property (nonatomic, strong) IBOutlet AQGridView * gridView;
+@property (nonatomic, retain) IBOutlet AQGridView * gridView;
 
-@property (nonatomic, strong) NSMutableArray *bandoPosts;
+@property (nonatomic, retain) NSMutableArray *bandoPosts;
 
 @end

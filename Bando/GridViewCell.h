@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AQGridView.h"
+#import "BandoPost.h"
 
 @interface GridViewCell : AQGridViewCell
-
-@property (nonatomic, strong) UIImageView * imageView;
-
-@property (nonatomic, strong) UILabel * captionLabel;
+{
+    BandoPost * currentPost;
+    UIImageView * imageView;
+    UILabel * captionLabel;
+}
+@property(nonatomic,retain) BandoPost * currentPost;
 
 @end

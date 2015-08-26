@@ -58,62 +58,26 @@
 
 - (id) initWithFrame: (CGRect) frame reuseIdentifier: (NSString *) reuseIdentifier
 {
-	self = [super initWithFrame: frame];
-	if ( self == nil )
-		return ( nil );
-	
-	self.reuseIdentifier = reuseIdentifier;
-	_cellFlags.usingDefaultSelectedBackgroundView = 1;
-	_cellFlags.separatorStyle = AQGridViewCellSeparatorStyleEmptySpace;
-	
-	if ( [CALayer instancesRespondToSelector: @selector(shadowPath)] )
-		_cellFlags.selectionStyle = AQGridViewCellSelectionStyleGlow;
-	else
-		_cellFlags.selectionStyle = AQGridViewCellSelectionStyleGray;
+    self = [super initWithFrame: frame];
+    if ( self == nil )
+        return ( nil );
+    
+    self.reuseIdentifier = reuseIdentifier;
+    _cellFlags.usingDefaultSelectedBackgroundView = 1;
+    _cellFlags.separatorStyle = AQGridViewCellSeparatorStyleEmptySpace;
+    
+    if ( [CALayer instancesRespondToSelector: @selector(shadowPath)] )
+        _cellFlags.selectionStyle = AQGridViewCellSelectionStyleGlow;
+    else
+        _cellFlags.selectionStyle = AQGridViewCellSelectionStyleGray;
     _cellFlags.setShadowPath = 0;
-	_selectionColorInfo = CFDictionaryCreateMutable( kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks );
-	self.backgroundColor = [UIColor whiteColor];
-	
-	_selectionGlowShadowRadius = 12.0f;
+    _selectionColorInfo = CFDictionaryCreateMutable( kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks,  &kCFTypeDictionaryValueCallBacks );
+    self.backgroundColor = [UIColor whiteColor];
     
-        
-    UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 240)];
-    [mainView setBackgroundColor:[UIColor clearColor]];
+    _selectionGlowShadowRadius = 12.0f;
     
-    UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(39, 34, 132, 170)];
-    [frameImageView setBackgroundColor:[UIColor whiteColor]];
-    
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [_imageView setClipsToBounds:YES];
-    _imageView.userInteractionEnabled = NO;
-    
-    self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 160, 60)];
-    [_captionLabel setFont:[UIFont systemFontOfSize:14]];
-    _captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _captionLabel.numberOfLines = 0;
-    _captionLabel.textAlignment = NSTextAlignmentCenter;
-    
-    
-    [_contentView setBackgroundColor:[UIColor clearColor]];
-    mainView.layer.borderColor = [UIColor whiteColor].CGColor;
-    mainView.layer.borderWidth = 2.0f;
-    self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.contentView.layer.borderWidth = 2.0f;
-    
-    
-    //[_contentView addSubview:frameImageView];
-    [self.contentView addSubview:_imageView];
-    [self.contentView addSubview:_captionLabel];
-    
-    self.contentView.opaque = NO;
-    self.opaque = NO;
-    
-    self.selectionStyle = AQGridViewCellSelectionStyleNone;
-    
-	return ( self );
+    return ( self );
 }
-
 - (void) awakeFromNib
 {
     _cellFlags.usingDefaultSelectedBackgroundView = 1;
