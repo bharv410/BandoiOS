@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Bando-CHTCollectionViewWaterfallLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Bando-Google.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,52 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02C0C8DBA4C84DBC83F43C49</key>
+		<key>22140712B8497A2D4728184C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1813E42DE52E39C7F8EC8AA6</key>
+		<key>28C3C5C5C3555FD65307E68D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>322B91B14D04309518731C86</key>
+		<key>2CCD6E914C50C22BAB23B4CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>48E041E5E0CCB0AAC16A46E7</key>
+		<key>492FE3339B1DDF3527CD90F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7391541523E93AAFBED850BB</key>
+		<key>72D3FE8C0B561085DAA41FC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>907AB4EDE79502407D5C6B1C</key>
+		<key>ACDA6A82355FDB20898CAA65</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A81D6B54ABF2B08C1BF0B49C</key>
+		<key>BB1373E7C9DA14AA1BEC84A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8E11D1B27A6EE1DCD7F7F9C</key>
+		<key>BF38EA7E7CEAEAB388997C00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6782F5DBAB11488A69BAEA8</key>
+		<key>E890B6267FDCA09FFAF3848E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F49DCB9D6419A66C16EBE4E4</key>
+		<key>EF08F7D5AF483E9B149F8FB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9F605CA0F6777F5AC9671B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

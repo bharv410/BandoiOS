@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
+// CHTCollectionViewWaterfallLayout
+#define COCOAPODS_POD_AVAILABLE_CHTCollectionViewWaterfallLayout
+#define COCOAPODS_VERSION_MAJOR_CHTCollectionViewWaterfallLayout 0
+#define COCOAPODS_VERSION_MINOR_CHTCollectionViewWaterfallLayout 9
+#define COCOAPODS_VERSION_PATCH_CHTCollectionViewWaterfallLayout 2
+
 // Google/Analytics
 #define COCOAPODS_POD_AVAILABLE_Google_Analytics
 #define COCOAPODS_VERSION_MAJOR_Google_Analytics 1

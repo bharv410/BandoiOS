@@ -8,6 +8,7 @@ pod 'AFNetworking', '~> 2.5'
 pod 'InstagramKit', '~> 3.0'
 pod 'Haneke', '~> 1.0'
 pod 'Google/Analytics', '~> 1.0.0'
+pod 'CHTCollectionViewWaterfallLayout'
 end
 
 target 'BandoTests' do
