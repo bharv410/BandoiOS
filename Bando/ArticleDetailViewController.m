@@ -23,6 +23,12 @@
     [tracker set:kGAIScreenName value:@"Article Page"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                   target:self
+                                   action:@selector(shareAction:)];
+    self.navigationItem.rightBarButtonItem = shareButton;
+    
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -76,6 +82,28 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+-(void)shareAction:(id)sender
+{
+    NSLog(@"share action");
+    [self share];
+}
+
+-(void)share{
+    
+    NSString *string = [NSString stringWithFormat:@"Hey, checkout %@ via @BandoTheApp", self.websiteString];
+    NSURL *URL = [NSURL URLWithString:self.websiteString];
+    
+    UIActivityViewController *activityViewController =
+    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
+                                      applicationActivities:nil];
+    [self.navigationController presentViewController:activityViewController
+                                       animated:YES
+                                     completion:^{
+                                         // ...
+                                         NSLog(@"sharing");
+                                     }];
 }
 
 -(UIColor*)colorWithHexString:(NSString*)hex

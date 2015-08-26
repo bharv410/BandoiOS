@@ -281,5 +281,19 @@
                            alpha:1.0f];
 }
 
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    //CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    
+    if(featuredPostLink!=nil){
+        NSString *siteUrl = featuredPostLink;
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
+        articleDetail.websiteString = siteUrl;
+        [self.navigationController pushViewController:articleDetail animated:YES];
+    }
+    //Do stuff here...
+}
+
 
 @end
