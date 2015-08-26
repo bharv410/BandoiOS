@@ -92,7 +92,7 @@
 
 -(void)share{
     
-    NSString *string = [NSString stringWithFormat:@"Hey, checkout %@ via @BandoTheApp", self.websiteString];
+    NSString *string = @"look what I found via @BandoTheApp";
     NSURL *URL = [NSURL URLWithString:self.websiteString];
     
     UIActivityViewController *activityViewController =
