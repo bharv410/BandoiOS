@@ -11,8 +11,8 @@
 
 @interface GridViewCell : AQGridViewCell
 
-@property (nonatomic, retain) UIImageView * imageView;
+@property (nonatomic, strong) UIImageView * imageView;
 
-@property (nonatomic, retain) UILabel * captionLabel;
+@property (nonatomic, strong) UILabel * captionLabel;
 
 @end

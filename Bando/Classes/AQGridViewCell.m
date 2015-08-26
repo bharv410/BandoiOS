@@ -75,7 +75,42 @@
 	self.backgroundColor = [UIColor whiteColor];
 	
 	_selectionGlowShadowRadius = 12.0f;
-	
+    
+        
+    UIView* mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 240)];
+    [mainView setBackgroundColor:[UIColor clearColor]];
+    
+    UIImageView *frameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(39, 34, 132, 170)];
+    [frameImageView setBackgroundColor:[UIColor whiteColor]];
+    
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 160, 160)];
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [_imageView setClipsToBounds:YES];
+    _imageView.userInteractionEnabled = NO;
+    
+    self.captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 160, 60)];
+    [_captionLabel setFont:[UIFont systemFontOfSize:14]];
+    _captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _captionLabel.numberOfLines = 0;
+    _captionLabel.textAlignment = NSTextAlignmentCenter;
+    
+    
+    [_contentView setBackgroundColor:[UIColor clearColor]];
+    mainView.layer.borderColor = [UIColor whiteColor].CGColor;
+    mainView.layer.borderWidth = 2.0f;
+    self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.contentView.layer.borderWidth = 2.0f;
+    
+    
+    //[_contentView addSubview:frameImageView];
+    [self.contentView addSubview:_imageView];
+    [self.contentView addSubview:_captionLabel];
+    
+    self.contentView.opaque = NO;
+    self.opaque = NO;
+    
+    self.selectionStyle = AQGridViewCellSelectionStyleNone;
+    
 	return ( self );
 }
 
@@ -99,6 +134,7 @@
 	if ( _selectionColorInfo != NULL )
 		CFRelease( _selectionColorInfo );
 }
+
 
 - (NSComparisonResult) compareOriginAgainstCell: (AQGridViewCell *) otherCell
 {
@@ -135,6 +171,7 @@
 
 - (CALayer *) glowSelectionLayer
 {
+    
 	return ( _contentView.layer );
 }
 

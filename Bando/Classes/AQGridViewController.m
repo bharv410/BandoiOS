@@ -118,6 +118,7 @@
 	{
 		[self.gridView deselectItemAtIndex: [self.gridView indexOfSelectedItem] animated: NO];
 	}
+    [super viewWillAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

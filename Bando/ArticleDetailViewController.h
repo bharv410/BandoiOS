@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface ArticleDetailViewController : UIViewController<UIWebViewDelegate>
+@interface ArticleDetailViewController : GAITrackedViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *websiteString;

@@ -7,7 +7,6 @@
 //
 
 #import "GridViewController.h"
-#import "GridViewCell.h"
 #import <Parse/Parse.h>
 #import "BandoPost.h"
 #import "ArticleDetailViewController.h"
@@ -32,10 +31,11 @@
 @implementation GridViewController{
     NSString *featuredPostLink;
 }
-
+@synthesize bandoPosts;
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Featured Page";
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Featured Page"];
@@ -78,7 +78,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    
+    [super viewDidAppear:animated];
 }
 
 -(void) getFeaturedPost{
@@ -97,7 +97,6 @@
                 bp.imageUrl = object[@"imageUrl"];
                 bp.uniqueId = object.objectId;
                 bp.viewCount = object[@"viewCount"];
-                //[bandoPosts addObject:bp];
             
             CGRect screenRect = [[UIScreen mainScreen] bounds];
             CGFloat screenWidth = screenRect.size.width;
@@ -139,7 +138,6 @@
             [self.gridView setGridHeaderView:tableHeaderView];
             UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
             [self.gridView setGridFooterView:tableFooterView];
-            [self.gridView reloadData];
             
             UITapGestureRecognizer *singleFingerTap =
             [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -151,7 +149,7 @@
     //[self addHeader];
 }
 -(void)getOtherPosts{
-    self.bandoPosts = [[NSMutableArray alloc]init];
+    bandoPosts = [[NSMutableArray alloc]init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
@@ -167,7 +165,7 @@
                 bp.imageUrl = object[@"imageUrl"];
                 bp.uniqueId = object.objectId;
                 bp.viewCount = object[@"viewCount"];
-                [self.bandoPosts addObject:bp];
+                [bandoPosts addObject:bp];
             }
             [self.gridView reloadData];
         } else {
@@ -194,10 +192,12 @@
 -(void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    [self.gridView deselectItemAtIndex:index animated:YES];
-    BandoPost *clickedPost = [self.bandoPosts objectAtIndex:index];
-    NSString *siteUrl = clickedPost.postLink;
+    NSLog(@"did select");
     
+    [self.gridView deselectItemAtIndex:index animated:YES];
+    
+    BandoPost *clickedPost = [bandoPosts objectAtIndex:index];
+    NSString *siteUrl = clickedPost.postLink;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
@@ -210,42 +210,40 @@
 
 - (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    return [self.bandoPosts count];
+    return [bandoPosts count];
 }
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
 {
     static NSString * PlainCellIdentifier = @"PlainCellIdentifier";
     
-    
-    GridViewCell * cell = (GridViewCell *)[aGridView dequeueReusableCellWithIdentifier:@"PlainCellIdentifier"];
+    AQGridViewCell * cell = (AQGridViewCell *)[aGridView dequeueReusableCellWithIdentifier:PlainCellIdentifier];
     
     if ( cell == nil )
     {
-        cell = [[GridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 240)
+        cell = [[AQGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 180, 240)
                                    reuseIdentifier: PlainCellIdentifier];
     }
     
-    cell.contentView.layer.cornerRadius = 10;
-    cell.contentView.layer.masksToBounds = YES;
+    UIColor *greenColor = [self colorWithHexString:@"168807"];
     
-    cell.imageView.image = nil; // or cell.poster.image = [UIImage imageNamed:@"placeholder.png"];
+    cell.selectionGlowColor = greenColor;
     
-    BandoPost *bp = [self.bandoPosts objectAtIndex:index];
+    BandoPost *bp = [bandoPosts objectAtIndex:index];
     
     NSString *url = bp.imageUrl;
     NSURL *imageURL = [[NSURL alloc]initWithString:url];
     [cell.captionLabel setText:bp.postText];
     bp = nil;
     [cell.imageView hnk_setImageFromURL:imageURL];
-    return cell;
     
+    return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
         //NSIndexPath *indexPath = [self.gridView indexOfSelectedItem];
-        BandoPost *clickedPost = [self.bandoPosts objectAtIndex:[self.gridView indexOfSelectedItem]];
+        BandoPost *clickedPost = [bandoPosts objectAtIndex:[self.gridView indexOfSelectedItem]];
         NSString *siteUrl = clickedPost.postLink;
         
         ArticleDetailViewController *articleDetail = [[ArticleDetailViewController alloc]init];
@@ -298,6 +296,11 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

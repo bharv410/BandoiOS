@@ -650,12 +650,14 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 - (void) layoutSubviews
 {
+    NSLog(@"layout subviews");
 	if ( (_flags.needsReload == 1) && (_animationCount == 0) && (_reloadingSuspendedCount == 0) )
 		[self reloadData];
 
 	if ( (_reloadingSuspendedCount == 0) && (!CGRectIsEmpty([self gridViewVisibleBounds])) )
 	{
         [self updateVisibleGridCellsNow];
+         NSLog(@"layout updateVisibleGridCellsNow");
 	}
 
 	if ( _flags.allCellsNeedLayout == 1 )
@@ -732,8 +734,8 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 - (AQGridViewCell *) cellForItemAtIndex: (NSUInteger) index
 {
-	//if ( NSLocationInRange(index, _visibleIndices) == NO )
-	//	return ( nil );
+	if ( NSLocationInRange(index, _visibleIndices) == NO )
+		return ( nil );
 
 	// we don't clip to visible range-- when animating edits the visible cell list can contain extra items
 	NSUInteger visibleCellListIndex = [self visibleCellListIndexForItemIndex: index];

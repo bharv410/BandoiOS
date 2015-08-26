@@ -35,6 +35,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    self.screenName = @"Live Page";
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Live Page"];
@@ -66,6 +67,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     self.instagramEngine = [InstagramEngine sharedEngine];
     [self.bandoPosts removeAllObjects];
     self.bandoPosts = [[NSMutableArray alloc]init];
@@ -518,6 +520,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 -(IBAction)endAnimationHandle{
     
     [self.sunnyRefreshControl endRefreshing];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

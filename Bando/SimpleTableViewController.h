@@ -10,8 +10,9 @@
 #import <STTwitter/STTwitter.h>
 #import <InstagramKit/InstagramKit.h>
 #import "YALSunnyRefreshControl.h"
+#import "GAITrackedViewController.h"
 
-@interface SimpleTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SimpleTableViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
 @property (strong, nonatomic) STTwitterAPI *twitter;

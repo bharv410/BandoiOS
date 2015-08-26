@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AQGridView.h"
+#import "GAITrackedViewController.h"
 
-@interface GridViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>
+@interface GridViewController : GAITrackedViewController <AQGridViewDelegate, AQGridViewDataSource>
 
-@property (nonatomic, retain) IBOutlet AQGridView * gridView;
+@property (nonatomic, strong) IBOutlet AQGridView * gridView;
 
-@property (nonatomic, retain) NSMutableArray *bandoPosts;
+@property (nonatomic, strong) NSMutableArray *bandoPosts;
 
 @end

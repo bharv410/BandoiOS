@@ -40,8 +40,8 @@
         [self.contentView setBackgroundColor:[UIColor clearColor]];
         mainView.layer.borderColor = [UIColor whiteColor].CGColor;
         mainView.layer.borderWidth = 2.0f;
-        self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.contentView.layer.borderWidth = 2.0f;
+        _contentView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _contentView.layer.borderWidth = 2.0f;
         
         [self.contentView addSubview:frameImageView];
         [self.contentView addSubview:self.imageView];
