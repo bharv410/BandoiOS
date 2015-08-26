@@ -36,6 +36,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     [super viewDidLoad];
     // Initialize table dat
     self.screenName = @"Live Page";
+    self.bandoPosts = [[NSMutableArray alloc]init];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Live Page"];
@@ -72,8 +73,6 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.instagramEngine = [InstagramEngine sharedEngine];
-    [self.bandoPosts removeAllObjects];
-    self.bandoPosts = [[NSMutableArray alloc]init];
 
     [self grabAcceptableTwits];
 }
@@ -445,9 +444,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         }
     
         if([userDefaults boolForKey:@"showMusic"] && twitSet){
-            
-            [self getMusicIGPosts];
             [self getMusicTwitPosts];
+            [self getMusicIGPosts];
         }
 }
 
