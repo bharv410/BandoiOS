@@ -13,11 +13,15 @@
 
 @end
 
-@implementation ArticleDetailViewController
+@implementation ArticleDetailViewController{
+    UIView *bottomBar;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.screenName = @"Article Page";
+    
+    //[self hideTheTabBarWithAnimation:YES];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Article Page"];
@@ -27,8 +31,20 @@
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                    target:self
                                    action:@selector(shareAction:)];
-    self.navigationItem.rightBarButtonItem = shareButton;
+//    self.navigationItem.rightBarButtonItem = shareButton;
+    // Create the refresh, fixed-space (optional), and profile buttons.
+    UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNow)];
     
+    //    // Optional: if you want to add space between the refresh & profile buttons
+    //    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    //    fixedSpaceBarButtonItem.width = 12;
+    
+    UIBarButtonItem *profileBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(goToProfile)];
+    profileBarButtonItem.style = UIBarButtonItemStyleBordered;
+    
+    self.navigationItem.rightBarButtonItems = @[shareButton, /* fixedSpaceBarButtonItem, */ refreshBarButtonItem];
+    
+    ///aboce i add the three nav bars
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -54,11 +70,7 @@
     
     self.navigationController.navigationBar.topItem.title = @"Bando";
     
-//    UIView *bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0,screenHeight-60, screenWidth, 60)];
-//    UIColor *greenColor = [self colorWithHexString:@"168807"];
-//    [bottomBar setBackgroundColor:greenColor];
-//    [self.view addSubview:bottomBar];
-//    
+//
     //[self addBackButtonWithTitle:@"Back"];
     
 }
@@ -99,12 +111,48 @@
     [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
                                       applicationActivities:nil];
     [self.navigationController presentViewController:activityViewController
-                                       animated:YES
-                                     completion:^{
-                                         // ...
-                                         NSLog(@"sharing");
-                                     }];
+                                            animated:YES
+                                          completion:^{
+                                              // ...
+                                              NSLog(@"sharing");
+                                          }];
 }
+
+-(void)saveNow{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:self.websiteString forKey:@"preferenceName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (void) hideTheTabBarWithAnimation:(BOOL) withAnimation {
+    if (NO == withAnimation) {
+        [self.tabBarController.tabBar setHidden:YES];
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:nil];
+        [UIView setAnimationDuration:0.75];
+        
+        [self.tabBarController.tabBar setAlpha:0.0];
+        
+        [UIView commitAnimations];
+        //[self addGreenBar];
+    }
+}
+
+- (void)addGreenBar{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0,screenHeight-49-49, screenWidth, 49)];
+    UIColor *greenColor = [self colorWithHexString:@"168807"];
+    [bottomBar setBackgroundColor:greenColor];
+    bottomBar.hidden = NO;
+    [[[UIApplication sharedApplication] keyWindow] addSubview:bottomBar];
+
+}
+
 
 -(UIColor*)colorWithHexString:(NSString*)hex
 {
@@ -144,6 +192,8 @@
 
 - (void)backButtonPressed
 {
+//    bottomBar.hidden = YES;
+//    [bottomBar removeFromSuperview];
     // write your code to prepare popview
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -179,6 +229,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    //[self addGreenBar];
     
 }
 

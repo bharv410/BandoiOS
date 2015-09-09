@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) NSMutableArray *bandoPosts;
 @property (nonatomic,strong) YALSunnyRefreshControl *sunnyRefreshControl;
-
+@property (nonatomic,strong) NSDateFormatter *dateFormatter;
 -(void)editCategories;
 
 @end

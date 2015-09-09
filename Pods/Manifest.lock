@@ -37,6 +37,7 @@ PODS:
   - Haneke (1.0.1)
   - InstagramKit (3.6.5):
     - AFNetworking (~> 2.0)
+  - NSDate+TimeAgo (1.0.3)
   - STTwitter (0.2.2)
 
 DEPENDENCIES:
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - Google/Analytics (~> 1.0.0)
   - Haneke (~> 1.0)
   - InstagramKit (~> 3.0)
+  - NSDate+TimeAgo
   - STTwitter
 
 SPEC CHECKSUMS:
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
   InstagramKit: 90759652c8c4579bfaa5c9f001927e162c3e1c66
+  NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
 
 COCOAPODS: 0.35.0

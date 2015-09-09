@@ -65,7 +65,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
 
-    self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, screenWidth, self.table.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame));
+    self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, screenWidth, self.table.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame));
     
 }
 

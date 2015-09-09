@@ -14,7 +14,9 @@
 #import "ChooseCategoriesViewController.h"
 #import "YALSunnyRefreshControl.h"
 #import "ArticleDetailViewController.h"
+#import "NSDate+TimeAgo.h"
 #import <Google/Analytics.h>
+#import "Reachability.h"
 
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
@@ -35,6 +37,13 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Initialize table dat
+    
+    
+    self.dateFormatter= [NSDateFormatter new];
+    self.dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [self.dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+    
+    
     self.screenName = @"Live Page";
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -80,7 +89,20 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     [self grabAcceptableTwits];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        if([self.bandoPosts count]<2){
+        Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
+        
+        NetworkStatus networkStatus = [netWorkReachablity currentReachabilityStatus];
+        
+        if (networkStatus == NotReachable) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"No Internet Connection"
+                                  message:@"This app requires internet connection to work correctly"
+                                  delegate:self  // set nil if you don't want the yes button callback
+                                  cancelButtonTitle:@"Okay"
+                                  otherButtonTitles:nil, nil];
+            [alert show];
+            
+        }else if([self.bandoPosts count]<2){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Posts"
                                                             message:@"Please edit your settings to include more topics."
                                                            delegate:nil
@@ -155,6 +177,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                BandoPost *bp = [[BandoPost alloc]init];
                                                bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                bp.postType = @"twitter";
+                                               bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
                                                bp.uniqueId = [cur valueForKey:@"id"];
                                                bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
                                                bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
@@ -164,6 +187,13 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                if(![self.bandoPosts containsObject:bp])
                                                    [self.bandoPosts addObject:bp];
                                            }
+                                           //then sort data
+                                           [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                               NSDate *second = [(BandoPost*)a createdAt];
+                                               NSDate *first = [(BandoPost*)b createdAt];
+                                               return [first compare:second];
+                                           }];
+                                           
                                            [self.myTableView reloadData];
                                        } errorBlock:^(NSError *error) {
                                        }];
@@ -184,6 +214,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
                                                    bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
                                                    bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
                                                    bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
                                                                   bp.username,bp.uniqueId];
@@ -192,6 +223,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    if(![self.bandoPosts containsObject:bp])
                                                        [self.bandoPosts addObject:bp];
                                                }
+                                               [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                                   NSDate *second = [(BandoPost*)a createdAt];
+                                                   NSDate *first = [(BandoPost*)b createdAt];
+                                                   return [first compare:second];
+                                               }];
                                                [self.myTableView reloadData];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
@@ -218,6 +254,75 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
+            [self.myTableView reloadData];
+        } failure:^(NSError *error, NSInteger serverStatusCode) {
+            NSLog(@"%@",error.description);
+        }];
+    }
+}
+
+-(void)getTrendingTwitPosts{
+    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"KingJames",@"kimkardashian",@"kdtrey5",@"trvisXX",@"50cent",@"drake",@"chicagodonc", @"myfabolouslife", nil];
+    
+    for(NSString *username in twitUsers){
+        [self.twitter getUserTimelineWithScreenName:username
+                                              count:2
+                                       successBlock:^(NSArray *statuses) {
+                                           for(NSDictionary *cur in statuses){
+                                               BandoPost *bp = [[BandoPost alloc]init];
+                                               bp.username = [cur valueForKeyPath:@"user.screen_name"];
+                                               bp.postType = @"twitter";
+                                               bp.uniqueId = [cur valueForKey:@"id"];
+                                               bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
+                                               bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
+                                               bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
+                                                              bp.username,bp.uniqueId];
+                                               bp.postText = [cur valueForKey:@"text"];
+                                               bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                               if(![self.bandoPosts containsObject:bp])
+                                                   [self.bandoPosts addObject:bp];
+                                           }
+                                           [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                               NSDate *second = [(BandoPost*)a createdAt];
+                                               NSDate *first = [(BandoPost*)b createdAt];
+                                               return [first compare:second];
+                                           }];
+                                           [self.myTableView reloadData];
+                                       } errorBlock:^(NSError *error) {
+                                           NSLog(@"%@",error.description);
+                                       }];
+    }
+}
+
+-(void)getTrendingIGPosts{
+    NSArray *igUsers = [[NSArray alloc]initWithObjects:@"25945306", @"13336763", @"1511722523",@"199211518",@"16264572",@"19410587",@"13864937",nil];
+    
+    for(NSString *username in igUsers){
+        [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {
+            for(InstagramMedia *cur in media){
+                BandoPost *bp = [[BandoPost alloc]init];
+                bp.postLink = cur.link;
+                NSString *deepLink = [NSString stringWithFormat:@"instagram://media?id=%@",cur.Id];
+                bp.postDeepLink = deepLink;
+                bp.username = cur.user.username;
+                bp.postType = @"instagram";
+                bp.postText = cur.caption.text;
+                bp.createdAt = cur.createdDate;
+                bp.igProPic = cur.user.profilePictureURL;
+                bp.igImageUrl = cur.standardResolutionImageURL;
+                if(![self.bandoPosts containsObject:bp])
+                    [self.bandoPosts addObject:bp];
+            }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
             [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -244,6 +349,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
             [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -271,6 +381,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
             [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -297,6 +412,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
             [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -323,6 +443,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                 if(![self.bandoPosts containsObject:bp])
                     [self.bandoPosts addObject:bp];
             }
+            [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                NSDate *second = [(BandoPost*)a createdAt];
+                NSDate *first = [(BandoPost*)b createdAt];
+                return [first compare:second];
+            }];
             [self.myTableView reloadData];
         } failure:^(NSError *error, NSInteger serverStatusCode) {
             NSLog(@"%@",error.description);
@@ -342,13 +467,20 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
                                                    bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
                                                    bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
                                                    bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
                                                                   bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
+                                                   
                                                    [self.bandoPosts addObject:bp];
                                                }
+                                               [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                                   NSDate *second = [(BandoPost*)a createdAt];
+                                                   NSDate *first = [(BandoPost*)b createdAt];
+                                                   return [first compare:second];
+                                               }];
                                                [self.myTableView reloadData];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
@@ -370,6 +502,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.username = [cur valueForKeyPath:@"user.screen_name"];
                                                    bp.postType = @"twitter";
                                                    bp.uniqueId = [cur valueForKey:@"id"];
+                                                   bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
                                                    bp.postDeepLink = [NSString stringWithFormat:@"twitter://status?id=%@",bp.uniqueId];
                                                    bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
                                                                   bp.username,bp.uniqueId];
@@ -377,20 +510,16 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    [self.bandoPosts addObject:bp];
                                                }
+                                               [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                                   NSDate *second = [(BandoPost*)a createdAt];
+                                                   NSDate *first = [(BandoPost*)b createdAt];
+                                                   return [first compare:second];
+                                               }];
                                                [self.myTableView reloadData];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
                                            }];
         }
-}
-
--(void)shuffleArray{
-    NSUInteger count = [self.bandoPosts count];
-    for (NSUInteger i = 0; i < count - 1; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
-        [self.bandoPosts exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
-    }
 }
 
 -(void)getArtTwitPosts{
@@ -410,9 +539,15 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
                                                    bp.postLink = [NSString stringWithFormat:@"http://twitter.com/%@/statuses/%@",
                                                                   bp.username,bp.uniqueId];
                                                    bp.postText = [cur valueForKey:@"text"];
+                                                   bp.createdAt = [self.dateFormatter dateFromString:[cur valueForKey:@"created_at"]];
                                                    bp.profileImageUrl = [cur  valueForKeyPath:@"user.profile_image_url_https"];
                                                    [self.bandoPosts addObject:bp];
                                                }
+                                               [self.bandoPosts sortUsingComparator:^NSComparisonResult(id a, id b) {
+                                                   NSDate *second = [(BandoPost*)a createdAt];
+                                                   NSDate *first = [(BandoPost*)b createdAt];
+                                                   return [first compare:second];
+                                               }];
                                                [self.myTableView reloadData];
                                            } errorBlock:^(NSError *error) {
                                                NSLog(@"%@",error.description);
@@ -434,8 +569,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
 -(void)grabAcceptableTwits{
         if([userDefaults boolForKey:@"showSports"] && twitSet){
-            [self getSportsTwitPosts];
             [self getSportsIGPosts];
+            [self getSportsTwitPosts];
         }
     
         if([userDefaults boolForKey:@"showArt"] && twitSet){
@@ -461,6 +596,11 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
             [self getMusicTwitPosts];
             [self getMusicIGPosts];
         }
+    
+    if([userDefaults boolForKey:@"showTrending"] && twitSet){
+        [self getTrendingIGPosts];
+        [self getTrendingTwitPosts];
+    }
 }
 
 //creates cell with a row number (0,1,2, etc), sets the name and description as strings from event object
@@ -488,6 +628,8 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
     NSString *profilePic = bp.profileImageUrl;
     
     cell.nameLabel.text = [NSString stringWithFormat:@"@%@",screenName];
+    cell.timeLabel.text = [bp.createdAt timeAgo];
+    [cell.timeLabel sizeToFit];
     
     if([bp.postType isEqualToString:@"instagram"]){
         [cell.realImageView setHidden:NO];
