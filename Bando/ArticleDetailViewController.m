@@ -120,8 +120,9 @@
 
 -(void)saveNow{
     
-    [[NSUserDefaults standardUserDefaults] setObject:self.websiteString forKey:@"preferenceName"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.websiteString forKey:self.websiteString];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [self backButtonPressed];
     
 }
 

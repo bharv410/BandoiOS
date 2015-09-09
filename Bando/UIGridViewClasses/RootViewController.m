@@ -14,6 +14,7 @@
 #import "ArticleDetailViewController.h"
 #import "Reachability.h"
 #import <Google/Analytics.h>
+#import "SavedArticlesController.h"
 
 
 @implementation RootViewController{
@@ -39,6 +40,8 @@
     [super viewDidLoad];
     [self getOtherPosts];
     [self getFeaturedPost];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Saved" style:UIBarButtonItemStylePlain target:self action:@selector(savedArticles)];
     
     self.screenName = @"Featured Page";
     
@@ -279,6 +282,16 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+}
+
+-(void)savedArticles{
+    NSLog(@"Saved");
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SavedArticlesController *articleDetail = (SavedArticlesController *)[storyboard instantiateViewControllerWithIdentifier:@"savedArticles"];
+    //articleDetail.websiteString = siteUrl;
+    [self.navigationController pushViewController:articleDetail animated:YES];
+    
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
