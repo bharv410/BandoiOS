@@ -19,17 +19,17 @@
     [super viewDidLoad];
     
     
-    
+    self.booksArray = nil;
     self.booksArray = [[NSMutableArray alloc]init];
     
     
+    [self getFeaturedPost];
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
     [query setLimit:24];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             
-            NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 
                 BandoPost *bp = [[BandoPost alloc]init];
@@ -48,6 +48,16 @@
                 
             }
             [self.tableView reloadData];
+            if ([self.booksArray count] < 1) {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"No Saved Posts"
+                                      message:@"Go to some posts & click save!"
+                                      delegate:self  // set nil if you don't want the yes button callback
+                                      cancelButtonTitle:@"Okay"
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+                
+            }
         } else {
             // Log details of the failure
             //NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -56,6 +66,30 @@
     
     
     
+}
+
+-(void) getFeaturedPost{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"BandoFeaturedPost"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            PFObject *object = [objects firstObject];
+            BandoPost *bp = [[BandoPost alloc]init];
+            bp.postLink = object[@"postLink"];
+            bp.postType = @"article";
+            bp.postText = object[@"text"];
+            bp.createdAt = object.createdAt;
+            bp.imageUrl = object[@"imageUrl"];
+            bp.uniqueId = object.objectId;
+            bp.viewCount = object[@"viewCount"];
+            
+            if([[NSUserDefaults standardUserDefaults]
+                objectForKey:bp.postLink] != nil && ![self.booksArray containsObject:bp]){
+                [self.booksArray addObject:bp];
+            }
+        }
+    }];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
