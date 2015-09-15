@@ -203,7 +203,12 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)getSportsTwitPosts{
-    NSArray *twitUsers = [[NSArray alloc]initWithObjects:@"KingJames",@"kobebryant",@"kdtrey5",@"Chris_Broussard",@"NikeBasketball",@"uabasketball",@"RealSkipBayless", @"stephenasmith", nil];
+    NSArray *twitUsers;
+    if([userDefaults boolForKey:@"showTrending"]){
+        twitUsers = [[NSArray alloc]initWithObjects:@"kobebryant",@"kdtrey5",@"Chris_Broussard",@"NikeBasketball",@"uabasketball",@"RealSkipBayless", @"stephenasmith", nil];
+    }else{
+        twitUsers = [[NSArray alloc]initWithObjects:@"KingJames",@"kobebryant",@"kdtrey5",@"Chris_Broussard",@"NikeBasketball",@"uabasketball",@"RealSkipBayless", @"stephenasmith", nil];
+    }
 
         for(NSString *username in twitUsers){
             [self.twitter getUserTimelineWithScreenName:username
