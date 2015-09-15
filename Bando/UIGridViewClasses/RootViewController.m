@@ -403,8 +403,10 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
         NSLog(@"is NOT active");
+
     [self getFeaturedPost];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarStyleDefault];
+    [self setNeedsStatusBarAppearanceUpdate];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
@@ -414,7 +416,7 @@
 
 - (void)didDismissSearchController:(UISearchController *)arg1{
     NSLog(@"bam");
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 - (void)didPresentSearchController:(UISearchController *)arg1{
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
