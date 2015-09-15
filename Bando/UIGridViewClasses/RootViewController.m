@@ -285,6 +285,14 @@
 - (void) gridView:(UIGridView *)grid didSelectRowAt:(int)rowIndex AndColumnAt:(int)colIndex
 {
 	NSLog(@"%d, %d clicked", rowIndex, colIndex);
+    if(self.searchController.active){
+        BandoPost *currentPost = [_searchreturndbandoPosts objectAtIndex:rowIndex*2+colIndex];
+        NSString *siteUrl = currentPost.postLink;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
+        articleDetail.websiteString = siteUrl;
+        [self.navigationController pushViewController:articleDetail animated:YES];
+    }else{
     //[self.gridView deselectItemAtIndex:index animated:YES];
     BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+colIndex];
     NSString *siteUrl = currentPost.postLink;
@@ -292,6 +300,7 @@
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
     articleDetail.websiteString = siteUrl;
     [self.navigationController pushViewController:articleDetail animated:YES];
+    }
 }
 
 -(UIColor*)colorWithHexString:(NSString*)hex
