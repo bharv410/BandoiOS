@@ -41,6 +41,8 @@
     [self getOtherPosts];
     [self getFeaturedPost];
     
+    
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Saved" style:UIBarButtonItemStylePlain target:self action:@selector(savedArticles)];
     
     self.screenName = @"Featured Page";
@@ -85,8 +87,9 @@
     self.searchController.searchResultsUpdater = self;
     
     self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"Current Articles",@"Country"),
-                                                          NSLocalizedString(@"All-time",@"Capital")];
+    //self.searchController.hidesNavigationBarDuringPresentation = NO;
+//    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"Current Articles",@"Country"),
+//                                                          NSLocalizedString(@"All-time",@"Capital")];
     
     [self.searchController.searchBar setTintColor:[self colorWithHexString:@"166807"]];
     
@@ -246,7 +249,11 @@
 
 - (NSInteger) numberOfCellsOfGridView:(UIGridView *) grid
 {
-	return [_bandoPosts count];
+    if(self.searchController.active){
+        return [_searchreturndbandoPosts count];
+    }else{
+        return [_bandoPosts count];
+    }
 }
 
 - (UIGridViewCell *) gridView:(UIGridView *)grid cellForRowAt:(int)rowIndex AndColumnAt:(int)columnIndex
@@ -257,12 +264,20 @@
 		cell = [[Cell alloc] init];
 	}
     
-    
-    BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+columnIndex];
-    if(currentPost!=nil){
-	cell.label.text = currentPost.postText;
-    [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
+    if(self.searchController.active){
+        BandoPost *currentPost = [_searchreturndbandoPosts objectAtIndex:rowIndex*2+columnIndex];
+        if(currentPost!=nil){
+            cell.label.text = currentPost.postText;
+            [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
+        }
+    }else{
+        BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+columnIndex];
+        if(currentPost!=nil){
+            cell.label.text = currentPost.postText;
+            [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
+        }
     }
+    
 	
 	return cell;
 }
@@ -348,13 +363,61 @@
 
 - (void)searchForText:(NSString *)searchText scope:(NSInteger)scopeOption
 {
-    NSLog(@"area %z and searching %@",scopeOption,searchText );
+[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
+    self.table.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [self.searchController.searchBar becomeFirstResponder];
+    
+    if(self.searchController.active)
+        NSLog(@"is active");
+    PFQuery *query1 = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
+    [query1 orderByDescending:@"createdAt"];
+    [query1 whereKey:@"postText" containsString:searchText];
+    
+    
+    [query1 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            
+            NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
+            for (PFObject *object in objects) {
+                
+                BandoPost *bp = [[BandoPost alloc]init];
+                bp.postLink = object[@"postLink"];
+                bp.postType = @"article";
+                bp.postText = object[@"postText"];
+                bp.createdAt = object.createdAt;
+                bp.imageUrl = object[@"imageUrl"];
+                bp.uniqueId = object.objectId;
+                bp.viewCount = object[@"viewCount"];
+                [allImageNames addObject:bp];
+                NSLog(@" text = %@",bp.postText);
+            }
+            _searchreturndbandoPosts = [allImageNames copy];
+            [self.table reloadData];
+        } else {
+            // Log details of the failure
+            //NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+        NSLog(@"is NOT active");
+    [self getFeaturedPost];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarStyleDefault];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
 {
     [self updateSearchResultsForSearchController:self.searchController];
+}
+
+- (void)didDismissSearchController:(UISearchController *)arg1{
+    NSLog(@"bam");
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarStyleDefault];
+}
+- (void)didPresentSearchController:(UISearchController *)arg1{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
 
 @end

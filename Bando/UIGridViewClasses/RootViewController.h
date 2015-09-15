@@ -13,6 +13,8 @@
 
 @interface RootViewController : GAITrackedViewController<UIGridViewDelegate, UISearchResultsUpdating> {
     NSArray *_bandoPosts;
+    
+    NSArray *_searchreturndbandoPosts;
 }
 @property (nonatomic, retain) IBOutlet UIGridView *table;
 @property (strong, nonatomic) UISearchController *searchController;
