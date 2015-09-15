@@ -26,7 +26,6 @@
     [self getFeaturedPost];
     PFQuery *query = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
     [query orderByDescending:@"createdAt"];
-    [query setLimit:24];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             

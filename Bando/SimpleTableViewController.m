@@ -236,7 +236,12 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 }
 
 -(void)getSportsIGPosts{
-    NSArray *igUsers = [[NSArray alloc]initWithObjects:@"16264572",@"19410587",@"13864937",nil];
+    NSArray *igUsers;
+    if([userDefaults boolForKey:@"showTrending"]){
+        igUsers = [[NSArray alloc]initWithObjects:@"16264572",@"13864937",nil];
+    }else{
+        igUsers = [[NSArray alloc]initWithObjects:@"16264572",@"19410587",@"13864937",nil];
+    }
     
     for(NSString *username in igUsers){
         [self.instagramEngine getMediaForUser:username count:2 maxId:nil withSuccess:^(NSArray *media, InstagramPaginationInfo *paginationInfo) {

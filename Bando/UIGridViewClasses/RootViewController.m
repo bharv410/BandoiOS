@@ -68,8 +68,7 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
 
-    self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, screenWidth, self.table.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame));
-    
+    self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, screenWidth, self.table.frame.size.height - CGRectGetHeight(self.tabBarController.tabBar.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame) + 22);
 }
 
 
@@ -80,6 +79,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
+-(void) setupSearchController : (UIView *)header{
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"Current Articles",@"Country"),
+                                                          NSLocalizedString(@"All-time",@"Capital")];
+    
+    [self.searchController.searchBar setTintColor:[self colorWithHexString:@"166807"]];
+    
+    self.searchController.searchBar.delegate = self;
+    [header addSubview:self.searchController.searchBar];
+    self.definesPresentationContext = YES;
+    [self.searchController.searchBar sizeToFit];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        NSLog(@"sholda did something");
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            CGPoint contentOffset = self.table.contentOffset;
+            //contentOffset.y += CGRectGetHeight(self.searchController.searchBar.frame);
+            contentOffset.y += 22;
+            self.table.contentOffset = contentOffset;
+        
+        }];
+    });
+}
 
 -(void) getFeaturedPost{
     
@@ -101,13 +128,13 @@
             CGRect screenRect = [[UIScreen mainScreen] bounds];
             CGFloat screenWidth = screenRect.size.width;
             
-            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth-20)];
+            UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth-20 +44)];
             
             
             NSString *url = bp.imageUrl;
             NSURL *imageURL = [[NSURL alloc]initWithString:url];
             
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, screenWidth-20, screenWidth-20)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 44, screenWidth-20, screenWidth-20)];
             
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
             [imageView setClipsToBounds:YES];
@@ -117,7 +144,7 @@
             //            UIView *greenBG = [[UIView alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,(screenWidth- 40),imageView.frame.size.width,40)];
             //            greenBG.backgroundColor = [self colorWithHexString:@"166807"];
             
-            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,(imageView.frame.size.height- 80),imageView.frame.size.width,80)];
+            UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,(imageView.frame.size.height- 80 +44),imageView.frame.size.width,80)];
             headerLabel.text = bp.postText;
             headerLabel.textColor = [UIColor whiteColor];
             headerLabel.font = [UIFont boldSystemFontOfSize:24];
@@ -126,9 +153,14 @@
             headerLabel.backgroundColor = [[self colorWithHexString:@"166807"]colorWithAlphaComponent:0.7f];
             headerLabel.textAlignment = NSTextAlignmentCenter;
             
+            
+            [self setupSearchController:tableHeaderView];
+            
             [tableHeaderView addSubview:imageView];
             //[tableHeaderView addSubview:greenBG];
             [tableHeaderView addSubview:headerLabel];
+            
+            [self setupSearchController:tableHeaderView];
             
             self.table.tableHeaderView = tableHeaderView;
             
@@ -185,7 +217,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     //[super dealloc];
@@ -308,5 +339,22 @@
     //Do stuff here...
 }
 
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    NSString *searchString = searchController.searchBar.text;
+    
+    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
+}
+
+- (void)searchForText:(NSString *)searchText scope:(NSInteger)scopeOption
+{
+    NSLog(@"area %z and searching %@",scopeOption,searchText );
+    
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    [self updateSearchResultsForSearchController:self.searchController];
+}
 
 @end

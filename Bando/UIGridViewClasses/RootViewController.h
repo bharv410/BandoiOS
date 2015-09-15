@@ -11,9 +11,10 @@
 #import "UIGridViewDelegate.h"
 #import <Google/Analytics.h>
 
-@interface RootViewController : GAITrackedViewController<UIGridViewDelegate> {
+@interface RootViewController : GAITrackedViewController<UIGridViewDelegate, UISearchResultsUpdating> {
     NSArray *_bandoPosts;
 }
 @property (nonatomic, retain) IBOutlet UIGridView *table;
+@property (strong, nonatomic) UISearchController *searchController;
 
 @end
