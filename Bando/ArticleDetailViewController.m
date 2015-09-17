@@ -63,7 +63,7 @@
 -(void)setupActionBar{
     UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [customButton setImage:[UIImage imageNamed:@"icatrending.png"] forState:UIControlStateNormal];
+    [customButton setImage:[UIImage imageNamed:@"itrending.png"] forState:UIControlStateNormal];
     [customButton setTitle:[self.viewCount stringValue] forState:UIControlStateNormal];
 //    CGFloat spacing = 10; // the amount of spacing to appear between image and title
 //    customButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
