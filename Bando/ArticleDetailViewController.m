@@ -8,6 +8,7 @@
 
 #import "ArticleDetailViewController.h"
 #import <Google/Analytics.h>
+#import <Parse/Parse.h>
 
 @interface ArticleDetailViewController ()
 
@@ -79,6 +80,29 @@
 {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
     self.navigationItem.leftBarButtonItem = backButton;
+}
+
+-(void)updateViewCountThreeViaParse{
+    NSString *findBy = self.postString;
+    
+    PFQuery *query1 = [PFQuery queryWithClassName:@"VerifiedBandoPost"];
+    [query1 orderByDescending:@"createdAt"];
+    [query1 whereKey:@"postText" containsString:findBy];
+    
+    [query1 getFirstObjectInBackgroundWithBlock:^(PFObject * userStats, NSError *error) {
+        if (!error) {
+            // Found UserStats
+           [userStats incrementKey:@"viewCount" byAmount:[NSNumber numberWithInt:3]];
+            
+            // Save
+            [userStats saveInBackground];
+            show it on actionbar
+            
+        } else {
+            // Did not find any UserStats for the current user
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color
@@ -231,6 +255,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //[self addGreenBar];
+    [self updateViewCountThreeViaParse];
     
 }
 

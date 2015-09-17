@@ -160,6 +160,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = bp.postLink;
+        articleDetail.postString = bp.postText;
         [self.navigationController pushViewController:articleDetail animated:YES];
         
     }

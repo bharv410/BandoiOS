@@ -19,6 +19,7 @@
 
 @implementation RootViewController{
     NSString *featuredPostLink;
+    NSString *featuredPostString;
 }
 
 
@@ -121,6 +122,7 @@
             BandoPost *bp = [[BandoPost alloc]init];
             bp.postLink = object[@"postLink"];
             featuredPostLink = bp.postLink;
+            featuredPostString = bp.postText;
             bp.postType = @"article";
             bp.postText = object[@"text"];
             bp.createdAt = object.createdAt;
@@ -291,6 +293,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = siteUrl;
+        articleDetail.postString = currentPost.postText;
         [self.navigationController pushViewController:articleDetail animated:YES];
     }else{
     //[self.gridView deselectItemAtIndex:index animated:YES];
@@ -299,6 +302,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
     articleDetail.websiteString = siteUrl;
+    articleDetail.postString = currentPost.postText;
     [self.navigationController pushViewController:articleDetail animated:YES];
     }
 }
@@ -345,6 +349,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SavedArticlesController *articleDetail = (SavedArticlesController *)[storyboard instantiateViewControllerWithIdentifier:@"savedArticles"];
     //articleDetail.websiteString = siteUrl;
+    
     [self.navigationController pushViewController:articleDetail animated:YES];
     
 }
@@ -358,6 +363,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = siteUrl;
+        articleDetail.postString = featuredPostString;
         [self.navigationController pushViewController:articleDetail animated:YES];
     }
     //Do stuff here...
