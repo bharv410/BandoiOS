@@ -96,6 +96,7 @@
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
     BandoPost *bp = (BandoPost *)[self.booksArray objectAtIndex:indexPath.row];
     articleDetail.websiteString = bp.postLink;
+    articleDetail.viewCount = bp.viewCount;
     articleDetail.postString = bp.postText;
     [self.navigationController pushViewController:articleDetail animated:YES];
 }

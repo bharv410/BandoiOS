@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *websiteString;
 @property (nonatomic, retain) NSString *postString;
+@property (nonatomic, retain) NSNumber *viewCount;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navTitle;
 
 @end

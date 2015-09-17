@@ -21,29 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.screenName = @"Article Page";
+    [self setupActionBar];
     
     //[self hideTheTabBarWithAnimation:YES];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName value:@"Article Page"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-    
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                   target:self
-                                   action:@selector(shareAction:)];
-//    self.navigationItem.rightBarButtonItem = shareButton;
-    // Create the refresh, fixed-space (optional), and profile buttons.
-    UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNow)];
-    
-    //    // Optional: if you want to add space between the refresh & profile buttons
-    //    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    //    fixedSpaceBarButtonItem.width = 12;
-    
-    UIBarButtonItem *profileBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(goToProfile)];
-    profileBarButtonItem.style = UIBarButtonItemStyleBordered;
-    
-    self.navigationItem.rightBarButtonItems = @[shareButton, /* fixedSpaceBarButtonItem, */ refreshBarButtonItem];
     
     ///aboce i add the three nav bars
     
@@ -76,6 +60,40 @@
     
 }
 
+-(void)setupActionBar{
+    UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [customButton setImage:[UIImage imageNamed:@"icatrending.png"] forState:UIControlStateNormal];
+    [customButton setTitle:[self.viewCount stringValue] forState:UIControlStateNormal];
+//    CGFloat spacing = 10; // the amount of spacing to appear between image and title
+//    customButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+//    customButton.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    
+    //customButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    [customButton sizeToFit];
+    UIBarButtonItem *customBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    
+    
+    
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                    target:self
+                                    action:@selector(shareAction:)];
+    //    self.navigationItem.rightBarButtonItem = shareButton;
+    // Create the refresh, fixed-space (optional), and profile buttons.
+    UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNow)];
+    
+    //    // Optional: if you want to add space between the refresh & profile buttons
+    //    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    //    fixedSpaceBarButtonItem.width = 12;
+    
+    UIBarButtonItem *profileBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(goToProfile)];
+    profileBarButtonItem.style = UIBarButtonItemStyleBordered;
+    
+    self.navigationItem.rightBarButtonItems = @[ shareButton, /* fixedSpaceBarButtonItem, */ refreshBarButtonItem, customBarButtonItem];
+
+}
+
 - (void)addBackButtonWithTitle:(NSString *)title
 {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
@@ -92,11 +110,11 @@
     [query1 getFirstObjectInBackgroundWithBlock:^(PFObject * userStats, NSError *error) {
         if (!error) {
             // Found UserStats
-           [userStats incrementKey:@"viewCount" byAmount:[NSNumber numberWithInt:3]];
+           [userStats incrementKey:@"viewCount" byAmount:[NSNumber numberWithInt:1]];
             
             // Save
             [userStats saveInBackground];
-            show it on actionbar
+            //show it on actionbar
             
         } else {
             // Did not find any UserStats for the current user
@@ -256,7 +274,6 @@
 {
     //[self addGreenBar];
     [self updateViewCountThreeViaParse];
-    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

@@ -20,6 +20,7 @@
 @implementation RootViewController{
     NSString *featuredPostLink;
     NSString *featuredPostString;
+    NSNumber *featuedViewCount;
 }
 
 
@@ -121,14 +122,15 @@
             PFObject *object = [objects firstObject];
             BandoPost *bp = [[BandoPost alloc]init];
             bp.postLink = object[@"postLink"];
-            featuredPostLink = bp.postLink;
-            featuredPostString = bp.postText;
             bp.postType = @"article";
             bp.postText = object[@"text"];
             bp.createdAt = object.createdAt;
             bp.imageUrl = object[@"imageUrl"];
             bp.uniqueId = object.objectId;
             bp.viewCount = object[@"viewCount"];
+            featuredPostLink = bp.postLink;
+            featuredPostString = bp.postText;
+            featuedViewCount = bp.viewCount;
             
             CGRect screenRect = [[UIScreen mainScreen] bounds];
             CGFloat screenWidth = screenRect.size.width;
@@ -294,6 +296,7 @@
         ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = siteUrl;
         articleDetail.postString = currentPost.postText;
+        articleDetail.viewCount = currentPost.viewCount;
         [self.navigationController pushViewController:articleDetail animated:YES];
     }else{
     //[self.gridView deselectItemAtIndex:index animated:YES];
@@ -302,6 +305,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
     articleDetail.websiteString = siteUrl;
+        articleDetail.viewCount = currentPost.viewCount;
     articleDetail.postString = currentPost.postText;
     [self.navigationController pushViewController:articleDetail animated:YES];
     }
@@ -364,6 +368,7 @@
         ArticleDetailViewController *articleDetail = (ArticleDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"articleDetail"];
         articleDetail.websiteString = siteUrl;
         articleDetail.postString = featuredPostString;
+        articleDetail.viewCount = featuedViewCount;
         [self.navigationController pushViewController:articleDetail animated:YES];
     }
     //Do stuff here...
@@ -436,5 +441,6 @@
 - (void)didPresentSearchController:(UISearchController *)arg1{
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
+
 
 @end
