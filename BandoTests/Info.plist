@@ -20,5 +20,27 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+    &lt;array&gt;
+     &lt;string&gt;fbapi&lt;/string&gt;
+     &lt;string&gt;fbauth2&lt;/string&gt;
+     &lt;string&gt;fbshareextension&lt;/string&gt;
+     &lt;string&gt;fb-messenger-api&lt;/string&gt;
+     &lt;string&gt;twitter&lt;/string&gt;
+     &lt;string&gt;whatsapp&lt;/string&gt;
+     &lt;string&gt;wechat&lt;/string&gt;
+     &lt;string&gt;line&lt;/string&gt;
+     &lt;string&gt;instagram&lt;/string&gt;
+     &lt;string&gt;kakaotalk&lt;/string&gt;
+     &lt;string&gt;mqq&lt;/string&gt;
+     &lt;string&gt;vk&lt;/string&gt;
+     &lt;string&gt;mqq&lt;/string&gt;
+    &lt;/array&gt;</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram</string>
+		<string>twitter</string>
+	</array>
 </dict>
 </plist>

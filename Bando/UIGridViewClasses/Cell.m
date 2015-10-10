@@ -23,7 +23,7 @@
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         
-        self.frame = CGRectMake(0, 0, screenWidth/2 + 60, screenWidth/2);
+        self.frame = CGRectMake(0, 0, screenWidth/2 + 80, screenWidth/2);
 		
 		[[NSBundle mainBundle] loadNibNamed:@"Cell" owner:self options:nil];
 		
@@ -32,15 +32,18 @@
 		self.thumbnail.layer.borderColor = [UIColor lightGrayColor].CGColor;
 		self.thumbnail.layer.borderWidth = 1.0;
         
-        self.thumbnail.frame = CGRectMake(10, 10, 160, 160);
+        self.thumbnail.frame = CGRectMake(10, 10, screenWidth/2 -20, screenWidth/2 -20);
         self.thumbnail.contentMode = UIViewContentModeScaleAspectFill;
         [self.thumbnail setClipsToBounds:YES];
         
-        self.label.frame = CGRectMake(10, 170, 160, 60);
+        self.timeStampLabel.frame = CGRectMake(10, screenWidth/2 -8, screenWidth/2 -20, 17);
+        self.timeStampLabel.textAlignment = NSTextAlignmentLeft;
+        
+        self.label.frame = CGRectMake(10, screenWidth/2 +10, screenWidth/2 -20, 60);
         [self.label setFont:[UIFont systemFontOfSize:14]];
         self.label.lineBreakMode = NSLineBreakByWordWrapping;
         self.label.numberOfLines = 0;
-        self.label.textAlignment = NSTextAlignmentCenter;
+        self.label.textAlignment = NSTextAlignmentLeft;
         [self addSubview:self.view];
 	}
 	

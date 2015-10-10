@@ -315,6 +315,10 @@ TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
 THIS SOFTWARE.
 
 
+## SKSplashView
+
+Copyright 2014 Sachin Kesiraju
+
 ## STTwitter
 
 Copyright (c) 2012-2014, Nicolas Seriot

@@ -368,6 +368,14 @@ THIS SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2014 Sachin Kesiraju</string>
+			<key>Title</key>
+			<string>SKSplashView</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2012-2014, Nicolas Seriot
 All rights reserved.
 

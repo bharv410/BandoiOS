@@ -15,7 +15,10 @@
 #import "Reachability.h"
 #import <Google/Analytics.h>
 #import "SavedArticlesController.h"
-
+#import <SKSplashView/SKSplashView.h>
+#import <SKSplashView/SKSplashIcon.h>
+#import "AppDelegate.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation RootViewController{
     NSString *featuredPostLink;
@@ -43,6 +46,15 @@
     [self getOtherPosts];
     [self getFeaturedPost];
     
+    SKSplashIcon *splashIcon = [[SKSplashIcon alloc] initWithImage:[UIImage imageNamed:@"bandoheader.png"] animationType:SKIconAnimationTypeGrow];
+    
+    SKSplashView *splashView = [[SKSplashView alloc] initWithSplashIcon:splashIcon backgroundColor:[self colorWithHexString:@"168807"] animationType:SKSplashAnimationTypeNone];
+    
+    //The SplashView can be initialized with a variety of animation types and backgrounds. See customizability for more.
+    splashView.animationDuration = 2.0f; //Set the animation duration (Default: 1s)
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate window] addSubview:splashView]; //Add the splash view to your current view
+    [splashView startAnimation]; //Call this method to start the splash animation
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Saved" style:UIBarButtonItemStylePlain target:self action:@selector(savedArticles)];
@@ -141,7 +153,7 @@
             NSString *url = bp.imageUrl;
             NSURL *imageURL = [[NSURL alloc]initWithString:url];
             
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 44, screenWidth-20, screenWidth-20)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, screenWidth, screenWidth-20)];
             
             [imageView setContentMode:UIViewContentModeScaleAspectFill];
             [imageView setClipsToBounds:YES];
@@ -242,7 +254,7 @@
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
-	return screenWidth/2 + 60;
+	return screenWidth/2 + 80;
 }
 
 - (NSInteger) numberOfColumnsOfGridView:(UIGridView *) grid
@@ -273,15 +285,23 @@
         if(currentPost!=nil){
             cell.label.text = currentPost.postText;
             [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
+            cell.timeStampLabel.text = [currentPost.createdAt timeAgo];
         }
     }else{
         BandoPost *currentPost = [_bandoPosts objectAtIndex:rowIndex*2+columnIndex];
         if(currentPost!=nil){
             cell.label.text = currentPost.postText;
             [cell.thumbnail hnk_setImageFromURL:[NSURL URLWithString:currentPost.imageUrl]];
+            cell.timeStampLabel.text = [currentPost.createdAt timeAgo];
         }
     }
+    CGSize textSize = [[cell.timeStampLabel text] sizeWithAttributes:@{NSFontAttributeName:[cell.timeStampLabel font]}];
     
+    //CGFloat strikeWidth = textSize.width;
+    CGFloat strikeWidth = cell.thumbnail.frame.size.width;
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, cell.timeStampLabel.frame.origin.y+19, strikeWidth, 1)];
+    lineView.backgroundColor = [UIColor grayColor];
+    [cell.view addSubview:lineView];
 	
 	return cell;
 }

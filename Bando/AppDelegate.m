@@ -10,7 +10,8 @@
 #import <Parse/Parse.h>
 #import "CrashHelper.h"
 #import <Google/Analytics.h>
-
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +21,21 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Set AudioSession
+    NSError *sessionError = nil;
+    [[AVAudioSession sharedInstance] setDelegate:self];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+    
+    /* Pick any one of them */
+    // 1. Overriding the output audio route
+    //UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    //AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
+    
+    // 2. Changing the default output audio route
+    UInt32 doChangeDefaultRoute = 1;
+    AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof(doChangeDefaultRoute), &doChangeDefaultRoute);
+
     
     // Configure tracker from GoogleService-Info.plist.
     NSError *configureError;
@@ -60,6 +76,7 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
     
     
     // Override point for customization after application launch.

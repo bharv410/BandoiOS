@@ -38,6 +38,7 @@ PODS:
   - InstagramKit (3.6.5):
     - AFNetworking (~> 2.0)
   - NSDate+TimeAgo (1.0.3)
+  - SKSplashView (0.1.1)
   - STTwitter (0.2.2)
 
 DEPENDENCIES:
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - Haneke (~> 1.0)
   - InstagramKit (~> 3.0)
   - NSDate+TimeAgo
+  - SKSplashView
   - STTwitter
 
 SPEC CHECKSUMS:
@@ -60,6 +62,7 @@ SPEC CHECKSUMS:
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
   InstagramKit: 90759652c8c4579bfaa5c9f001927e162c3e1c66
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
+  SKSplashView: 9cca64e4f0eb556b938b41f63879844124f1aa2c
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
 
 COCOAPODS: 0.35.0

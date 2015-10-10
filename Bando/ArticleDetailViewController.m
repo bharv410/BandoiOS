@@ -84,13 +84,13 @@
     UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNow)];
     
     //    // Optional: if you want to add space between the refresh & profile buttons
-    //    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    //    fixedSpaceBarButtonItem.width = 12;
+        UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        fixedSpaceBarButtonItem.width = 12;
     
     UIBarButtonItem *profileBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(goToProfile)];
     profileBarButtonItem.style = UIBarButtonItemStyleBordered;
     
-    self.navigationItem.rightBarButtonItems = @[ shareButton, /* fixedSpaceBarButtonItem, */ refreshBarButtonItem, customBarButtonItem];
+    self.navigationItem.rightBarButtonItems = @[ shareButton, refreshBarButtonItem,  fixedSpaceBarButtonItem,customBarButtonItem];
 
 }
 

@@ -221,6 +221,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6B0E69311BC3839F0068A85F /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
 		6B13F7AF1B791A5E004511E5 = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +267,7 @@
 		6B13F7BA1B791A5E004511E5 /* Bando */ = {
 			isa = PBXGroup;
 			children = (
+				6B0E69311BC3839F0068A85F /* Comments */,
 				6B1D9FAC1B8E3EAF00C22961 /* UIGridViewClasses */,
 				6BD5F09A1B7FC65800712FC5 /* YALSunnyRefreshControll */,
 				6BA71DFA1B7DAFB400FB531D /* CustomUI */,
@@ -735,6 +743,7 @@
 				INFOPLIST_FILE = Bando/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -762,6 +771,7 @@
 				INFOPLIST_FILE = Bando/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

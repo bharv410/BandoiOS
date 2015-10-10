@@ -15,5 +15,6 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView *thumbnail;
 @property (nonatomic, retain) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UILabel *timeStampLabel;
 
 @end

@@ -10,6 +10,8 @@ pod 'Haneke', '~> 1.0'
 pod 'Google/Analytics', '~> 1.0.0'
 pod 'CHTCollectionViewWaterfallLayout'
 pod 'NSDate+TimeAgo'
+pod 'SKSplashView'
+
 end
 
 target 'BandoTests' do

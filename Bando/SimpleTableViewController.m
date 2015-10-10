@@ -18,6 +18,8 @@
 #import <Google/Analytics.h>
 #import "Reachability.h"
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 NSString * const TWITTER_CONSUMER_KEY = @"QAM6jdb170hyMhJmMwoqbjRCg";
 NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAtOEjLkFQmoSdQ87i";
 
@@ -88,7 +90,7 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 
     [self grabAcceptableTwits];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         Reachability *netWorkReachablity = [Reachability reachabilityForInternetConnection];
         
         NetworkStatus networkStatus = [netWorkReachablity currentReachabilityStatus];
@@ -153,7 +155,10 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BandoPost *bp = [self.bandoPosts objectAtIndex:indexPath.row];
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:bp.postDeepLink]]) {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:bp.postDeepLink]]
+        ||
+        (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0"))
+        ) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postDeepLink]];
     }else{
         //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bp.postLink]];
@@ -649,8 +654,16 @@ NSString * const TWITTER_CONSUMER_SECRET = @"X70RAkYKUDtJH4Hpg5CizyvkJ7zZvrTFbAt
         
         [cell.profileImage hnk_setImageFromURL:bp.igProPic];
         [cell.realImageView hnk_setImageFromURL:bp.igImageUrl];
-        if([text length]>3)
-            cell.igCaptionLabel.text = text;
+        
+        
+//        UILabel *captionLabelNew=[[UILabel alloc]initWithFrame:CGRectMake(10,cell.realImageView.frame.origin.y + cell.realImageView.frame.size.height+5,200,20)];
+//        captionLabelNew.text= text;
+//        captionLabelNew.textAlignment = NSTextAlignmentRight;
+//        captionLabelNew.textColor = [UIColor blackColor];
+//        captionLabelNew.font = [UIFont fontWithName:@"AlNile" size:10.0];
+//        captionLabelNew.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.5f];
+//        
+//        [cell.contentView addSubview:captionLabelNew];
         
         cell.cardView.frame = CGRectMake(5, 5, screenWidth-10, 250);
                 
