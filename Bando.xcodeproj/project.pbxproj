@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B081EF01BAB728000460A2F /* itrending@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EED1BAB728000460A2F /* itrending@2x.png */; settings = {ASSET_TAGS = (); }; };
-		6B081EF11BAB728000460A2F /* itrending.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EEE1BAB728000460A2F /* itrending.png */; settings = {ASSET_TAGS = (); }; };
-		6B081EF21BAB728000460A2F /* itrending@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EEF1BAB728000460A2F /* itrending@3x.png */; settings = {ASSET_TAGS = (); }; };
+		6B081EF01BAB728000460A2F /* itrending@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EED1BAB728000460A2F /* itrending@2x.png */; };
+		6B081EF11BAB728000460A2F /* itrending.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EEE1BAB728000460A2F /* itrending.png */; };
+		6B081EF21BAB728000460A2F /* itrending@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B081EEF1BAB728000460A2F /* itrending@3x.png */; };
 		6B13F7BE1B791A5E004511E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13F7BD1B791A5E004511E5 /* main.m */; };
 		6B13F7C11B791A5E004511E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13F7C01B791A5E004511E5 /* AppDelegate.m */; };
 		6B13F7C41B791A5E004511E5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13F7C31B791A5E004511E5 /* FirstViewController.m */; };
@@ -435,6 +435,7 @@
 				6B13F7B51B791A5E004511E5 /* Frameworks */,
 				6B13F7B61B791A5E004511E5 /* Resources */,
 				4280089D81806A20A0FEDF7C /* Copy Pods Resources */,
+				FE9091450A917D430FD71936 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -569,6 +570,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FE9091450A917D430FD71936 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bando/Pods-Bando-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

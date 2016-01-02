@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
+  - AFNetworking/NSURLSession (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CHTCollectionViewWaterfallLayout (0.9.2)
@@ -28,14 +28,17 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
-  - GoogleAnalytics (3.13.0)
+  - GoogleAnalytics (3.14.0)
   - GoogleNetworkingUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.0.0)
-  - GoogleUtilities (1.0.1):
-    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.3)
+  - GoogleUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0.0)
   - Haneke (1.0.1)
-  - InstagramKit (3.6.5):
+  - InstagramKit (3.7):
+    - AFNetworking (~> 2.0)
+    - InstagramKit/Exclude-UICKeyChainStore (= 3.7)
+  - InstagramKit/Exclude-UICKeyChainStore (3.7):
     - AFNetworking (~> 2.0)
   - NSDate+TimeAgo (1.0.3)
   - SKSplashView (0.1.1)
@@ -52,17 +55,17 @@ DEPENDENCIES:
   - STTwitter
 
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CHTCollectionViewWaterfallLayout: 43232febcb3e4d3985cd758718cbe499b21b822f
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
-  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
-  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
-  GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
+  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
+  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
-  InstagramKit: 90759652c8c4579bfaa5c9f001927e162c3e1c66
+  InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   SKSplashView: 9cca64e4f0eb556b938b41f63879844124f1aa2c
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.39.0
